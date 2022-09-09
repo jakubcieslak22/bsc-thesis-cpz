@@ -1,1 +1,2 @@
 C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\bcs-server-main\x64\Debug\bsc-server-main.exe
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\bcs-server-main\x64\Debug\bsc-server-main.exe

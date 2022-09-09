@@ -1,107 +1,107 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(514,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (bcs-server-main.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  bcs-server-main.cpp
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\query_string.h(121,37): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\query_string.h(374,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\query_string.h(410,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\query_string.h(449,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\utility.h(737,13): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\http_parser_merged.h(587,32): warning C4244: '=': conversion from '__int64' to 'unsigned long', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\http_parser_merged.h(607,32): warning C4244: '=': conversion from '__int64' to 'unsigned long', possible loss of data
+  ServerBase.cpp
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\query_string.h(121,37): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\query_string.h(374,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\query_string.h(410,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\query_string.h(449,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\utility.h(737,13): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\http_parser_merged.h(587,32): warning C4244: '=': conversion from '__int64' to 'unsigned long', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\http_parser_merged.h(607,32): warning C4244: '=': conversion from '__int64' to 'unsigned long', possible loss of data
   Please define _WIN32_WINNT or _WIN32_WINDOWS appropriately. For example:
   - add -D_WIN32_WINNT=0x0601 to the compiler command line; or
   - add _WIN32_WINNT=0x0601 to your project's Preprocessor Definitions.
   Assuming _WIN32_WINNT=0x0601 (i.e. Windows 7 target).
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\json.h(1262,39): warning C4267: 'argument': conversion from 'size_t' to 'uint32_t', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\json.h(1725,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\mustache.h(97,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\mustache.h(116,1): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\mustache.h(118,1): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\json.h(1262,39): warning C4267: 'argument': conversion from 'size_t' to 'uint32_t', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\json.h(1725,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\mustache.h(97,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\mustache.h(116,1): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\mustache.h(118,1): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
           with
           [
               _Ty=int
           ]
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\mustache.h(221,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\mustache.h(367,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\mustache.h(378,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\mustache.h(396,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\mustache.h(407,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\mustache.h(469,1): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\mustache.h(569,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(776,74): warning C4566: character represented by universal-character-name '\u2514' cannot be represented in the current code page (1250)
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(776,74): warning C4566: character represented by universal-character-name '\u279D' cannot be represented in the current code page (1250)
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(780,74): warning C4566: character represented by universal-character-name '\u2514' cannot be represented in the current code page (1250)
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(780,74): warning C4566: character represented by universal-character-name '\u279D' cannot be represented in the current code page (1250)
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(784,74): warning C4566: character represented by universal-character-name '\u2514' cannot be represented in the current code page (1250)
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(784,74): warning C4566: character represented by universal-character-name '\u279D' cannot be represented in the current code page (1250)
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(788,74): warning C4566: character represented by universal-character-name '\u2514' cannot be represented in the current code page (1250)
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(788,74): warning C4566: character represented by universal-character-name '\u279D' cannot be represented in the current code page (1250)
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(792,74): warning C4566: character represented by universal-character-name '\u2514' cannot be represented in the current code page (1250)
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(792,74): warning C4566: character represented by universal-character-name '\u279D' cannot be represented in the current code page (1250)
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(796,74): warning C4566: character represented by universal-character-name '\u2514' cannot be represented in the current code page (1250)
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(796,74): warning C4566: character represented by universal-character-name '\u279D' cannot be represented in the current code page (1250)
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(802,66): warning C4566: character represented by universal-character-name '\u2514' cannot be represented in the current code page (1250)
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(802,66): warning C4566: character represented by universal-character-name '\u279D' cannot be represented in the current code page (1250)
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(813,31): warning C4566: character represented by universal-character-name '\u2514' cannot be represented in the current code page (1250)
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(813,31): warning C4566: character represented by universal-character-name '\u2799' cannot be represented in the current code page (1250)
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(880,70): warning C4244: 'argument': conversion from '__int64' to 'unsigned int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(901,70): warning C4244: 'argument': conversion from '__int64' to 'unsigned int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(922,70): warning C4244: 'argument': conversion from '__int64' to 'unsigned int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(944,1): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(960,1): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(975,1): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(1025,53): warning C4267: '+=': conversion from 'size_t' to 'unsigned int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(1036,45): warning C4267: '+=': conversion from 'size_t' to 'unsigned int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(1082,36): warning C4267: '+=': conversion from 'size_t' to 'unsigned int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(1085,33): warning C4267: '+=': conversion from 'size_t' to 'unsigned int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(1301,1): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(1301,1): warning C4267: 'argument': conversion from 'size_t' to 'uint16_t', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(1348,1): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\routing.h(1514,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\http_server.h(200,1): warning C4267: '=': conversion from 'size_t' to 'uint16_t', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\http_server.h(200): message : while compiling class template member function 'uint16_t crow::Server<crow::Crow<>,crow::SocketAdaptor>::pick_io_service_idx(void)'
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\http_server.h(219): message : see reference to function template instantiation 'uint16_t crow::Server<crow::Crow<>,crow::SocketAdaptor>::pick_io_service_idx(void)' being compiled
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\app.h(346): message : see reference to class template instantiation 'crow::Server<crow::Crow<>,crow::SocketAdaptor>' being compiled
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\app.h(325): message : while compiling class template member function 'void crow::Crow<>::run(void)'
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\bcs-server-main\bcs-server-main.cpp(12): message : see reference to function template instantiation 'void crow::Crow<>::run(void)' being compiled
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\bcs-server-main\bcs-server-main.cpp(6): message : see reference to class template instantiation 'crow::Crow<>' being compiled
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\http_connection.h(479,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\http_connection.h(479): message : while compiling class template member function 'void crow::Connection<Adaptor,Handler>::do_read(void)'
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\mustache.h(221,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\mustache.h(367,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\mustache.h(378,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\mustache.h(396,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\mustache.h(407,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\mustache.h(469,1): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\mustache.h(569,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(776,74): warning C4566: character represented by universal-character-name '\u2514' cannot be represented in the current code page (1250)
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(776,74): warning C4566: character represented by universal-character-name '\u279D' cannot be represented in the current code page (1250)
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(780,74): warning C4566: character represented by universal-character-name '\u2514' cannot be represented in the current code page (1250)
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(780,74): warning C4566: character represented by universal-character-name '\u279D' cannot be represented in the current code page (1250)
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(784,74): warning C4566: character represented by universal-character-name '\u2514' cannot be represented in the current code page (1250)
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(784,74): warning C4566: character represented by universal-character-name '\u279D' cannot be represented in the current code page (1250)
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(788,74): warning C4566: character represented by universal-character-name '\u2514' cannot be represented in the current code page (1250)
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(788,74): warning C4566: character represented by universal-character-name '\u279D' cannot be represented in the current code page (1250)
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(792,74): warning C4566: character represented by universal-character-name '\u2514' cannot be represented in the current code page (1250)
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(792,74): warning C4566: character represented by universal-character-name '\u279D' cannot be represented in the current code page (1250)
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(796,74): warning C4566: character represented by universal-character-name '\u2514' cannot be represented in the current code page (1250)
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(796,74): warning C4566: character represented by universal-character-name '\u279D' cannot be represented in the current code page (1250)
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(802,66): warning C4566: character represented by universal-character-name '\u2514' cannot be represented in the current code page (1250)
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(802,66): warning C4566: character represented by universal-character-name '\u279D' cannot be represented in the current code page (1250)
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(813,31): warning C4566: character represented by universal-character-name '\u2514' cannot be represented in the current code page (1250)
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(813,31): warning C4566: character represented by universal-character-name '\u2799' cannot be represented in the current code page (1250)
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(880,70): warning C4244: 'argument': conversion from '__int64' to 'unsigned int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(901,70): warning C4244: 'argument': conversion from '__int64' to 'unsigned int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(922,70): warning C4244: 'argument': conversion from '__int64' to 'unsigned int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(944,1): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(960,1): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(975,1): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(1025,53): warning C4267: '+=': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(1036,45): warning C4267: '+=': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(1082,36): warning C4267: '+=': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(1085,33): warning C4267: '+=': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(1301,1): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(1301,1): warning C4267: 'argument': conversion from 'size_t' to 'uint16_t', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(1348,1): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\routing.h(1514,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\http_server.h(200,1): warning C4267: '=': conversion from 'size_t' to 'uint16_t', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\http_server.h(200): message : while compiling class template member function 'uint16_t crow::Server<crow::Crow<>,crow::SocketAdaptor>::pick_io_service_idx(void)'
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\http_server.h(219): message : see reference to function template instantiation 'uint16_t crow::Server<crow::Crow<>,crow::SocketAdaptor>::pick_io_service_idx(void)' being compiled
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\app.h(346): message : see reference to class template instantiation 'crow::Server<crow::Crow<>,crow::SocketAdaptor>' being compiled
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\app.h(325): message : while compiling class template member function 'void crow::Crow<>::run(void)'
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\bcs-server-main\ServerBase.cpp(48): message : see reference to function template instantiation 'void crow::Crow<>::run(void)' being compiled
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\bcs-server-main\ServerBase.h(23): message : see reference to class template instantiation 'crow::Crow<>' being compiled
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\http_connection.h(479,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\http_connection.h(479): message : while compiling class template member function 'void crow::Connection<Adaptor,Handler>::do_read(void)'
           with
           [
               Adaptor=crow::SocketAdaptor,
               Handler=crow::Crow<>
           ]
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\http_connection.h(89): message : see reference to function template instantiation 'void crow::Connection<Adaptor,Handler>::do_read(void)' being compiled
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\http_connection.h(89): message : see reference to function template instantiation 'void crow::Connection<Adaptor,Handler>::do_read(void)' being compiled
           with
           [
               Adaptor=crow::SocketAdaptor,
               Handler=crow::Crow<>
           ]
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\http_server.h(216): message : see reference to class template instantiation 'crow::Connection<Adaptor,Handler>' being compiled
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\http_server.h(216): message : see reference to class template instantiation 'crow::Connection<Adaptor,Handler>' being compiled
           with
           [
               Adaptor=crow::SocketAdaptor,
               Handler=crow::Crow<>
           ]
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\http_server.h(216): message : while compiling class template member function 'void crow::Server<crow::Crow<>,crow::SocketAdaptor>::do_accept(void)'
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\http_server.h(153): message : see reference to function template instantiation 'void crow::Server<crow::Crow<>,crow::SocketAdaptor>::do_accept(void)' being compiled
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\parser.h(126,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\parser.h(111): message : while compiling class template member function 'bool crow::HTTPParser<crow::Connection<Adaptor,Handler>>::feed(const char *,int)'
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\http_server.h(216): message : while compiling class template member function 'void crow::Server<crow::Crow<>,crow::SocketAdaptor>::do_accept(void)'
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\http_server.h(153): message : see reference to function template instantiation 'void crow::Server<crow::Crow<>,crow::SocketAdaptor>::do_accept(void)' being compiled
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\parser.h(126,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\parser.h(111): message : while compiling class template member function 'bool crow::HTTPParser<crow::Connection<Adaptor,Handler>>::feed(const char *,int)'
           with
           [
               Adaptor=crow::SocketAdaptor,
               Handler=crow::Crow<>
           ]
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\http_connection.h(488): message : see reference to function template instantiation 'bool crow::HTTPParser<crow::Connection<Adaptor,Handler>>::feed(const char *,int)' being compiled
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\http_connection.h(488): message : see reference to function template instantiation 'bool crow::HTTPParser<crow::Connection<Adaptor,Handler>>::feed(const char *,int)' being compiled
           with
           [
               Adaptor=crow::SocketAdaptor,
               Handler=crow::Crow<>
           ]
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\Crow-master\include\crow\http_connection.h(611): message : see reference to class template instantiation 'crow::HTTPParser<crow::Connection<Adaptor,Handler>>' being compiled
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\http_connection.h(611): message : see reference to class template instantiation 'crow::HTTPParser<crow::Connection<Adaptor,Handler>>' being compiled
           with
           [
               Adaptor=crow::SocketAdaptor,
               Handler=crow::Crow<>
           ]
-  bcs-server-main.vcxproj -> C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\github-master\bcs-server-main\x64\Debug\bsc-server-main.exe
+  bcs-server-main.vcxproj -> C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\bcs-server-main\x64\Debug\bsc-server-main.exe

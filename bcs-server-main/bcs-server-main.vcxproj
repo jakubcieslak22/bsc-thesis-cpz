@@ -130,6 +130,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="bcs-server-main.cpp" />
+    <ClCompile Include="ServerBase.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ServerBase.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
