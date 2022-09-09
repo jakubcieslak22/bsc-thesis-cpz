@@ -26,5 +26,8 @@
     <ClInclude Include="ServerBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="packets.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

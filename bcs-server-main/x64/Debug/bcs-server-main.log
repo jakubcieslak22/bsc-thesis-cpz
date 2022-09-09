@@ -62,7 +62,7 @@ C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-maste
 C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\http_server.h(219): message : see reference to function template instantiation 'uint16_t crow::Server<crow::Crow<>,crow::SocketAdaptor>::pick_io_service_idx(void)' being compiled
 C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\app.h(346): message : see reference to class template instantiation 'crow::Server<crow::Crow<>,crow::SocketAdaptor>' being compiled
 C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\app.h(325): message : while compiling class template member function 'void crow::Crow<>::run(void)'
-C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\bcs-server-main\ServerBase.cpp(48): message : see reference to function template instantiation 'void crow::Crow<>::run(void)' being compiled
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\bcs-server-main\ServerBase.cpp(54): message : see reference to function template instantiation 'void crow::Crow<>::run(void)' being compiled
 C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\bcs-server-main\ServerBase.h(23): message : see reference to class template instantiation 'crow::Crow<>' being compiled
 C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\http_connection.h(479,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-master\include\crow\http_connection.h(479): message : while compiling class template member function 'void crow::Connection<Adaptor,Handler>::do_read(void)'
@@ -104,4 +104,5 @@ C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\Crow-maste
               Adaptor=crow::SocketAdaptor,
               Handler=crow::Crow<>
           ]
+C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\bcs-server-main\ServerBase.cpp(38): warning C4715: '`ServerBase::AddRoute'::`2'::<lambda_1>::operator()': not all control paths return a value
   bcs-server-main.vcxproj -> C:\Users\kasax\Desktop\AiR\ROK 4\Sem 7\INZYNIERKA\bsc-thesis-cpz-main\bcs-server-main\x64\Debug\bsc-server-main.exe

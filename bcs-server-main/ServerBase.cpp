@@ -1,5 +1,7 @@
 #include "ServerBase.h"
 
+#include "packets.h"
+
 std::string ServerBase::serverExecuteFun()
 {
     return "Hello world!";
@@ -27,8 +29,12 @@ ServerRetCode ServerBase::AddRoute(server_fun_string fun_post, server_fun_string
             if (req.method == crow::HTTPMethod::GET)
                 return fun_get();
             else if (req.method == crow::HTTPMethod::POST)
+            {
+                TestPacket Pkt = TestPacketForm(req.body);
+                std::cout << "[+] Packet received" << std::endl;
                 std::cout << req.body << std::endl;
                 return req.body;
+            }
         });
     return ret;
 }
