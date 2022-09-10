@@ -20,7 +20,7 @@ struct DefaultPacket
 	int temp; // Temperatura
 	int ps; // Ciœnienie atmosferyczne
 	int lum; // Natê¿enie œwiat³a
-	int humGnd; // Wilgotnoœæ gleby
+	int humGnd; // Wilgotnoœæ gle	by
 	int humAir; // Wilgotnoœæ powietrza
 	int prec; // Intensywnoœæ opadów
 	int wspd; // Prêdkoœæ wiatru

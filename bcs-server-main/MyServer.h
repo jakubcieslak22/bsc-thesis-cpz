@@ -5,6 +5,9 @@
 #include "crow.h"
 #include "packets.h"
 
+#define DEFAULT_ROUTE "/"
+#define DEFAULT_JSON_ROUTE "/json"
+
 namespace MyServer
 {
 	std::string SimpleGet()
@@ -12,10 +15,15 @@ namespace MyServer
 		return "got";
 	}
 
-	void Create(int iPort, PacketType ptType)
+	/**
+	* @brief Inicjalizuje i uruchamia serwer
+	* @param iPort - nr portu, na ktorym ma sluchac serwer
+	* @param ptType - rodzaj pakietu (domyslnie DefaultPacket)
+	*/
+	void Create(int iPort, PacketType ptType = ptDefault)
 	{
 		crow::SimpleApp App;
-		CROW_ROUTE(App, "/").methods(crow::HTTPMethod::GET, crow::HTTPMethod::POST)([&](const crow::request& req)
+		CROW_ROUTE(App, DEFAULT_ROUTE).methods(crow::HTTPMethod::GET, crow::HTTPMethod::POST)([&](const crow::request& req)
 			{
 				if (req.method == crow::HTTPMethod::GET)
 					return SimpleGet();
@@ -34,7 +42,7 @@ namespace MyServer
 				}
 			});
 
-		CROW_ROUTE(App, "/json")([]
+		CROW_ROUTE(App, DEFAULT_JSON_ROUTE)([]
 			{
 				crow::json::wvalue x({ {"message", "Hello, World!"}, {"field2", "whatsup" } });
 				//x["message2"] = "Hello, World.. Again!";

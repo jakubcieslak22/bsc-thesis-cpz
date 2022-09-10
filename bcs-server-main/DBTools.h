@@ -2,11 +2,23 @@
 #ifndef DBTOOLS_H
 #define DBTOOLS_H
 
-// #ifdef _USING_SQL w kazdej funkcji zeby dalo sie odpalic bez zainstalowanego MySQL
+#include <vector>
+
+#include "mysql.h"
+#include "mysqlx/xdevapi.h"
+#include "packets.h"
+
+#define MYSQL_USER "root"
+#define MYSQL_PASS "root"
+#define MYSQL_HOST "localhost"
 
 namespace DBTools
 {
+	// #ifdef _USING_SQL w kazdej funkcji zeby dalo sie odpalic bez zainstalowanego MySQL
 
+	bool init();
+	bool fetchData(std::vector<DefaultPacket>& vPackets);
+	bool putData(const DefaultPacket& Packet);
 }
 
 #endif //DBTOOLS_H

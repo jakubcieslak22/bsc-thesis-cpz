@@ -7,5 +7,7 @@
 
 int main()
 {
-	MyServer::Create(9999, ptDefault);
+	if (!DBTools::init())
+		CROW_LOG_ERROR << "Failed to connect to MySQL";
+	MyServer::Create(9999);
 }
