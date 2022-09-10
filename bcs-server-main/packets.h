@@ -40,6 +40,9 @@ inline bool ConstructDefaultPacket(DefaultPacket& pkt, std::string req)
 	}
 	vSegments.emplace_back(req);
 
+	if ((int)vSegments.size() != 9)
+		return false;
+
 	try
 	{
 		pkt.date = vSegments[0];

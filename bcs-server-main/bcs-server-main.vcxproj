@@ -132,6 +132,7 @@
     <ClCompile Include="bcs-server-main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DBTools.h" />
     <ClInclude Include="MyServer.h" />
     <ClInclude Include="packets.h" />
   </ItemGroup>
