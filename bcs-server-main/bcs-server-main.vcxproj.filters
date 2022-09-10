@@ -18,15 +18,12 @@
     <ClCompile Include="bcs-server-main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ServerBase.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ServerBase.h">
+    <ClInclude Include="packets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="packets.h">
+    <ClInclude Include="MyServer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

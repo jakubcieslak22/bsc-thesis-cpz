@@ -3,59 +3,66 @@
 #ifndef PACKETS_H
 #define PACKETS_H
 
+#include <iomanip>
 #include <string>
+#include <sstream>
 #include <vector>
 
-struct TestPacket
+enum PacketType
 {
-	int num1 = 0;
-	int num2 = 0;
-	bool b1 = false;
-	std::string s1 = "";
+	ptDefault = 0
 };
 
-TestPacket TestPacketForm(std::string req)
+struct DefaultPacket
 {
-	// przyjmijmy strukture taka: nazwa1=wartosc;nazwa2=wartosc itd.
-	TestPacket Pkt;
+	std::string date; // Data
+	time_t time; // Godzina
+	int temp; // Temperatura
+	int ps; // Ciœnienie atmosferyczne
+	int lum; // Natê¿enie œwiat³a
+	int humGnd; // Wilgotnoœæ gleby
+	int humAir; // Wilgotnoœæ powietrza
+	int prec; // Intensywnoœæ opadów
+	int wspd; // Prêdkoœæ wiatru
+};
 
+inline bool ConstructDefaultPacket(DefaultPacket& pkt, std::string req)
+{
 	std::vector<std::string> vSegments;
 	size_t pos = 0;
-	std::string token;
-
-	while ((pos = req.find(';')) != std::string::npos) 
+	std::string segment;
+	
+	while ((pos = req.find(';')) != std::string::npos)
 	{
-		token = req.substr(0, pos);
-		vSegments.emplace_back(token);
+		segment = req.substr(0, pos);
+		vSegments.emplace_back(segment);
 		req.erase(0, pos + 1);
 	}
-	vSegments.emplace_back(req); // ostatni, bez srednikow
+	vSegments.emplace_back(req);
 
-	for (const auto& item : vSegments)
+	try
 	{
-		std::string sKey = item.substr(0, item.find("="));
-		if (sKey == "num1")
-		{
-			std::string sNum1 = item.substr(item.find("=") + 1, item.size());
-			Pkt.num1 = std::stoi(sNum1);
-		}
-		else if (sKey == "num2")
-		{
-			std::string sNum2 = item.substr(item.find("=") + 1, item.size());
-			Pkt.num2 = std::stoi(sNum2);
-		}
-		else if (sKey == "b1")
-		{
-			if (item.substr(item.find("=") + 1, item.size()) == "true")
-				Pkt.b1 = true;
-			else
-				Pkt.b1 = false;
-		}
-		else if (sKey == "s1")
-			Pkt.s1 = item.substr(item.find("=") + 1, item.size());
+		pkt.date = vSegments[0];
+
+		struct std::tm tm;
+		std::istringstream ss(vSegments[1]);
+		ss >> std::get_time(&tm, "%H:%M:%S");
+		pkt.time = mktime(&tm);
+
+		pkt.temp = std::stoi(vSegments[2]);
+		pkt.ps = std::stoi(vSegments[3]);
+		pkt.lum = std::stoi(vSegments[4]);
+		pkt.humGnd = std::stoi(vSegments[5]);
+		pkt.humAir = std::stoi(vSegments[6]);
+		pkt.prec = std::stoi(vSegments[7]);
+		pkt.wspd = std::stoi(vSegments[8]);
+	}
+	catch (...)
+	{
+		return false;
 	}
 
-	return Pkt;
+	return true;
 }
 
 #endif //PACKETS_H
