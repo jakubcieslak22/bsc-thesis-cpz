@@ -3,6 +3,7 @@
 #define MYSERVER_H
 
 #include "crow.h"
+#include "DBTools.h"
 #include "packets.h"
 
 #define DEFAULT_ROUTE "/"
@@ -10,7 +11,7 @@
 
 namespace MyServer
 {
-	std::string SimpleGet()
+	inline std::string SimpleGet()
 	{
 		return "got";
 	}
@@ -20,7 +21,7 @@ namespace MyServer
 	* @param iPort - nr portu, na ktorym ma sluchac serwer
 	* @param ptType - rodzaj pakietu (domyslnie DefaultPacket)
 	*/
-	void Create(int iPort, PacketType ptType = ptDefault)
+	inline void Create(int iPort, PacketType ptType = ptDefault)
 	{
 		crow::SimpleApp App;
 		CROW_ROUTE(App, DEFAULT_ROUTE).methods(crow::HTTPMethod::GET, crow::HTTPMethod::POST)([&](const crow::request& req)
@@ -29,13 +30,21 @@ namespace MyServer
 					return SimpleGet();
 				else if (req.method == crow::HTTPMethod::POST)
 				{
-					if (ptType = ptDefault)
+					if (ptType == ptDefault)
 					{
+						CROW_LOG_INFO << "Packet received: " << req.body;
 						DefaultPacket Pkt;
-						if (!ConstructDefaultPacket(Pkt, req.body))
-							CROW_LOG_ERROR << "Failed to construct packet from request: " << req.body;
+						bool res = ConstructDefaultPacket(Pkt, req.body);
+						if (res)
+						{
+							if (!DBTools::putData(Pkt))
+								CROW_LOG_ERROR << "Could not send data to database.";
+							else
+								CROW_LOG_INFO << "Data placed in database.";
+						}
 						else
-							CROW_LOG_INFO << "Packet received: " << req.body;
+							CROW_LOG_ERROR << "Failed to construct packet from request: " << req.body;
+
 					}
 					return std::string("RESPONSE: received");
 

@@ -16,7 +16,7 @@ enum PacketType
 struct DefaultPacket
 {
 	std::string date; // Data
-	time_t time; // Godzina
+	std::string time; // Godzina
 	int temp; // Temperatura
 	int ps; // Ciœnienie atmosferyczne
 	int lum; // Natê¿enie œwiat³a
@@ -46,12 +46,7 @@ inline bool ConstructDefaultPacket(DefaultPacket& pkt, std::string req)
 	try
 	{
 		pkt.date = vSegments[0];
-
-		struct std::tm tm;
-		std::istringstream ss(vSegments[1]);
-		ss >> std::get_time(&tm, "%H:%M:%S");
-		pkt.time = mktime(&tm);
-
+		pkt.time = vSegments[1];
 		pkt.temp = std::stoi(vSegments[2]);
 		pkt.ps = std::stoi(vSegments[3]);
 		pkt.lum = std::stoi(vSegments[4]);
