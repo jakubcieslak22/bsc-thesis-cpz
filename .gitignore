@@ -6,4 +6,5 @@
 /bcs-server-main/x64/*
 /bcs-server-main/x64d
 /bcs-server-main/Debug
+/bcs-server-main/Debugd
 .vs
