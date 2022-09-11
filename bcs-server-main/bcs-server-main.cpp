@@ -7,9 +7,9 @@
 int main()
 {
 	if (!DBTools::init())
-		std::cout << "Failed to connect to MySQL" << std::endl;
+		CROW_LOG_ERROR << "Failed to connect to MySQL";
 	else
-		std::cout << "Connected to MySQL" << std::endl;
+		CROW_LOG_INFO << "Connected to MySQL";
 
 	MyServer::Create(9999);
 }

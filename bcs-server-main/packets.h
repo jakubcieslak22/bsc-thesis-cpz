@@ -17,13 +17,13 @@ struct DefaultPacket
 {
 	std::string date; // Data
 	std::string time; // Godzina
-	int temp; // Temperatura
-	int ps; // Ciœnienie atmosferyczne
-	int lum; // Natê¿enie œwiat³a
-	int humGnd; // Wilgotnoœæ gle	by
-	int humAir; // Wilgotnoœæ powietrza
-	int prec; // Intensywnoœæ opadów
-	int wspd; // Prêdkoœæ wiatru
+	float temp; // Temperatura
+	float ps; // Ciœnienie atmosferyczne
+	float lum; // Natê¿enie œwiat³a
+	float humGnd; // Wilgotnoœæ gle	by
+	float humAir; // Wilgotnoœæ powietrza
+	float prec; // Intensywnoœæ opadów
+	float wspd; // Prêdkoœæ wiatru
 };
 
 inline bool ConstructDefaultPacket(DefaultPacket& pkt, std::string req)
@@ -47,13 +47,13 @@ inline bool ConstructDefaultPacket(DefaultPacket& pkt, std::string req)
 	{
 		pkt.date = vSegments[0];
 		pkt.time = vSegments[1];
-		pkt.temp = std::stoi(vSegments[2]);
-		pkt.ps = std::stoi(vSegments[3]);
-		pkt.lum = std::stoi(vSegments[4]);
-		pkt.humGnd = std::stoi(vSegments[5]);
-		pkt.humAir = std::stoi(vSegments[6]);
-		pkt.prec = std::stoi(vSegments[7]);
-		pkt.wspd = std::stoi(vSegments[8]);
+		pkt.temp = atof(vSegments[2].c_str());
+		pkt.ps = atof(vSegments[3].c_str());
+		pkt.lum = atof(vSegments[4].c_str());
+		pkt.humGnd = atof(vSegments[5].c_str());
+		pkt.humAir = atof(vSegments[6].c_str());
+		pkt.prec = atof(vSegments[7].c_str());
+		pkt.wspd = atof(vSegments[8].c_str());
 	}
 	catch (...)
 	{

@@ -1,5 +1,7 @@
 #include "DBTools.h"
 
+#include <iostream>
+
 bool DBTools::init()
 {
 #ifdef _USING_SQL
@@ -7,7 +9,7 @@ bool DBTools::init()
         return false;
     else
     {
-        if (!mysql_real_connect(Session, MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_TBNAME, 3306, NULL, 0))
+        if (!mysql_real_connect(Session, MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DBNAME, 3306, NULL, 0))
             return false;
         else
         {
@@ -51,8 +53,11 @@ bool DBTools::putData(const DefaultPacket& Packet)
 	if (mysql_ping(Session))
 		return false;
 
-	if (mysql_query(Session, cmd.c_str()))
-		return false;
+    if (mysql_query(Session, cmd.c_str()))
+    {
+        std::cout << mysql_error(Session) << std::endl;
+        return false;
+    }
 #endif
     return true;
 }

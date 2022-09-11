@@ -34,8 +34,7 @@ namespace MyServer
 					{
 						CROW_LOG_INFO << "Packet received: " << req.body;
 						DefaultPacket Pkt;
-						bool res = ConstructDefaultPacket(Pkt, req.body);
-						if (res)
+						if (ConstructDefaultPacket(Pkt, req.body))
 						{
 							if (!DBTools::putData(Pkt))
 								CROW_LOG_ERROR << "Could not send data to database.";

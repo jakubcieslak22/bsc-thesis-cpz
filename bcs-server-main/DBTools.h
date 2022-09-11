@@ -11,7 +11,8 @@
 #define MYSQL_USER "root"
 #define MYSQL_PASS "root"
 #define MYSQL_HOST "localhost"
-#define MYSQL_TBNAME "bsctest"
+#define MYSQL_DBNAME "bsctest"
+#define MYSQL_TBNAME "solution_tests_default_packet"
 
 namespace DBTools
 {
