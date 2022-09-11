@@ -21,6 +21,9 @@
     <ClCompile Include="DBTools.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="HTMLTools.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="packets.h">
@@ -30,6 +33,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DBTools.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HTMLTools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

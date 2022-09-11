@@ -4,6 +4,7 @@
 
 #include "crow.h"
 #include "DBTools.h"
+#include "HTMLTools.h"
 #include "packets.h"
 
 #define DEFAULT_ROUTE "/"
@@ -15,7 +16,7 @@ namespace MyServer
 	{
 		std::vector<std::pair<int, DefaultPacket> > vPackets;
 		DBTools::fetchData(vPackets);
-		return std::to_string(vPackets.size());
+		return HTMLTools::drawTable(vPackets);
 	}
 
 	inline std::string PostMethod(const crow::request& req, PacketType ptType)
