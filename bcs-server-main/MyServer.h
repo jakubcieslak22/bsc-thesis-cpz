@@ -11,9 +11,34 @@
 
 namespace MyServer
 {
-	inline std::string SimpleGet()
+	inline std::string GetMethod()
 	{
-		return "got";
+		std::vector<std::pair<int, DefaultPacket> > vPackets;
+		DBTools::fetchData(vPackets);
+		return std::to_string(vPackets.size());
+	}
+
+	inline std::string PostMethod(const crow::request& req, PacketType ptType)
+	{
+		if (ptType == ptDefault)
+		{
+			CROW_LOG_INFO << "Packet received: " << req.body;
+			DefaultPacket Pkt;
+			if (ConstructDefaultPacket(Pkt, req.body))
+			{
+				if (DBTools::putData(Pkt))
+				{
+					CROW_LOG_INFO << "Data placed in database.";
+					return std::string("RES: recv + acc");
+				}
+				else
+					CROW_LOG_ERROR << "Could not send data to database.";
+			}
+			else
+				CROW_LOG_ERROR << "Failed to construct packet from request: " << req.body;
+
+			return std::string("RES: recv + err");
+		}
 	}
 
 	/**
@@ -27,27 +52,9 @@ namespace MyServer
 		CROW_ROUTE(App, DEFAULT_ROUTE).methods(crow::HTTPMethod::GET, crow::HTTPMethod::POST)([&](const crow::request& req)
 			{
 				if (req.method == crow::HTTPMethod::GET)
-					return SimpleGet();
+					return GetMethod();
 				else if (req.method == crow::HTTPMethod::POST)
-				{
-					if (ptType == ptDefault)
-					{
-						CROW_LOG_INFO << "Packet received: " << req.body;
-						DefaultPacket Pkt;
-						if (ConstructDefaultPacket(Pkt, req.body))
-						{
-							if (!DBTools::putData(Pkt))
-								CROW_LOG_ERROR << "Could not send data to database.";
-							else
-								CROW_LOG_INFO << "Data placed in database.";
-						}
-						else
-							CROW_LOG_ERROR << "Failed to construct packet from request: " << req.body;
-
-					}
-					return std::string("RESPONSE: received");
-
-				}
+					return PostMethod(req, ptType);
 			});
 
 		CROW_ROUTE(App, DEFAULT_JSON_ROUTE)([]

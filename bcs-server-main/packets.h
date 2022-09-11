@@ -13,7 +13,7 @@ enum PacketType
 	ptDefault = 0
 };
 
-struct DefaultPacket
+struct DefaultPacket // Docelowa struktura: "dd.mm.rrrr;hh:mm;temp;ps;lum;humGnd;humAir;prec;wspd"
 {
 	std::string date; // Data
 	std::string time; // Godzina
