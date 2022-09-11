@@ -12,10 +12,22 @@
 
 namespace MyServer
 {
+	inline void Create(int iPort)
+	{
+		if (!DBTools::init())
+			std::cout << "Failed to connect to MySQL" << std::endl;
+		else
+			std::cout << "Connected to MySQL" << std::endl;
+
+		MyServer::Initialize(iPort);
+	}
+
 	inline std::string GetMethod()
 	{
 		std::vector<std::pair<int, DefaultPacket> > vPackets;
-		DBTools::fetchData(vPackets);
+		if (!DBTools::fetchData(vPackets))
+			return "B³¹d komunikacji z baz¹ danych.";
+
 		return HTMLTools::drawTable(vPackets);
 	}
 
@@ -47,7 +59,7 @@ namespace MyServer
 	* @param iPort - nr portu, na ktorym ma sluchac serwer
 	* @param ptType - rodzaj pakietu (domyslnie DefaultPacket)
 	*/
-	inline void Create(int iPort, PacketType ptType = ptDefault)
+	inline void Initialize(int iPort, PacketType ptType = ptDefault)
 	{
 		crow::SimpleApp App;
 		CROW_ROUTE(App, DEFAULT_ROUTE).methods(crow::HTTPMethod::GET, crow::HTTPMethod::POST)([&](const crow::request& req)
