@@ -6,5 +6,5 @@
 
 int main()
 {
-	MyServer::Create(9999);
+	MyServer::Create(9999, ptTest);
 }

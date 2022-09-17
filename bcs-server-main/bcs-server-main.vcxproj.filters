@@ -29,13 +29,13 @@
     <ClInclude Include="packets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MyServer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DBTools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HTMLTools.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyServer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

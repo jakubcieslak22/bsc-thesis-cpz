@@ -10,32 +10,35 @@
 #define DEFAULT_ROUTE "/"
 #define DEFAULT_JSON_ROUTE "/json"
 
+//#define USE_HTML
+
 namespace MyServer
 {
-	inline void Create(int iPort)
+	inline std::string GetMethod(PacketType ptType)
 	{
-		if (!DBTools::init())
-			std::cout << "Failed to connect to MySQL" << std::endl;
-		else
-			std::cout << "Connected to MySQL" << std::endl;
+		if (ptType == ptDefault)
+		{
+			std::vector<std::pair<int, DefaultPacket> > vPackets;
+			if (!DBTools::fetchData(vPackets))
+				return "B³¹d komunikacji z baz¹ danych.";
 
-		MyServer::Initialize(iPort);
-	}
+			return HTMLTools::drawTable(vPackets);
+		}
+		else if (ptType == ptTest)
+		{
+			std::vector<std::pair<int, TestPacket> > vPackets;
+			if (!DBTools::fetchDataTest(vPackets))
+				return "B³¹d komunikacji z baz¹ danych.";
 
-	inline std::string GetMethod()
-	{
-		std::vector<std::pair<int, DefaultPacket> > vPackets;
-		if (!DBTools::fetchData(vPackets))
-			return "B³¹d komunikacji z baz¹ danych.";
-
-		return HTMLTools::drawTable(vPackets);
+			return HTMLTools::drawTestTable(vPackets);
+		}
 	}
 
 	inline std::string PostMethod(const crow::request& req, PacketType ptType)
 	{
+		CROW_LOG_INFO << "Packet received: " << req.body;
 		if (ptType == ptDefault)
 		{
-			CROW_LOG_INFO << "Packet received: " << req.body;
 			DefaultPacket Pkt;
 			if (ConstructDefaultPacket(Pkt, req.body))
 			{
@@ -49,9 +52,25 @@ namespace MyServer
 			}
 			else
 				CROW_LOG_ERROR << "Failed to construct packet from request: " << req.body;
-
-			return std::string("RES: recv + err");
 		}
+		else if (ptType == ptTest)
+		{
+			TestPacket Pkt;
+			if (ConstructTestPacket(Pkt, req.body))
+			{
+				if (DBTools::putDataTest(Pkt))
+				{
+					CROW_LOG_INFO << "Data placed in database.";
+					return std::string("RES: recv + acc");
+				}
+				else
+					CROW_LOG_ERROR << "Could not send data to database.";
+			}
+			else
+				CROW_LOG_ERROR << "Failed to construct packet from request: " << req.body;
+		}
+
+		return std::string("RES: recv + err");
 	}
 
 	/**
@@ -59,16 +78,26 @@ namespace MyServer
 	* @param iPort - nr portu, na ktorym ma sluchac serwer
 	* @param ptType - rodzaj pakietu (domyslnie DefaultPacket)
 	*/
-	inline void Initialize(int iPort, PacketType ptType = ptDefault)
+	inline void Initialize(int iPort, PacketType ptType)
 	{
 		crow::SimpleApp App;
+#ifndef USE_HTML
 		CROW_ROUTE(App, DEFAULT_ROUTE).methods(crow::HTTPMethod::GET, crow::HTTPMethod::POST)([&](const crow::request& req)
 			{
 				if (req.method == crow::HTTPMethod::GET)
-					return GetMethod();
+					return GetMethod(ptType);
 				else if (req.method == crow::HTTPMethod::POST)
 					return PostMethod(req, ptType);
 			});
+#else
+		crow::mustache::set_global_base(".");
+		CROW_ROUTE(App, "/")([]()
+			{
+				crow::mustache::context ctx;
+				auto mainPage = crow::mustache::load_unsafe("C\:\\Users\\kasax\\Desktop\\AiR\\ROK 4\\Sem 7\\INZYNIERKA\\bsc-thesis-cpz-main\\bcs-server-main\\html\\sample.html");
+				return mainPage.render();
+			});
+#endif
 
 		CROW_ROUTE(App, DEFAULT_JSON_ROUTE)([]
 			{
@@ -78,6 +107,16 @@ namespace MyServer
 			});
 
 		App.port(iPort).multithreaded().run();
+	}
+
+	inline void Create(int iPort, PacketType ptType = ptDefault)
+	{
+		if (!DBTools::init())
+			std::cout << "Failed to connect to MySQL" << std::endl;
+		else
+			std::cout << "Connected to MySQL" << std::endl;
+
+		MyServer::Initialize(iPort, ptType);
 	}
 }
 

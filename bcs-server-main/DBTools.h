@@ -12,7 +12,7 @@
 #define MYSQL_PASS "root"
 #define MYSQL_HOST "localhost"
 #define MYSQL_DBNAME "bsctest"
-#define MYSQL_TBNAME "solution_tests_default_packet"
+#define MYSQL_TBNAME "pomiary_test"
 
 namespace DBTools
 {
@@ -27,6 +27,9 @@ namespace DBTools
 	bool init();
 	bool fetchData(std::vector<std::pair<int, DefaultPacket> >& vPackets);
 	bool putData(const DefaultPacket& Packet);
+	
+	bool fetchDataTest(std::vector<std::pair<int, TestPacket> >& vPackets);
+	bool putDataTest(const TestPacket& Packet);
 }
 
 #endif //DBTOOLS_H
