@@ -64,7 +64,7 @@ bool DBTools::fetchData(std::vector<std::pair<int, DefaultPacket> >& vPackets)
     }
     catch (...)
     {
-
+        return false;
     }
 
 #endif
@@ -138,7 +138,7 @@ bool DBTools::fetchDataTest(std::vector<std::pair<int, TestPacket>>& vPackets)
     }
     catch (...)
     {
-
+        return false;
     }
 
 #endif

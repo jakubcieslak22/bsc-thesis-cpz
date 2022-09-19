@@ -27,7 +27,7 @@ struct DefaultPacket // Docelowa struktura: "dd.mm.rrrr;hh:mm;temp;ps;lum;humGnd
 	float wspd; // Prêdkoœæ wiatru
 };
 
-struct TestPacket
+struct TestPacket //curl -X POST -d "17.09.2022;11:05;14.3;18.3;970;10.23;2.04;2;30;20;10;cycki" localhost:9999
 {
 	std::string date; // Data
 	std::string time; // Godzina

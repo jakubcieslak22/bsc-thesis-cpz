@@ -10,7 +10,7 @@
 #define DEFAULT_ROUTE "/"
 #define DEFAULT_JSON_ROUTE "/json"
 
-//#define USE_HTML
+#define USE_HTML
 
 namespace MyServer
 {
@@ -90,11 +90,11 @@ namespace MyServer
 					return PostMethod(req, ptType);
 			});
 #else
-		crow::mustache::set_global_base(".");
+		crow::mustache::set_global_base("C:\\Users\\kasax\\Desktop\\AiR\\ROK 4\\Sem 7\\INZYNIERKA\\bsc-thesis-cpz-main\\bcs-server-main\\html\\");
 		CROW_ROUTE(App, "/")([]()
 			{
 				crow::mustache::context ctx;
-				auto mainPage = crow::mustache::load_unsafe("C\:\\Users\\kasax\\Desktop\\AiR\\ROK 4\\Sem 7\\INZYNIERKA\\bsc-thesis-cpz-main\\bcs-server-main\\html\\sample.html");
+				auto mainPage = crow::mustache::load_unsafe("sample.html");
 				return mainPage.render();
 			});
 #endif
