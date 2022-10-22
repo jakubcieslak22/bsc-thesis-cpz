@@ -29,18 +29,18 @@ struct DefaultPacket // Docelowa struktura: "dd.mm.rrrr;hh:mm;temp;ps;lum;humGnd
 
 struct TestPacket //curl -X POST -d "17.09.2022;11:05;14.3;18.3;970;10.23;2.04;2;30;20;10;cycki" localhost:9999
 {
-	std::string date; // Data
-	std::string time; // Godzina
-	float temp; // Temperatura
-	float humAir; // Wilgotnoœæ powietrza
-	float ps; // Ciœnienie atmosferyczne
-	float lum; // Natê¿enie œwiat³a
-	float prec; // Intensywnoœæ opadów
-	float wspd; // Prêdkoœæ wiatru
-	float humGnd1; // Wilgotnoœæ gleby
-	float humGnd2; // Wilgotnoœæ gleby
-	float humGnd3; // Wilgotnoœæ gleby
-	std::string location;
+	std::string date = ""; // Data
+	std::string time = ""; // Godzina
+	float temp = 0; // Temperatura
+	float humAir = 0; // Wilgotnoœæ powietrza
+	float ps = 0; // Ciœnienie atmosferyczne
+	float lum = 0; // Natê¿enie œwiat³a
+	float prec = 0; // Intensywnoœæ opadów
+	float wspd = 0; // Prêdkoœæ wiatru
+	float humGnd1 = 0; // Wilgotnoœæ gleby 10cm
+	float humGnd2 = 0; // Wilgotnoœæ gleby 20cm
+	float humGnd3 = 0; // Wilgotnoœæ gleby 30cm
+	std::string location = "";
 };
 
 inline bool ConstructDefaultPacket(DefaultPacket& pkt, std::string req)

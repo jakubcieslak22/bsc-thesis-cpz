@@ -137,9 +137,11 @@
     <ClCompile Include="bcs-server-main.cpp" />
     <ClCompile Include="DBTools.cpp" />
     <ClCompile Include="HTMLTools.cpp" />
+    <ClCompile Include="JSONTools.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DBTools.h" />
+    <ClInclude Include="JSONTools.h" />
     <ClInclude Include="HTMLTools.h" />
     <ClInclude Include="MyServer.h" />
     <ClInclude Include="packets.h" />

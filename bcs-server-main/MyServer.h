@@ -5,6 +5,7 @@
 #include "crow.h"
 #include "DBTools.h"
 #include "HTMLTools.h"
+#include "JSONTools.h"
 #include "packets.h"
 
 #define DEFAULT_ROUTE "/"
@@ -61,7 +62,10 @@ namespace MyServer
 				if (DBTools::putDataTest(Pkt))
 				{
 					CROW_LOG_INFO << "Data placed in database.";
-					return std::string("RES: recv + acc");
+					if (JSONTools::packJSON())
+						return std::string("RES: recv + acc");
+					else
+						CROW_LOG_ERROR << "Failed to pack JSON file.";
 				}
 				else
 					CROW_LOG_ERROR << "Could not send data to database.";
@@ -91,11 +95,20 @@ namespace MyServer
 			});
 #else
 		crow::mustache::set_global_base("C:\\Users\\kasax\\Desktop\\AiR\\ROK 4\\Sem 7\\INZYNIERKA\\bsc-thesis-cpz-main\\bcs-server-main\\html\\");
-		CROW_ROUTE(App, "/")([]()
+		CROW_ROUTE(App, DEFAULT_ROUTE).methods(crow::HTTPMethod::GET, crow::HTTPMethod::POST)([&](const crow::request& req)
 			{
-				crow::mustache::context ctx;
-				auto mainPage = crow::mustache::load_unsafe("sample.html");
-				return mainPage.render();
+				if (req.method == crow::HTTPMethod::GET)
+				{
+					crow::mustache::context ctx;
+					ctx["ctx_test"] = "test_msg ";
+					auto mainPage = crow::mustache::load_unsafe("template1\\index.html");
+					return mainPage.render(ctx);
+				}
+				else if (req.method == crow::HTTPMethod::POST)
+				{
+					PostMethod(req, ptType);
+					return crow::mustache::rendered_template();
+				}
 			});
 #endif
 

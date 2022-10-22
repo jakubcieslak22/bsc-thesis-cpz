@@ -95,3 +95,4 @@ std::string HTMLTools::drawTestTable(const std::vector<std::pair<int, TestPacket
         return os.str();
     }
 }
+
