@@ -1,5 +1,5 @@
+[
 {
-"1": {
 "id": 1,
 "measure_date": "17.09.2022",
 "measure_time": "11:05",
@@ -15,10 +15,10 @@
 "location": "cycki"
 },
 
-"2": {
+{
 "id": 2,
-"measure_date": "17.09.2022",
-"measure_time": "11:05",
+"measure_date": "31.10.2022",
+"measure_time": "18:59",
 "temperature": 14.3,
 "air_humidity": 18.3,
 "pressure": 970,
@@ -31,10 +31,10 @@
 "location": "cycki"
 },
 
-"3": {
+{
 "id": 3,
-"measure_date": "17.09.2022",
-"measure_time": "11:05",
+"measure_date": "31.10.2022",
+"measure_time": "19:05",
 "temperature": 14.3,
 "air_humidity": 18.3,
 "pressure": 970,
@@ -45,101 +45,5 @@
 "gnd_humidity2": 20,
 "gnd_humidity3": 10,
 "location": "cycki"
-},
-
-"4": {
-"id": 4,
-"measure_date": "17.09.2022",
-"measure_time": "11:05",
-"temperature": 14.3,
-"air_humidity": 18.3,
-"pressure": 970,
-"luminance": 10.23,
-"precipitation": 2.04,
-"wind": 2,
-"gnd_humidity1": 30,
-"gnd_humidity2": 20,
-"gnd_humidity3": 10,
-"location": "cycki"
-},
-
-"5": {
-"id": 5,
-"measure_date": "17.09.2022",
-"measure_time": "11:05",
-"temperature": 14.3,
-"air_humidity": 18.3,
-"pressure": 970,
-"luminance": 10.23,
-"precipitation": 2.04,
-"wind": 2,
-"gnd_humidity1": 30,
-"gnd_humidity2": 20,
-"gnd_humidity3": 10,
-"location": "cycki"
-},
-
-"6": {
-"id": 6,
-"measure_date": "17.09.2022",
-"measure_time": "11:05",
-"temperature": 14.3,
-"air_humidity": 18.3,
-"pressure": 970,
-"luminance": 10.23,
-"precipitation": 2.04,
-"wind": 2,
-"gnd_humidity1": 30,
-"gnd_humidity2": 20,
-"gnd_humidity3": 10,
-"location": "cycki"
-},
-
-"7": {
-"id": 7,
-"measure_date": "17.09.2022",
-"measure_time": "11:05",
-"temperature": 14.3,
-"air_humidity": 18.3,
-"pressure": 970,
-"luminance": 10.23,
-"precipitation": 2.04,
-"wind": 2,
-"gnd_humidity1": 30,
-"gnd_humidity2": 20,
-"gnd_humidity3": 10,
-"location": "cycki"
-},
-
-"8": {
-"id": 8,
-"measure_date": "17.09.2022",
-"measure_time": "11:05",
-"temperature": 14.3,
-"air_humidity": 18.3,
-"pressure": 970,
-"luminance": 10.23,
-"precipitation": 2.04,
-"wind": 2,
-"gnd_humidity1": 30,
-"gnd_humidity2": 20,
-"gnd_humidity3": 10,
-"location": "poznan"
-},
-
-"9": {
-"id": 9,
-"measure_date": "17.09.2022",
-"measure_time": "11:05",
-"temperature": 14.3,
-"air_humidity": 18.3,
-"pressure": 970,
-"luminance": 10.23,
-"precipitation": 2.04,
-"wind": 2,
-"gnd_humidity1": 30,
-"gnd_humidity2": 20,
-"gnd_humidity3": 10,
-"location": "poznan"
 }
-}
+]

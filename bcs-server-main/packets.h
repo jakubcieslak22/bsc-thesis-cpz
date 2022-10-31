@@ -27,16 +27,16 @@ struct DefaultPacket // Docelowa struktura: "dd.mm.rrrr;hh:mm;temp;ps;lum;humGnd
 	float wspd; // Prêdkoœæ wiatru
 };
 
-struct TestPacket //curl -X POST -d "17.09.2022;11:05;14.3;18.3;970;10.23;2.04;2;30;20;10;cycki" localhost:9999
+struct TestPacket //curl -X POST -d "00.00.0000;00:00;14.3;18.3;970;10.23;2.04;2;30;20;10;cycki" localhost:9999
 {
 	std::string date = ""; // Data
 	std::string time = ""; // Godzina
 	float temp = 0; // Temperatura
 	float humAir = 0; // Wilgotnoœæ powietrza
-	float ps = 0; // Ciœnienie atmosferyczne
+	int ps = 0; // Ciœnienie atmosferyczne
 	float lum = 0; // Natê¿enie œwiat³a
 	float prec = 0; // Intensywnoœæ opadów
-	float wspd = 0; // Prêdkoœæ wiatru
+	int wspd = 0; // Prêdkoœæ wiatru
 	float humGnd1 = 0; // Wilgotnoœæ gleby 10cm
 	float humGnd2 = 0; // Wilgotnoœæ gleby 20cm
 	float humGnd3 = 0; // Wilgotnoœæ gleby 30cm
@@ -99,14 +99,29 @@ inline bool ConstructTestPacket(TestPacket& pkt, std::string req)
 
 	try
 	{
+		auto t = std::time(nullptr);
+		auto tm = *std::localtime(&t);
+		std::stringstream ss;
+		ss << std::put_time(&tm, "%d.%m.%Y|%H:%M") << std::endl;
+		std::string sDateAndTime(ss.str());
+
 		pkt.date = vSegments[0];
+		if (pkt.date == std::string("00.00.0000"))
+			pkt.date = sDateAndTime.substr(0, sDateAndTime.find('|'));
+		
 		pkt.time = vSegments[1];
+		if (pkt.time == std::string("00:00"))
+			pkt.time = sDateAndTime.substr(sDateAndTime.find('|') + 1);
+
 		pkt.temp = atof(vSegments[2].c_str());
 		pkt.humAir = atof(vSegments[3].c_str());
-		pkt.ps = atof(vSegments[4].c_str());
+		pkt.ps = atoi(vSegments[4].c_str());
 		pkt.lum = atof(vSegments[5].c_str());
 		pkt.prec = atof(vSegments[6].c_str());
-		pkt.wspd = atof(vSegments[7].c_str());
+		pkt.wspd = atoi(vSegments[7].c_str());
+		if (pkt.wspd < 0 || pkt.wspd > 3)
+			return false;
+		
 		pkt.humGnd1 = atof(vSegments[8].c_str());
 		pkt.humGnd2 = atof(vSegments[9].c_str());
 		pkt.humGnd3 = atof(vSegments[10].c_str());

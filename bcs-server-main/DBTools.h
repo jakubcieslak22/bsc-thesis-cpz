@@ -12,13 +12,13 @@
 #define MYSQL_PASS "root"
 #define MYSQL_HOST "localhost"
 #define MYSQL_DBNAME "bsctest"
-#define MYSQL_TBNAME "pomiary_test"
+#define MYSQL_TBNAME "measurements_november_test"
 
 namespace DBTools
 {
-	namespace
+	namespace // pola "prywatne"
 	{
-		MYSQL* Session; // pola "prywatne"
+		MYSQL* Session;
 		bool bInitialized = false; 
 	}
 

@@ -13,13 +13,13 @@ bool JSONTools::packJSON()
         {
             int iCurrId;
             TestPacket xPkt;
-            hJson << "{\n";
+            hJson << "[\n";
             for (int i = 0; i < static_cast<int>(vec.size()); ++i)
             {
                 iCurrId = vec[i].first;
                 xPkt = vec[i].second;
                 
-                hJson << "\"" << iCurrId << "\": {\n";
+                hJson << "{\n";
                 hJson << "\"id\": " << iCurrId << ",\n";
                 hJson << "\"measure_date\": \"" << xPkt.date << "\",\n";
                 hJson << "\"measure_time\": \"" << xPkt.time << "\",\n";
@@ -38,7 +38,7 @@ bool JSONTools::packJSON()
                 else
                     hJson << "}\n";
             }
-            hJson << "}\n";
+            hJson << "]\n";
             hJson.close();
             return true;
         }
