@@ -14,6 +14,7 @@ enum PacketType
 	ptTest
 };
 
+// Deprecated
 struct DefaultPacket // Docelowa struktura: "dd.mm.rrrr;hh:mm;temp;ps;lum;humGnd;humAir;prec;wspd"
 {
 	std::string date; // Data
@@ -27,7 +28,7 @@ struct DefaultPacket // Docelowa struktura: "dd.mm.rrrr;hh:mm;temp;ps;lum;humGnd
 	float wspd; // Prêdkoœæ wiatru
 };
 
-struct TestPacket //curl -X POST -d "00.00.0000;00:00;14.3;18.3;970;10.23;2.04;2;30;20;10;cycki" localhost:9999
+struct TestPacket //curl -X POST -d "00.00.0000;00:00;14.3;18.3;970;10.23;2.04;2;30;20;10;Poznan" localhost:9999
 {
 	std::string date = ""; // Data
 	std::string time = ""; // Godzina
@@ -40,9 +41,10 @@ struct TestPacket //curl -X POST -d "00.00.0000;00:00;14.3;18.3;970;10.23;2.04;2
 	float humGnd1 = 0; // Wilgotnoœæ gleby 10cm
 	float humGnd2 = 0; // Wilgotnoœæ gleby 20cm
 	float humGnd3 = 0; // Wilgotnoœæ gleby 30cm
-	std::string location = "";
+	std::string location = ""; // Lokalizacja
 };
 
+// Deprecated
 inline bool ConstructDefaultPacket(DefaultPacket& pkt, std::string req)
 {
 	std::vector<std::string> vSegments;

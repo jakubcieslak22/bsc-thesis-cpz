@@ -99,10 +99,8 @@ namespace MyServer
 			{
 				if (req.method == crow::HTTPMethod::GET)
 				{
-					crow::mustache::context ctx;
-					ctx["ctx_test"] = "test_msg ";
-					auto mainPage = crow::mustache::load_unsafe("template1\\index.html");
-					return mainPage.render(ctx);
+					auto mainPage = crow::mustache::load_unsafe("sample.html");
+					return mainPage.render();
 				}
 				else if (req.method == crow::HTTPMethod::POST)
 				{
@@ -114,9 +112,15 @@ namespace MyServer
 
 		CROW_ROUTE(App, DEFAULT_JSON_ROUTE)([]
 			{
-				crow::json::wvalue x({ {"message", "Hello, World!"}, {"field2", "whatsup" } });
+				std::ifstream hFile("html/json/measurements.json");
+				std::string line, contents = "";
+				if (hFile.is_open())
+					while (std::getline(hFile, line))
+						contents += line;
+				hFile.close();
+				crow::json::wvalue x(contents.c_str());
 				//x["message2"] = "Hello, World.. Again!";
-				return x;
+				return contents;
 			});
 
 		App.port(iPort).multithreaded().run();
