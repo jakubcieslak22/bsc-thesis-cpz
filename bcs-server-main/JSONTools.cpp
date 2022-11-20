@@ -7,11 +7,12 @@
 * \brief Eksportuje dane pobrane z bazy danych do pliku JSON w formie listy obiektów
 * \return true, jeœli operacja siê powiod³a
 */
-bool JSONTools::packJSON()
+bool JSONTools::packJSON(std::vector<std::pair<int, MeasurementsPacket> >& vCachedPackets)
 {
     std::vector<std::pair<int, MeasurementsPacket> > vec;
     if (DBTools::fetchMeasurementData(vec))
     {
+        vCachedPackets = vec;
         std::ofstream hJson("html/json/measurements.json", std::ios::out);
         if (hJson.is_open())
         {
