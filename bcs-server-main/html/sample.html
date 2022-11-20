@@ -33,7 +33,7 @@
         buildHtmlTable('#excelDataTable');
         console.log(myList);
     }
-    fetchAsync("http://62.21.49.193:9999/json");
+    fetchAsync("http://62.21.49.193:9999/json/raw");
     // Builds the HTML Table out of myList.
     function buildHtmlTable(selector) {
         var columns = addAllColumnHeaders(myList, selector);

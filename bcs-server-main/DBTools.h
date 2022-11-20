@@ -25,11 +25,9 @@ namespace DBTools
 	// #ifdef _USING_SQL w kazdej funkcji zeby dalo sie odpalic bez zainstalowanego MySQL
 
 	bool init();
-	bool fetchData(std::vector<std::pair<int, DefaultPacket> >& vPackets);
-	bool putData(const DefaultPacket& Packet);
 	
-	bool fetchDataTest(std::vector<std::pair<int, TestPacket> >& vPackets);
-	bool putDataTest(const TestPacket& Packet);
+	bool fetchMeasurementData(std::vector<std::pair<int, MeasurementsPacket> >& vPackets);
+	bool putMeasurementData(const MeasurementsPacket& Packet);
 }
 
-#endif //DBTOOLS_H
+#endif // DBTOOLS_H

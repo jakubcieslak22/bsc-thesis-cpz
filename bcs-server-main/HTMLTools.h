@@ -8,8 +8,7 @@
 
 namespace HTMLTools
 {
-	std::string drawTable(const std::vector<std::pair<int, DefaultPacket> >& vPackets);
-	std::string drawTestTable(const std::vector<std::pair<int, TestPacket> >& vPackets);
+	std::string drawMeasurementsTable(const std::vector<std::pair<int, MeasurementsPacket> >& vPackets);
 };
 
 #endif //HTMLTOOLS_H

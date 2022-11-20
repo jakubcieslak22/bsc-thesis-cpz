@@ -8,81 +8,23 @@
 #include <sstream>
 #include <vector>
 
-enum PacketType
+struct MeasurementsPacket //curl -X POST -d "00.00.0000;00:00;14.3;18.3;970;10.23;2.04;2;30;20;10;Poznan" localhost:9999
 {
-	ptDefault = 0,
-	ptTest
+	std::string sDate = ""; // Data
+	std::string sTime = ""; // Godzina
+	float fTemp = 0; // Temperatura
+	float fHumAir = 0; // Wilgotnoœæ powietrza
+	int iPs = 0; // Ciœnienie atmosferyczne
+	float fLum = 0; // Natê¿enie œwiat³a
+	float fPrec = 0; // Intensywnoœæ opadów
+	int iWspd = 0; // Prêdkoœæ wiatru
+	int iHumGnd1 = 0; // Wilgotnoœæ gleby 10cm
+	int iHumGnd2 = 0; // Wilgotnoœæ gleby 20cm
+	int iHumGnd3 = 0; // Wilgotnoœæ gleby 30cm
+	std::string sLocation = ""; // Lokalizacja
 };
 
-// Deprecated
-struct DefaultPacket // Docelowa struktura: "dd.mm.rrrr;hh:mm;temp;ps;lum;humGnd;humAir;prec;wspd"
-{
-	std::string date; // Data
-	std::string time; // Godzina
-	float temp; // Temperatura
-	float ps; // Ciœnienie atmosferyczne
-	float lum; // Natê¿enie œwiat³a
-	float humGnd; // Wilgotnoœæ gleby
-	float humAir; // Wilgotnoœæ powietrza
-	float prec; // Intensywnoœæ opadów
-	float wspd; // Prêdkoœæ wiatru
-};
-
-struct TestPacket //curl -X POST -d "00.00.0000;00:00;14.3;18.3;970;10.23;2.04;2;30;20;10;Poznan" localhost:9999
-{
-	std::string date = ""; // Data
-	std::string time = ""; // Godzina
-	float temp = 0; // Temperatura
-	float humAir = 0; // Wilgotnoœæ powietrza
-	int ps = 0; // Ciœnienie atmosferyczne
-	float lum = 0; // Natê¿enie œwiat³a
-	float prec = 0; // Intensywnoœæ opadów
-	int wspd = 0; // Prêdkoœæ wiatru
-	float humGnd1 = 0; // Wilgotnoœæ gleby 10cm
-	float humGnd2 = 0; // Wilgotnoœæ gleby 20cm
-	float humGnd3 = 0; // Wilgotnoœæ gleby 30cm
-	std::string location = ""; // Lokalizacja
-};
-
-// Deprecated
-inline bool ConstructDefaultPacket(DefaultPacket& pkt, std::string req)
-{
-	std::vector<std::string> vSegments;
-	size_t pos = 0;
-	std::string segment;
-	
-	while ((pos = req.find(';')) != std::string::npos)
-	{
-		segment = req.substr(0, pos);
-		vSegments.emplace_back(segment);
-		req.erase(0, pos + 1);
-	}
-	vSegments.emplace_back(req);
-
-	if ((int)vSegments.size() != 9)
-		return false;
-
-	try
-	{
-		pkt.date = vSegments[0];
-		pkt.time = vSegments[1];
-		pkt.temp = atof(vSegments[2].c_str());
-		pkt.ps = atof(vSegments[3].c_str());
-		pkt.lum = atof(vSegments[4].c_str());
-		pkt.humGnd = atof(vSegments[5].c_str());
-		pkt.humAir = atof(vSegments[6].c_str());
-		pkt.prec = atof(vSegments[7].c_str());
-		pkt.wspd = atof(vSegments[8].c_str());
-	}
-	catch (...)
-	{
-		return false;
-	}
-
-	return true;
-}
-
-inline bool ConstructTestPacket(TestPacket& pkt, std::string req)
+inline bool ConstructTestPacket(MeasurementsPacket& pkt, std::string req)
 {
 	std::vector<std::string> vSegments;
 	size_t pos = 0;
@@ -107,27 +49,32 @@ inline bool ConstructTestPacket(TestPacket& pkt, std::string req)
 		ss << std::put_time(&tm, "%d.%m.%Y|%H:%M") << std::endl;
 		std::string sDateAndTime(ss.str());
 
-		pkt.date = vSegments[0];
-		if (pkt.date == std::string("00.00.0000"))
-			pkt.date = sDateAndTime.substr(0, sDateAndTime.find('|'));
+		pkt.sDate = vSegments[0];
+		if (pkt.sDate == std::string("00.00.0000"))
+			pkt.sDate = sDateAndTime.substr(0, sDateAndTime.find('|'));
 		
-		pkt.time = vSegments[1];
-		if (pkt.time == std::string("00:00"))
-			pkt.time = sDateAndTime.substr(sDateAndTime.find('|') + 1);
+		pkt.sTime = vSegments[1];
+		if (pkt.sTime == std::string("00:00"))
+			pkt.sTime = sDateAndTime.substr(sDateAndTime.find('|') + 1);
 
-		pkt.temp = atof(vSegments[2].c_str());
-		pkt.humAir = atof(vSegments[3].c_str());
-		pkt.ps = atoi(vSegments[4].c_str());
-		pkt.lum = atof(vSegments[5].c_str());
-		pkt.prec = atof(vSegments[6].c_str());
-		pkt.wspd = atoi(vSegments[7].c_str());
-		if (pkt.wspd < 0 || pkt.wspd > 3)
+		pkt.fTemp = atof(vSegments[2].c_str());
+		pkt.fHumAir = atof(vSegments[3].c_str());
+		pkt.iPs = atoi(vSegments[4].c_str());
+		pkt.fLum = atof(vSegments[5].c_str());
+		pkt.fPrec = atof(vSegments[6].c_str());
+		pkt.iWspd = atoi(vSegments[7].c_str());
+		if (pkt.iWspd < 0 || pkt.iWspd > 3)
 			return false;
 		
-		pkt.humGnd1 = atof(vSegments[8].c_str());
-		pkt.humGnd2 = atof(vSegments[9].c_str());
-		pkt.humGnd3 = atof(vSegments[10].c_str());
-		pkt.location = vSegments[11];
+		pkt.iHumGnd1 = atoi(vSegments[8].c_str());
+		pkt.iHumGnd2 = atoi(vSegments[9].c_str());
+		pkt.iHumGnd3 = atoi(vSegments[10].c_str());
+		if ((pkt.iHumGnd1 < 0 || pkt.iHumGnd1 > 2) ||
+			(pkt.iHumGnd2 < 0 || pkt.iHumGnd2 > 2) ||
+			(pkt.iHumGnd3 < 0 || pkt.iHumGnd3 > 2))
+			return false;
+
+		pkt.sLocation = vSegments[11];
 	}
 	catch (...)
 	{
@@ -137,4 +84,4 @@ inline bool ConstructTestPacket(TestPacket& pkt, std::string req)
 	return true;
 }
 
-#endif //PACKETS_H
+#endif // PACKETS_H

@@ -1,161 +1,17 @@
 [
 {
 "Nr pomiaru": 1,
-"Data pomiaru": "05.11.2022",
-"Godzina pomiaru": "11:17",
-"Temperatura": "14.3 st. C",
-"Wilgotnosc powietrza": "18.3%",
-"Cisnienie atmosferyczne": "970 hPa",
-"Natezenie swiatla": "10.23 lx",
-"Intensywnosc opadow": "2.04 mm",
-"Predkosc wiatru": "Umiarkowany wiatr",
-"Wilgotnosc gleby (10cm)": 30,
-"Wilgotnosc gleby (20cm)": 20,
-"Wilgotnosc gleby (30cm)": 10,
-"Lokalizacja": "Poznan"
-},
-
-{
-"Nr pomiaru": 2,
-"Data pomiaru": "05.11.2022",
-"Godzina pomiaru": "11:19",
-"Temperatura": "14.3 st. C",
-"Wilgotnosc powietrza": "18.3%",
-"Cisnienie atmosferyczne": "970 hPa",
-"Natezenie swiatla": "10.23 lx",
-"Intensywnosc opadow": "2.04 mm",
-"Predkosc wiatru": "Umiarkowany wiatr",
-"Wilgotnosc gleby (10cm)": 30,
-"Wilgotnosc gleby (20cm)": 20,
-"Wilgotnosc gleby (30cm)": 10,
-"Lokalizacja": "Poznan"
-},
-
-{
-"Nr pomiaru": 3,
-"Data pomiaru": "05.11.2022",
-"Godzina pomiaru": "11:41",
-"Temperatura": "14.3 st. C",
-"Wilgotnosc powietrza": "18.3%",
-"Cisnienie atmosferyczne": "970 hPa",
-"Natezenie swiatla": "10.23 lx",
-"Intensywnosc opadow": "2.04 mm",
-"Predkosc wiatru": "Umiarkowany wiatr",
-"Wilgotnosc gleby (10cm)": 30,
-"Wilgotnosc gleby (20cm)": 20,
-"Wilgotnosc gleby (30cm)": 10,
-"Lokalizacja": "Poznan"
-},
-
-{
-"Nr pomiaru": 4,
-"Data pomiaru": "05.11.2022",
-"Godzina pomiaru": "11:45",
-"Temperatura": "14.3 st. C",
-"Wilgotnosc powietrza": "18.3%",
-"Cisnienie atmosferyczne": "970 hPa",
-"Natezenie swiatla": "10.23 lx",
-"Intensywnosc opadow": "2.04 mm",
-"Predkosc wiatru": "Umiarkowany wiatr",
-"Wilgotnosc gleby (10cm)": 30,
-"Wilgotnosc gleby (20cm)": 20,
-"Wilgotnosc gleby (30cm)": 10,
-"Lokalizacja": "Poznan"
-},
-
-{
-"Nr pomiaru": 5,
-"Data pomiaru": "05.11.2022",
-"Godzina pomiaru": "12:00",
-"Temperatura": "14.3 st. C",
-"Wilgotnosc powietrza": "18.3%",
-"Cisnienie atmosferyczne": "970 hPa",
-"Natezenie swiatla": "10.23 lx",
-"Intensywnosc opadow": "2.04 mm",
-"Predkosc wiatru": "Umiarkowany wiatr",
-"Wilgotnosc gleby (10cm)": 30,
-"Wilgotnosc gleby (20cm)": 20,
-"Wilgotnosc gleby (30cm)": 10,
-"Lokalizacja": "Strzel"
-},
-
-{
-"Nr pomiaru": 6,
-"Data pomiaru": "05.11.2022",
-"Godzina pomiaru": "12:07",
-"Temperatura": "14.3 st. C",
-"Wilgotnosc powietrza": "18.3%",
-"Cisnienie atmosferyczne": "970 hPa",
-"Natezenie swiatla": "10.23 lx",
-"Intensywnosc opadow": "2.04 mm",
-"Predkosc wiatru": "Umiarkowany wiatr",
-"Wilgotnosc gleby (10cm)": 30,
-"Wilgotnosc gleby (20cm)": 20,
-"Wilgotnosc gleby (30cm)": 10,
-"Lokalizacja": "Strzelno"
-},
-
-{
-"Nr pomiaru": 7,
-"Data pomiaru": "05.11.2022",
-"Godzina pomiaru": "12:13",
-"Temperatura": "14.3 st. C",
-"Wilgotnosc powietrza": "18.3%",
-"Cisnienie atmosferyczne": "970 hPa",
-"Natezenie swiatla": "10.23 lx",
-"Intensywnosc opadow": "2.04 mm",
-"Predkosc wiatru": "Umiarkowany wiatr",
-"Wilgotnosc gleby (10cm)": 30,
-"Wilgotnosc gleby (20cm)": 20,
-"Wilgotnosc gleby (30cm)": 10,
-"Lokalizacja": "Strzelno"
-},
-
-{
-"Nr pomiaru": 8,
-"Data pomiaru": "05.11.2022",
-"Godzina pomiaru": "12:19",
-"Temperatura": "14.3 st. C",
-"Wilgotnosc powietrza": "18.3%",
-"Cisnienie atmosferyczne": "970 hPa",
-"Natezenie swiatla": "10.23 lx",
-"Intensywnosc opadow": "2.04 mm",
-"Predkosc wiatru": "Umiarkowany wiatr",
-"Wilgotnosc gleby (10cm)": 30,
-"Wilgotnosc gleby (20cm)": 20,
-"Wilgotnosc gleby (30cm)": 10,
-"Lokalizacja": "Strzelno"
-},
-
-{
-"Nr pomiaru": 9,
-"Data pomiaru": "05.11.2022",
-"Godzina pomiaru": "12:45",
-"Temperatura": "14.3 st. C",
-"Wilgotnosc powietrza": "18.3%",
-"Cisnienie atmosferyczne": "970 hPa",
-"Natezenie swiatla": "10.23 lx",
-"Intensywnosc opadow": "2.04 mm",
-"Predkosc wiatru": "Umiarkowany wiatr",
-"Wilgotnosc gleby (10cm)": 30,
-"Wilgotnosc gleby (20cm)": 20,
-"Wilgotnosc gleby (30cm)": 10,
-"Lokalizacja": "Strzelno"
-},
-
-{
-"Nr pomiaru": 10,
-"Data pomiaru": "05.11.2022",
-"Godzina pomiaru": "12:47",
-"Temperatura": "24.6 st. C",
-"Wilgotnosc powietrza": "31%",
-"Cisnienie atmosferyczne": "1005 hPa",
-"Natezenie swiatla": "16 lx",
-"Intensywnosc opadow": "2.05 mm",
+"Data pomiaru": "20.11.2022",
+"Godzina pomiaru": "13:00",
+"Temperatura": "-3 st. C",
+"Wilgotnosc powietrza": "60%",
+"Cisnienie atmosferyczne": "1000 hPa",
+"Natezenie swiatla": "90 lx",
+"Intensywnosc opadow": "120 mm",
 "Predkosc wiatru": "Lekki wiatr",
-"Wilgotnosc gleby (10cm)": 25,
-"Wilgotnosc gleby (20cm)": 35,
-"Wilgotnosc gleby (30cm)": 50,
-"Lokalizacja": "Strzelno"
+"Wilgotnosc gleby (10cm)": "Gleba wilgotna",
+"Wilgotnosc gleby (20cm)": "Gleba mokra",
+"Wilgotnosc gleby (30cm)": "Gleba wilgotna",
+"Lokalizacja": "Poznan"
 }
 ]

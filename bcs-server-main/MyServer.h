@@ -2,7 +2,11 @@
 #ifndef MYSERVER_H
 #define MYSERVER_H
 
+//#define CROW_JSON_USE_MAP
 #include "crow.h"
+
+#include "Windows.h"
+
 #include "DBTools.h"
 #include "HTMLTools.h"
 #include "JSONTools.h"
@@ -10,69 +14,38 @@
 
 #define DEFAULT_ROUTE "/"
 #define DEFAULT_JSON_ROUTE "/json"
-
-#define USE_HTML
+#define DEFAULT_JSON_ROUTE_RAW "/json/raw"
 
 namespace MyServer
 {
-	inline std::string GetMethod(PacketType ptType)
+	inline std::string GetMethod()
 	{
-		if (ptType == ptDefault)
-		{
-			std::vector<std::pair<int, DefaultPacket> > vPackets;
-			if (!DBTools::fetchData(vPackets))
-				return "B³¹d komunikacji z baz¹ danych.";
+		std::vector<std::pair<int, MeasurementsPacket> > vPackets;
+		if (!DBTools::fetchMeasurementData(vPackets))
+			return "B³¹d komunikacji z baz¹ danych.";
 
-			return HTMLTools::drawTable(vPackets);
-		}
-		else if (ptType == ptTest)
-		{
-			std::vector<std::pair<int, TestPacket> > vPackets;
-			if (!DBTools::fetchDataTest(vPackets))
-				return "B³¹d komunikacji z baz¹ danych.";
-
-			return HTMLTools::drawTestTable(vPackets);
-		}
+		return HTMLTools::drawMeasurementsTable(vPackets);
 	}
 
-	inline std::string PostMethod(const crow::request& req, PacketType ptType)
+	inline std::string PostMethod(const crow::request& xReq)
 	{
-		CROW_LOG_INFO << "Packet received: " << req.body;
-		if (ptType == ptDefault)
+		CROW_LOG_INFO << "Packet received: " << xReq.body;
+		MeasurementsPacket Pkt;
+		if (ConstructTestPacket(Pkt, xReq.body))
 		{
-			DefaultPacket Pkt;
-			if (ConstructDefaultPacket(Pkt, req.body))
+			if (DBTools::putMeasurementData(Pkt))
 			{
-				if (DBTools::putData(Pkt))
-				{
-					CROW_LOG_INFO << "Data placed in database.";
+				CROW_LOG_INFO << "Data placed in database.";
+				if (JSONTools::packJSON())
 					return std::string("RES: recv + acc");
-				}
 				else
-					CROW_LOG_ERROR << "Could not send data to database.";
+					CROW_LOG_ERROR << "Failed to pack JSON file.";
 			}
 			else
-				CROW_LOG_ERROR << "Failed to construct packet from request: " << req.body;
+				CROW_LOG_ERROR << "Could not send data to database.";
 		}
-		else if (ptType == ptTest)
-		{
-			TestPacket Pkt;
-			if (ConstructTestPacket(Pkt, req.body))
-			{
-				if (DBTools::putDataTest(Pkt))
-				{
-					CROW_LOG_INFO << "Data placed in database.";
-					if (JSONTools::packJSON())
-						return std::string("RES: recv + acc");
-					else
-						CROW_LOG_ERROR << "Failed to pack JSON file.";
-				}
-				else
-					CROW_LOG_ERROR << "Could not send data to database.";
-			}
-			else
-				CROW_LOG_ERROR << "Failed to construct packet from request: " << req.body;
-		}
+		else
+			CROW_LOG_ERROR << "Failed to construct packet from request: " << xReq.body;
 
 		return std::string("RES: recv + err");
 	}
@@ -80,21 +53,21 @@ namespace MyServer
 	/**
 	* @brief Inicjalizuje i uruchamia serwer
 	* @param iPort - nr portu, na ktorym ma sluchac serwer
-	* @param ptType - rodzaj pakietu (domyslnie DefaultPacket)
 	*/
-	inline void Initialize(int iPort, PacketType ptType)
+	inline void Initialize(int iPort)
 	{
 		crow::SimpleApp App;
-#ifndef USE_HTML
-		CROW_ROUTE(App, DEFAULT_ROUTE).methods(crow::HTTPMethod::GET, crow::HTTPMethod::POST)([&](const crow::request& req)
-			{
-				if (req.method == crow::HTTPMethod::GET)
-					return GetMethod(ptType);
-				else if (req.method == crow::HTTPMethod::POST)
-					return PostMethod(req, ptType);
-			});
-#else
-		crow::mustache::set_global_base("C:\\Users\\kasax\\Desktop\\AiR\\ROK 4\\Sem 7\\INZYNIERKA\\bsc-thesis-cpz-main\\bcs-server-main\\html\\");
+
+		char szBuf[_MAX_DIR] = {};
+		GetCurrentDirectoryA(sizeof(szBuf), szBuf);
+
+		std::string sDir = szBuf;
+		sDir += "\\html\\";
+
+		crow::mustache::set_global_base(sDir.c_str());
+
+		JSONTools::packJSON();
+	
 		CROW_ROUTE(App, DEFAULT_ROUTE).methods(crow::HTTPMethod::GET, crow::HTTPMethod::POST)([&](const crow::request& req)
 			{
 				if (req.method == crow::HTTPMethod::GET)
@@ -104,36 +77,106 @@ namespace MyServer
 				}
 				else if (req.method == crow::HTTPMethod::POST)
 				{
-					PostMethod(req, ptType);
+					PostMethod(req);
 					return crow::mustache::rendered_template();
 				}
 			});
-#endif
 
-		CROW_ROUTE(App, DEFAULT_JSON_ROUTE)([]
+		CROW_ROUTE(App, DEFAULT_JSON_ROUTE)([] 
+			{
+				std::vector<std::pair<int, MeasurementsPacket> > vPackets;
+				if (!DBTools::fetchMeasurementData(vPackets))
+					return crow::json::wvalue("B³¹d komunikacji z baz¹ danych");
+				else
+				{
+					crow::json::wvalue::list xList;
+					for (const auto& pair : vPackets)
+					{
+
+						auto pkt = pair.second;
+						
+						std::string sWspd;
+
+						std::string sHumGnd1;
+						std::string sHumGnd2;
+						std::string sHumGnd3;
+						
+						switch (pkt.iWspd)
+						{
+						case 0: sWspd = "Brak wiatru"; break;
+						case 1: sWspd = "Lekki wiatr"; break;
+						case 2: sWspd = "Umiarkowany wiatr"; break;
+						case 3: sWspd = "Silny wiatr"; break;
+						default: sWspd = "Niepoprawny pomiar";
+						}
+
+						switch (pkt.iHumGnd1)
+						{
+						case 0: sHumGnd1 = "Gleba sucha"; break;
+						case 1: sHumGnd1 = "Gleba wilgotna"; break;
+						case 2: sHumGnd1 = "Gleba mokra"; break;
+						default: sHumGnd1 = "Niepoprawny pomiar";
+						}
+						switch (pkt.iHumGnd2)
+						{
+						case 0: sHumGnd2 = "Gleba sucha"; break;
+						case 1: sHumGnd2 = "Gleba wilgotna"; break;
+						case 2: sHumGnd2 = "Gleba mokra"; break;
+						default: sHumGnd2 = "Niepoprawny pomiar";
+						}
+						switch (pkt.iHumGnd3)
+						{
+						case 0: sHumGnd3 = "Gleba sucha"; break;
+						case 1: sHumGnd3 = "Gleba wilgotna"; break;
+						case 2: sHumGnd3 = "Gleba mokra"; break;
+						default: sHumGnd3 = "Niepoprawny pomiar";
+						}
+
+						crow::json::wvalue x = {
+							{ "Nr pomiaru", pair.first },
+							{ "Data pomiaru", pkt.sDate },
+							{ "Godzina pomiaru", pkt.sTime },
+							{ "Temperatura", pkt.fTemp },
+							{ "Wilgotnosc powietrza", pkt.fHumAir },
+							{ "Cisnienie atmosferyczne", pkt.iPs },
+							{ "Natezenie swiatla", pkt.fLum },
+							{ "Intensywnosc opadow", pkt.fPrec },
+							{ "Predkosc wiatru", sWspd },
+							{ "Wilgotnosc gleby (10cm)", sHumGnd1 },
+							{ "Wilgotnosc gleby (20cm)", sHumGnd2 },
+							{ "Wilgotnosc gleby (30cm)", sHumGnd3 },
+							{ "Lokalizacja", pkt.sLocation }
+						};
+						xList.emplace_back(x);
+					}
+					crow::json::wvalue xJSON = xList;
+					return xJSON;
+				}
+
+			});
+
+		CROW_ROUTE(App, DEFAULT_JSON_ROUTE_RAW)([]
 			{
 				std::ifstream hFile("html/json/measurements.json");
-				std::string line, contents = "";
+				std::string sLine, sContents = "";
 				if (hFile.is_open())
-					while (std::getline(hFile, line))
-						contents += line;
+					while (std::getline(hFile, sLine))
+						sContents += sLine;
 				hFile.close();
-				crow::json::wvalue x(contents.c_str());
-				//x["message2"] = "Hello, World.. Again!";
-				return contents;
+				return sContents;
 			});
 
 		App.port(iPort).multithreaded().run();
 	}
 
-	inline void Create(int iPort, PacketType ptType = ptDefault)
+	inline void Create(int iPort)
 	{
 		if (!DBTools::init())
 			std::cout << "Failed to connect to MySQL" << std::endl;
 		else
 			std::cout << "Connected to MySQL" << std::endl;
 
-		MyServer::Initialize(iPort, ptType);
+		MyServer::Initialize(iPort);
 	}
 }
 
