@@ -31,7 +31,7 @@ namespace MyServer
 	{
 		CROW_LOG_INFO << "Packet received: " << xReq.body;
 		MeasurementsPacket Pkt;
-		if (ConstructTestPacket(Pkt, xReq.body))
+		if (ConstructMeasurementPacket(Pkt, xReq.body))
 		{
 			if (DBTools::putMeasurementData(Pkt))
 			{

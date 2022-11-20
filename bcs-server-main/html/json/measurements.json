@@ -13,5 +13,21 @@
 "Wilgotnosc gleby (20cm)": "Gleba mokra",
 "Wilgotnosc gleby (30cm)": "Gleba wilgotna",
 "Lokalizacja": "Poznan"
+},
+
+{
+"Nr pomiaru": 2,
+"Data pomiaru": "20.11.2022",
+"Godzina pomiaru": "14:34",
+"Temperatura": "14.3 st. C",
+"Wilgotnosc powietrza": "18.3%",
+"Cisnienie atmosferyczne": "970 hPa",
+"Natezenie swiatla": "10.23 lx",
+"Intensywnosc opadow": "2.04 mm",
+"Predkosc wiatru": "Umiarkowany wiatr",
+"Wilgotnosc gleby (10cm)": "Gleba mokra",
+"Wilgotnosc gleby (20cm)": "Gleba wilgotna",
+"Wilgotnosc gleby (30cm)": "Gleba sucha",
+"Lokalizacja": "Poznan"
 }
 ]

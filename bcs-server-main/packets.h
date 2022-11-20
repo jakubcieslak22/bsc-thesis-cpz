@@ -8,7 +8,7 @@
 #include <sstream>
 #include <vector>
 
-struct MeasurementsPacket //curl -X POST -d "00.00.0000;00:00;14.3;18.3;970;10.23;2.04;2;30;20;10;Poznan" localhost:9999
+struct MeasurementsPacket //curl -X POST -d "00.00.0000;00:00;14.3;18.3;970;10.23;2.04;2;2;1;0;Poznan" localhost:9999
 {
 	std::string sDate = ""; // Data
 	std::string sTime = ""; // Godzina
@@ -24,7 +24,7 @@ struct MeasurementsPacket //curl -X POST -d "00.00.0000;00:00;14.3;18.3;970;10.2
 	std::string sLocation = ""; // Lokalizacja
 };
 
-inline bool ConstructTestPacket(MeasurementsPacket& pkt, std::string req)
+inline bool ConstructMeasurementPacket(MeasurementsPacket& pkt, std::string req)
 {
 	std::vector<std::string> vSegments;
 	size_t pos = 0;
