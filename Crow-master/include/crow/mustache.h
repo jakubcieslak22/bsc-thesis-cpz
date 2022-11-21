@@ -94,7 +94,7 @@ namespace crow
                 static json::wvalue empty_str;
                 empty_str = "";
 
-                int dotPosition = name.find(".");
+                int dotPosition = static_cast<int>(name.find("."));
                 if (dotPosition == static_cast<int>(name.npos))
                 {
                     for (auto it = stack.rbegin(); it != stack.rend(); ++it)
@@ -113,9 +113,9 @@ namespace crow
                     while (dotPosition != static_cast<int>(name.npos))
                     {
                         dotPositions.push_back(dotPosition);
-                        dotPosition = name.find(".", dotPosition + 1);
+                        dotPosition = static_cast<int>(name.find(".", dotPosition + 1));
                     }
-                    dotPositions.push_back(name.size());
+                    dotPositions.push_back(static_cast<int>(name.size()));
                     std::vector<std::string> names;
                     names.reserve(dotPositions.size() - 1);
                     for (int i = 1; i < static_cast<int>(dotPositions.size()); i++)
@@ -218,7 +218,7 @@ namespace crow
                             std::string partial_name = tag_name(action);
                             auto partial_templ = load(partial_name);
                             int partial_indent = action.pos;
-                            partial_templ.render_internal(0, partial_templ.fragments_.size() - 1, stack, out, partial_indent ? indent + partial_indent : 0);
+                            partial_templ.render_internal(0, static_cast<int>(partial_templ.fragments_.size()) - 1, stack, out, partial_indent ? indent + partial_indent : 0);
                         }
                         break;
                         case ActionType::UnescapeTag:
@@ -364,7 +364,7 @@ namespace crow
                 stack.emplace_back(&empty_ctx);
 
                 std::string ret;
-                render_internal(0, fragments_.size() - 1, stack, ret, 0);
+                render_internal(0, static_cast<int>(fragments_.size()) - 1, stack, ret, 0);
                 return rendered_template(ret);
             }
 
@@ -375,7 +375,7 @@ namespace crow
                 stack.emplace_back(&ctx);
 
                 std::string ret;
-                render_internal(0, fragments_.size() - 1, stack, ret, 0);
+                render_internal(0, static_cast<int>(fragments_.size()) - 1, stack, ret, 0);
                 return rendered_template(ret);
             }
 
@@ -393,7 +393,7 @@ namespace crow
                 stack.emplace_back(&empty_ctx);
 
                 std::string ret;
-                render_internal(0, fragments_.size() - 1, stack, ret, 0);
+                render_internal(0, static_cast<int>(fragments_.size()) - 1, stack, ret, 0);
                 return ret;
             }
 
@@ -404,7 +404,7 @@ namespace crow
                 stack.emplace_back(&ctx);
 
                 std::string ret;
-                render_internal(0, fragments_.size() - 1, stack, ret, 0);
+                render_internal(0, static_cast<int>(fragments_.size()) - 1, stack, ret, 0);
                 return ret;
             }
 
@@ -466,7 +466,7 @@ namespace crow
                                                                      body_.substr(matched.start, matched.end - matched.start) + ", " +
                                                                      body_.substr(idx, endIdx - idx));
                                 }
-                                matched.pos = actions_.size();
+                                matched.pos = static_cast<int>(actions_.size());
                             }
                             actions_.emplace_back(ActionType::CloseBlock, idx, endIdx, blockPositions.back());
                             blockPositions.pop_back();
@@ -566,7 +566,7 @@ namespace crow
                 }
 
                 // removing standalones
-                for (int i = actions_.size() - 2; i >= 0; i--)
+                for (int i = static_cast<int>(actions_.size()) - 2; i >= 0; i--)
                 {
                     if (actions_[i].t == ActionType::Tag || actions_[i].t == ActionType::UnescapeTag)
                         continue;

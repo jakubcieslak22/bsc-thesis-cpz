@@ -773,23 +773,23 @@ namespace crow
                 switch (node->param)
                 {
                     case ParamType::INT:
-                        CROW_LOG_DEBUG << std::string(3 * level, ' ') << "└➝ "
+                        CROW_LOG_DEBUG << std::string(3 * level, ' ') << wchar_t("└➝ ")
                                        << "<int>";
                         break;
                     case ParamType::UINT:
-                        CROW_LOG_DEBUG << std::string(3 * level, ' ') << "└➝ "
+                        CROW_LOG_DEBUG << std::string(3 * level, ' ') << wchar_t("└➝ ")
                                        << "<uint>";
                         break;
                     case ParamType::DOUBLE:
-                        CROW_LOG_DEBUG << std::string(3 * level, ' ') << "└➝ "
+                        CROW_LOG_DEBUG << std::string(3 * level, ' ') << wchar_t("└➝ ")
                                        << "<double>";
                         break;
                     case ParamType::STRING:
-                        CROW_LOG_DEBUG << std::string(3 * level, ' ') << "└➝ "
+                        CROW_LOG_DEBUG << std::string(3 * level, ' ') << wchar_t("└➝ ")
                                        << "<string>";
                         break;
                     case ParamType::PATH:
-                        CROW_LOG_DEBUG << std::string(3 * level, ' ') << "└➝ "
+                        CROW_LOG_DEBUG << std::string(3 * level, ' ') << wchar_t("└➝ ")
                                        << "<path>";
                         break;
                     default:
@@ -799,7 +799,7 @@ namespace crow
                 }
             }
             else
-                CROW_LOG_DEBUG << std::string(3 * level, ' ') << "└➝ " << node->key;
+                CROW_LOG_DEBUG << std::string(3 * level, ' ') << wchar_t("└➝ ") << node->key;
 
             for (auto& child : node->children)
             {
@@ -941,7 +941,7 @@ namespace crow
                             found_fragment = true;
                             params->string_params.push_back(req_url.substr(pos, epos - pos));
                             if (child->blueprint_index != INVALID_BP_ID) blueprints->push_back(child->blueprint_index);
-                            auto ret = find(req_url, child, epos, params, blueprints);
+                            auto ret = find(req_url, child, static_cast<unsigned int>(epos), params, blueprints);
                             update_found(ret);
                             params->string_params.pop_back();
                             if (!blueprints->empty()) blueprints->pop_back();
@@ -957,7 +957,7 @@ namespace crow
                             found_fragment = true;
                             params->string_params.push_back(req_url.substr(pos, epos - pos));
                             if (child->blueprint_index != INVALID_BP_ID) blueprints->push_back(child->blueprint_index);
-                            auto ret = find(req_url, child, epos, params, blueprints);
+                            auto ret = find(req_url, child, static_cast<unsigned int>(epos), params, blueprints);
                             update_found(ret);
                             params->string_params.pop_back();
                             if (!blueprints->empty()) blueprints->pop_back();
@@ -972,7 +972,7 @@ namespace crow
                     {
                         found_fragment = true;
                         if (child->blueprint_index != INVALID_BP_ID) blueprints->push_back(child->blueprint_index);
-                        auto ret = find(req_url, child, pos + fragment.size(), params, blueprints);
+                        auto ret = find(req_url, child, pos + static_cast<unsigned int>(fragment.size()), params, blueprints);
                         update_found(ret);
                         if (!blueprints->empty()) blueprints->pop_back();
                     }
@@ -1022,7 +1022,7 @@ namespace crow
                                 if (child->param == x.type)
                                 {
                                     idx = child;
-                                    i += x.name.size();
+                                    i += static_cast<unsigned int>(x.name.size());
                                     found = true;
                                     break;
                                 }
@@ -1033,7 +1033,7 @@ namespace crow
                             auto new_node_idx = new_node(idx);
                             new_node_idx->param = x.type;
                             idx = new_node_idx;
-                            i += x.name.size();
+                            i += static_cast<unsigned int>(x.name.size());
                             break;
                         }
                     }
@@ -1079,10 +1079,10 @@ namespace crow
         size_t get_size(Node* node)
         {
             unsigned size = 5;          //rule_index, blueprint_index, and param
-            size += (node->key.size()); //each character in the key is 1 byte
+            size += (static_cast<unsigned int>(node->key.size())); //each character in the key is 1 byte
             for (auto child : node->children)
             {
-                size += get_size(child);
+                size += static_cast<int>(get_size(child));
             }
             return size;
         }
@@ -1296,7 +1296,7 @@ namespace crow
                 //   request to '/about' url matches '/about/' rule
                 if (has_trailing_slash)
                 {
-                    per_methods_[method].trie.add(rule_without_trailing_slash, RULE_SPECIAL_REDIRECT_SLASH, BP_index != INVALID_BP_ID ? blueprints[BP_index]->prefix().length() : 0, BP_index);
+                    per_methods_[method].trie.add(rule_without_trailing_slash, RULE_SPECIAL_REDIRECT_SLASH, BP_index != INVALID_BP_ID ? static_cast<uint16_t>(blueprints[BP_index]->prefix().length()) : 0, BP_index);
                 }
             });
         }
@@ -1345,7 +1345,7 @@ namespace crow
                     for (HTTPMethod x : methods)
                     {
                         int i = static_cast<int>(x);
-                        per_methods_[i].trie.add(blueprint->prefix(), 0, blueprint->prefix().length(), i);
+                        per_methods_[i].trie.add(blueprint->prefix(), 0, static_cast<unsigned int>(blueprint->prefix().length()), i);
                     }
                 }
 
@@ -1511,7 +1511,7 @@ namespace crow
             res.code = code;
             std::vector<Blueprint*> bps_found;
             get_found_bp(found.blueprint_indices, blueprints_, bps_found);
-            for (int i = bps_found.size() - 1; i > 0; i--)
+            for (int i = static_cast<int>(bps_found.size()) - 1; i > 0; i--)
             {
                 std::vector<uint16_t> bpi = found.blueprint_indices;
                 if (bps_found[i]->catchall_rule().has_handler())

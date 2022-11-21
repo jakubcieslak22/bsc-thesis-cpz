@@ -123,7 +123,7 @@ namespace crow
               on_message_complete,
             };
 
-            int nparsed = http_parser_execute(this, &settings_, buffer, length);
+            int nparsed = http_parser_execute(this, &settings_, buffer, static_cast<size_t>(length));
             if (http_errno != CHPE_OK)
             {
                 return false;

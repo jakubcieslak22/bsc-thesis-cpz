@@ -57,11 +57,11 @@ inline bool ConstructMeasurementPacket(MeasurementsPacket& pkt, std::string req)
 		if (pkt.sTime == std::string("00:00"))
 			pkt.sTime = sDateAndTime.substr(sDateAndTime.find('|') + 1);
 
-		pkt.fTemp = atof(vSegments[2].c_str());
-		pkt.fHumAir = atof(vSegments[3].c_str());
+		pkt.fTemp = static_cast<float>(atof(vSegments[2].c_str()));
+		pkt.fHumAir = static_cast<float>(atof(vSegments[3].c_str()));
 		pkt.iPs = atoi(vSegments[4].c_str());
-		pkt.fLum = atof(vSegments[5].c_str());
-		pkt.fPrec = atof(vSegments[6].c_str());
+		pkt.fLum = static_cast<float>(atof(vSegments[5].c_str()));
+		pkt.fPrec = static_cast<float>(atof(vSegments[6].c_str()));
 		pkt.iWspd = atoi(vSegments[7].c_str());
 		if (pkt.iWspd < 0 || pkt.iWspd > 3)
 			return false;

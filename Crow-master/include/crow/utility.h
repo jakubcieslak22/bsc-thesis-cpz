@@ -731,7 +731,7 @@ namespace crow
                 }
                 if ((i >= len) || (source[i] == '.') || (source[i] == ':') || (source[i] == '/') || (source[i] == '\\'))
                 {
-                    source.erase(ofs + 1, (i - ofs) - 1);
+                    source.erase(static_cast<size_t>(ofs + 1), static_cast<size_t>((i - ofs) - 1));
                     source[ofs] = replacement;
                 }
             };

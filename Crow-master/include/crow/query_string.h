@@ -118,7 +118,7 @@ inline int qs_parse(char* qs, char* qs_kv[], int qs_kv_size, bool parse_url = tr
     while(i<qs_kv_size)
     {
         qs_kv[i] = substr_ptr;
-        j = strcspn(substr_ptr, "&");
+        j = static_cast<int>(strcspn(substr_ptr, "&"));
         if ( substr_ptr[j] == '\0' ) { i++; break;  } // x &'s -> means x iterations of this loop -> means *x+1* k/v pairs
         substr_ptr += j + 1;
         i++;
@@ -371,7 +371,7 @@ namespace crow
         /// Note: this method returns the value of the first occurrence of the key only, to return all occurrences, see \ref get_list().
         char* get(const std::string& name) const
         {
-            char* ret = qs_k2v(name.c_str(), key_value_pairs_.data(), key_value_pairs_.size());
+            char* ret = qs_k2v(name.c_str(), key_value_pairs_.data(), static_cast<int>(key_value_pairs_.size()));
             return ret;
         }
 
@@ -407,7 +407,7 @@ namespace crow
             int count = 0;
             while (1)
             {
-                element = qs_k2v(plus.c_str(), key_value_pairs_.data(), key_value_pairs_.size(), count++);
+                element = qs_k2v(plus.c_str(), key_value_pairs_.data(), static_cast<int>(key_value_pairs_.size()), count++);
                 if (!element)
                     break;
                 ret.push_back(element);
@@ -446,7 +446,7 @@ namespace crow
             int count = 0;
             while (1)
             {
-                if (auto element = qs_dict_name2kv(name.c_str(), key_value_pairs_.data(), key_value_pairs_.size(), count++))
+                if (auto element = qs_dict_name2kv(name.c_str(), key_value_pairs_.data(), static_cast<int>(key_value_pairs_.size()), count++))
                     ret.insert(*element);
                 else
                     break;

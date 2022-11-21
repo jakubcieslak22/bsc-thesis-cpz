@@ -207,7 +207,7 @@ namespace crow
             // No need to check other io_services if the current one has no tasks
             {
                 if (task_queue_length_pool_[i] < task_queue_length_pool_[min_queue_idx])
-                    min_queue_idx = i;
+                    min_queue_idx = static_cast<uint16_t>(i);
             }
             return min_queue_idx;
         }

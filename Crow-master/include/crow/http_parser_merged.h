@@ -584,7 +584,7 @@ static const uint8_t normal_url_char[32] = {
       }
 
       if (ch == '?') {
-          parser->qs_point = p - url_mark;
+          parser->qs_point = static_cast<unsigned long>(p - url_mark);
         return s_req_query_string_start;
       }
 
@@ -604,7 +604,7 @@ static const uint8_t normal_url_char[32] = {
       }
       else if (ch == '?')
       {
-          parser->qs_point = p - url_mark;
+          parser->qs_point = static_cast<unsigned long>(p - url_mark);
           return s_req_query_string_start;
       }
 
