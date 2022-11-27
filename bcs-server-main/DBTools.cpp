@@ -53,7 +53,7 @@ bool DBTools::fetchMeasurementData(std::vector<std::pair<int, MeasurementsPacket
             pkt.fHumAir = atof(xRow[4]);
             pkt.iPs = atoi(xRow[5]);
             pkt.fLum = atof(xRow[6]);
-            pkt.fPrec = atof(xRow[7]);
+            pkt.iPrec = atoi(xRow[7]);
             pkt.iWspd = atoi(xRow[8]);
             pkt.iHumGnd1 = atoi(xRow[9]);
             pkt.iHumGnd2 = atoi(xRow[10]);
@@ -75,7 +75,7 @@ bool DBTools::fetchMeasurementData(std::vector<std::pair<int, MeasurementsPacket
 
 /**
 * \brief Umieszcza dane w bazie danych
-* \param vPackets - wektor struktur, którego dane s¹ przesy³ane do bazy danych
+* \param Packet - struktura, której dane s¹ przesy³ane do bazy
 * \return true, jeœli operacja siê powiod³a
 */
 bool DBTools::putMeasurementData(const MeasurementsPacket& Packet)
@@ -88,7 +88,7 @@ bool DBTools::putMeasurementData(const MeasurementsPacket& Packet)
     std::string cmd;
     cmd = "INSERT INTO " + std::string(MYSQL_TBNAME) + " VALUES(DEFAULT, \"" + xPacket.sDate + "\", \"" + xPacket.sTime + "\", " 
         + std::to_string(xPacket.fTemp) + ", " + std::to_string(xPacket.fHumAir) + ", " + std::to_string(xPacket.iPs) + ", " 
-        + std::to_string(xPacket.fLum) + ", " + std::to_string(xPacket.fPrec) + ", " + std::to_string(xPacket.iWspd) + ", " 
+        + std::to_string(xPacket.fLum) + ", " + std::to_string(xPacket.iPrec) + ", " + std::to_string(xPacket.iWspd) + ", " 
         + std::to_string(xPacket.iHumGnd1) + ", " + std::to_string(xPacket.iHumGnd2) + ", " + std::to_string(xPacket.iHumGnd3) + ", \"" 
         + xPacket.sLocation + "\");";
 

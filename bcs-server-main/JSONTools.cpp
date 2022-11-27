@@ -32,7 +32,17 @@ bool JSONTools::packJSON(std::vector<std::pair<int, MeasurementsPacket> >& vCach
                 hJson << "\"Wilgotnosc powietrza\": \"" << xPkt.fHumAir << "%\",\n";
                 hJson << "\"Cisnienie atmosferyczne\": \"" << xPkt.iPs << " hPa\",\n";
                 hJson << "\"Natezenie swiatla\": \"" << xPkt.fLum << " lx\",\n";
-                hJson << "\"Intensywnosc opadow\": \"" << xPkt.fPrec << " mm\",\n";
+
+                std::string sPrec;
+                switch (xPkt.iPrec)
+                {
+                case 0: sPrec = "Brak opadow"; break;
+                case 1: sPrec = "Lekkie opady"; break;
+                case 2: sPrec = "Umiarkowane opady"; break;
+                case 3: sPrec = "Silne opady"; break;
+                default: sPrec = "Niepoprawny pomiar";
+                }
+                hJson << "\"Intensywnosc opadow\": \"" << sPrec << "\",\n";
 
                 std::string sWspd;
                 switch (xPkt.iWspd)

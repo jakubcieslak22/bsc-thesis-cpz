@@ -97,9 +97,19 @@ namespace MyServer
 
 					std::string sWspd;
 
+					std::string sPrec;
 					std::string sHumGnd1;
 					std::string sHumGnd2;
 					std::string sHumGnd3;
+
+					switch (pkt.iPrec)
+					{
+					case 0: sPrec = "Brak opadow"; break;
+					case 1: sPrec = "Lekkie opady"; break;
+					case 2: sPrec = "Umiarkowane opady"; break;
+					case 3: sPrec = "Silne opady"; break;
+					default: sPrec = "Niepoprawny pomiar";
+					}
 
 					switch (pkt.iWspd)
 					{
@@ -140,7 +150,7 @@ namespace MyServer
 						{ "Wilgotnosc powietrza", pkt.fHumAir },
 						{ "Cisnienie atmosferyczne", pkt.iPs },
 						{ "Natezenie swiatla", pkt.fLum },
-						{ "Intensywnosc opadow", pkt.fPrec },
+						{ "Intensywnosc opadow", sPrec },
 						{ "Predkosc wiatru", sWspd },
 						{ "Wilgotnosc gleby (10cm)", sHumGnd1 },
 						{ "Wilgotnosc gleby (20cm)", sHumGnd2 },

@@ -42,7 +42,7 @@ std::string HTMLTools::drawMeasurementsTable(const std::vector<std::pair<int, Me
             os << std::left << std::setw(6) << vPkt[i].first << std::setw(15) << Pkt.sDate << std::setw(12) << Pkt.sTime
                 << std::setw(sTemperatura.size() + iSpace) << Pkt.fTemp << std::setw(sWilgotnoscP.size() + iSpace) << Pkt.fHumAir
                 << std::setw(sCisnienieAtm.size() + iSpace) << Pkt.iPs << std::setw(sNatezenieSw.size() + iSpace) << Pkt.fLum
-                << std::setw(sIntensywnosc.size() + iSpace) << Pkt.fPrec << std::setw(sPredkosc.size() + iSpace) << Pkt.iWspd 
+                << std::setw(sIntensywnosc.size() + iSpace) << Pkt.iPrec << std::setw(sPredkosc.size() + iSpace) << Pkt.iWspd 
                 << std::setw(sWilgotnoscG1.size() + iSpace) << Pkt.iHumGnd1 << std::setw(sWilgotnoscG2.size() + iSpace) << Pkt.iHumGnd2 
                 << std::setw(sWilgotnoscG3.size() + iSpace) << Pkt.iHumGnd3 << std::setw(sLokalizacja.size() + iSpace) << Pkt.sLocation << std::endl;
         }

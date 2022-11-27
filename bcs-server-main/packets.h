@@ -8,7 +8,7 @@
 #include <sstream>
 #include <vector>
 
-struct MeasurementsPacket //curl -X POST -d "00.00.0000;00:00;14.3;18.3;970;10.23;2.04;2;2;1;0;Poznan" localhost:9999
+struct MeasurementsPacket //curl -X POST -d "00.00.0000;00:00;14.3;18.3;970;10.23;2.04;2;2;1;0;xxxxxxxxxPoznan" localhost:9999
 {
 	std::string sDate = ""; // Data
 	std::string sTime = ""; // Godzina
@@ -16,7 +16,7 @@ struct MeasurementsPacket //curl -X POST -d "00.00.0000;00:00;14.3;18.3;970;10.2
 	float fHumAir = 0; // Wilgotnoœæ powietrza
 	int iPs = 0; // Ciœnienie atmosferyczne
 	float fLum = 0; // Natê¿enie œwiat³a
-	float fPrec = 0; // Intensywnoœæ opadów
+	int iPrec = 0; // Intensywnoœæ opadów
 	int iWspd = 0; // Prêdkoœæ wiatru
 	int iHumGnd1 = 0; // Wilgotnoœæ gleby 10cm
 	int iHumGnd2 = 0; // Wilgotnoœæ gleby 20cm
@@ -61,7 +61,10 @@ inline bool ConstructMeasurementPacket(MeasurementsPacket& pkt, std::string req)
 		pkt.fHumAir = static_cast<float>(atof(vSegments[3].c_str()));
 		pkt.iPs = atoi(vSegments[4].c_str());
 		pkt.fLum = static_cast<float>(atof(vSegments[5].c_str()));
-		pkt.fPrec = static_cast<float>(atof(vSegments[6].c_str()));
+		pkt.iPrec = atoi(vSegments[6].c_str());
+		if (pkt.iPrec < 0 || pkt.iWspd > 3)
+			return false;
+
 		pkt.iWspd = atoi(vSegments[7].c_str());
 		if (pkt.iWspd < 0 || pkt.iWspd > 3)
 			return false;
@@ -74,7 +77,9 @@ inline bool ConstructMeasurementPacket(MeasurementsPacket& pkt, std::string req)
 			(pkt.iHumGnd3 < 0 || pkt.iHumGnd3 > 2))
 			return false;
 
-		pkt.sLocation = vSegments[11];
+		std::string sLoc = vSegments[11];
+		sLoc.erase(std::remove(sLoc.begin(), sLoc.end(), 'x'), sLoc.end());
+		pkt.sLocation = sLoc;
 	}
 	catch (...)
 	{
