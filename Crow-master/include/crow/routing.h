@@ -770,6 +770,8 @@ namespace crow
         {
             if (node->param != ParamType::MAX)
             {
+#pragma warning(disable:4302) // truncation from const char* to wchar_t
+#pragma warning(disable:4566) // character ... cannot be represented in current codepage (1250)
                 switch (node->param)
                 {
                     case ParamType::INT:
@@ -797,6 +799,7 @@ namespace crow
                                        << "<ERROR>";
                         break;
                 }
+#pragma warning(default:4302)
             }
             else
                 CROW_LOG_DEBUG << std::string(3 * level, ' ') << wchar_t("└➝ ") << node->key;
@@ -814,6 +817,7 @@ namespace crow
             for (auto& child : head_.children)
                 debug_node_print(child, 1);
         }
+#pragma warning(default : 4566)
 
         void validate()
         {

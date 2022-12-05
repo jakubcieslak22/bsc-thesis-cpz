@@ -1711,7 +1711,7 @@ namespace crow
                 t_ = type::List;
                 if (!l)
                     l = std::unique_ptr<list>(new list{});
-                if (l->size() < index + 1)
+                if (static_cast<unsigned int>(l->size()) < index + 1)
                     l->resize(index + 1);
                 return (*l)[index];
             }
