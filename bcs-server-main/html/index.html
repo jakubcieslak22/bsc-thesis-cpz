@@ -11,7 +11,9 @@
     <style>
         body {
             display:flex;
+            flex-wrap:wrap;
             justify-content:center;
+            gap:20px;
         }
         table tr td {
             text-align:center;
@@ -22,17 +24,25 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 <body>
-<table id="excelDataTable" border="1">
+    <button id="graphsButton" class="float-left submit-button" style="height:60px; width:150px; font-size:20px">Wykresy</button>
+    <script type="text/javascript">
+        document.getElementById("graphsButton").onclick = function () {
+            location.href = "http://62.21.49.193:9999/graphs";
+        };
+    </script>
+    <table id="excelDataTable" border="5">
     </table>
+
 </body>
+
 <script>
     var myList;
     async function fetchAsync(url) {
         let response = await fetch(url);
         myList = await response.json();
         buildHtmlTable('#excelDataTable');
-        console.log(myList);
     }
+
     fetchAsync("http://62.21.49.193:9999/json/raw");
     // Builds the HTML Table out of myList.
     function buildHtmlTable(selector) {

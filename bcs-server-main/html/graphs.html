@@ -1,7 +1,47 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <style>
+        body {
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:center;
+            gap:20px;
+            width:80%;
+        }
+        table tr td {
+            text-align:center;
+        }
+    </style>
+
 <script>
+
+var myList;
+
+async function fetchAsync(url) {
+        let response = await fetch(url);
+        myList = await response.json();
+        console.log(myList[0]["Nr pomiaru"]);
+        //buildHtmlTable('#excelDataTable');
+    }
+
+function addData(data) {
+	for (var i = 0; i < data.length; i++) {
+		dataPoints.push({
+			// x: new Date(data[i].date),
+			// y: data[i].units
+			x: data[i]["Data pomiaru"],
+            y: data[i]["Nr pomiaru"]
+		});
+	}
+}
+
 window.onload = function() {
 
 var dataPoints = [];
@@ -10,7 +50,7 @@ var options =  {
 	animationEnabled: true,
 	theme: "light2",
 	title: {
-		text: "Daily Sales Data"
+		text: "Dane pomiarowe w czasie"
 	},
 	axisX: {
 		valueFormatString: "DD MMM YYYY",
@@ -26,17 +66,11 @@ var options =  {
 	}]
 };
 
-function addData(data) {
-	for (var i = 0; i < data.length; i++) {
-		dataPoints.push({
-			x: new Date(data[i].date),
-			y: data[i].units
-		});
-	}
-	$("#chartContainer").CanvasJSChart(options);
-
-}
-$.getJSON("https://canvasjs.com/data/gallery/jquery/daily-sales-data.json", addData);
+// $.getJSON("https://canvasjs.com/data/gallery/jquery/daily-sales-data.json", addData);
+// $.getJSON("http://62.21.49.193:9999/json/raw", addData);
+fetchAsync("http://62.21.49.193:9999/json/raw");
+addData(myList);
+$("#chartContainer").CanvasJSChart(options);
 
 }
 </script>
