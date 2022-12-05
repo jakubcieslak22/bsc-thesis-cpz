@@ -12,7 +12,8 @@
 #include "JSONTools.h"
 #include "packets.h"
 
-#define DEFAULT_ROUTE "/"
+#define DEFAULT_INDEX_ROUTE "/"
+#define DEFAULT_GRAPHS_ROUTE "/graphs/"
 #define DEFAULT_JSON_ROUTE "/json"
 #define DEFAULT_JSON_ROUTE_RAW "/json/raw"
 
@@ -73,11 +74,25 @@ namespace MyServer
 
 		JSONTools::packJSON(vCachedPackets);
 	
-		CROW_ROUTE(App, DEFAULT_ROUTE).methods(crow::HTTPMethod::GET, crow::HTTPMethod::POST)([&](const crow::request& req)
+		CROW_ROUTE(App, DEFAULT_INDEX_ROUTE).methods(crow::HTTPMethod::GET, crow::HTTPMethod::POST)([&](const crow::request& req)
 			{
 				if (req.method == crow::HTTPMethod::GET)
 				{
-					auto mainPage = crow::mustache::load_unsafe("sample.html");
+					auto mainPage = crow::mustache::load_unsafe("index.html");
+					return mainPage.render();
+				}
+				else if (req.method == crow::HTTPMethod::POST)
+				{
+					PostMethod(req);
+					return crow::mustache::rendered_template();
+				}
+			});
+
+		CROW_ROUTE(App, DEFAULT_GRAPHS_ROUTE).methods(crow::HTTPMethod::GET, crow::HTTPMethod::POST)([&](const crow::request& req)
+			{
+				if (req.method == crow::HTTPMethod::GET)
+				{
+					auto mainPage = crow::mustache::load_unsafe("graphs.html");
 					return mainPage.render();
 				}
 				else if (req.method == crow::HTTPMethod::POST)
