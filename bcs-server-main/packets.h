@@ -44,7 +44,12 @@ inline bool ConstructMeasurementPacket(MeasurementsPacket& pkt, std::string req)
 	try
 	{
 		auto t = std::time(nullptr);
+#ifdef _CRT_SECURE_NO_WARNINGS
 		auto tm = *std::localtime(&t);
+#else
+		struct tm tm;
+		auto err = localtime_s(&tm, &t);
+#endif
 		std::stringstream ss;
 		ss << std::put_time(&tm, "%d.%m.%Y|%H:%M") << std::endl;
 		std::string sDateAndTime(ss.str());
@@ -57,7 +62,8 @@ inline bool ConstructMeasurementPacket(MeasurementsPacket& pkt, std::string req)
 		if (pkt.sTime == std::string("00:00"))
 			pkt.sTime = sDateAndTime.substr(sDateAndTime.find('|') + 1);
 
-		pkt.fTemp = static_cast<float>(atof(vSegments[2].c_str())); // rzutowanie na float, poniewaz atof zwraca double z jakiegos powodu
+		// rzutowanie na float, poniewaz atof zwraca double z jakiegos powodu (mimo, ze jest funkcja atod, ktora zwraca double)
+		pkt.fTemp = static_cast<float>(atof(vSegments[2].c_str())); 
 		pkt.fHumAir = static_cast<float>(atof(vSegments[3].c_str()));
 		pkt.iPs = atoi(vSegments[4].c_str());
 		pkt.fLum = static_cast<float>(atof(vSegments[5].c_str()));

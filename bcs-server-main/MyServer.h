@@ -28,7 +28,7 @@ namespace MyServer
 	{
 		std::vector<std::pair<int, MeasurementsPacket> > vPackets;
 		if (!DBTools::fetchMeasurementData(vPackets))
-			return "B³¹d komunikacji z baz¹ danych.";
+			return "Blad komunikacji z baza danych.";
 
 		return HTMLTools::drawMeasurementsTable(vPackets);
 	}

@@ -1,8 +1,8 @@
 [
 {
 "Nr pomiaru": 1,
-"Data pomiaru": "27.11.2022",
-"Godzina pomiaru": "14:21",
+"Data pomiaru": "08.12.2022",
+"Godzina pomiaru": "10:52",
 "Temperatura": "14.3 st. C",
 "Wilgotnosc powietrza": "18.3%",
 "Cisnienie atmosferyczne": "970 hPa",
@@ -12,29 +12,13 @@
 "Wilgotnosc gleby (10cm)": "Gleba mokra",
 "Wilgotnosc gleby (20cm)": "Gleba wilgotna",
 "Wilgotnosc gleby (30cm)": "Gleba sucha",
-"Lokalizacja": "xxxxxxxxxPoznan"
+"Lokalizacja": "Poznan"
 },
 
 {
 "Nr pomiaru": 2,
-"Data pomiaru": "27.11.2022",
-"Godzina pomiaru": "14:25",
-"Temperatura": "14.3 st. C",
-"Wilgotnosc powietrza": "18.3%",
-"Cisnienie atmosferyczne": "970 hPa",
-"Natezenie swiatla": "10.23 lx",
-"Intensywnosc opadow": "Umiarkowane opady",
-"Predkosc wiatru": "Umiarkowany wiatr",
-"Wilgotnosc gleby (10cm)": "Gleba mokra",
-"Wilgotnosc gleby (20cm)": "Gleba wilgotna",
-"Wilgotnosc gleby (30cm)": "Gleba sucha",
-"Lokalizacja": "PoznanxxPoznan"
-},
-
-{
-"Nr pomiaru": 3,
-"Data pomiaru": "27.11.2022",
-"Godzina pomiaru": "14:34",
+"Data pomiaru": "08.12.2022",
+"Godzina pomiaru": "10:52",
 "Temperatura": "14.3 st. C",
 "Wilgotnosc powietrza": "18.3%",
 "Cisnienie atmosferyczne": "970 hPa",
