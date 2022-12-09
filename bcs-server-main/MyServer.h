@@ -14,8 +14,9 @@
 
 #define DEFAULT_INDEX_ROUTE "/"
 #define DEFAULT_GRAPHS_ROUTE "/graphs/"
-#define DEFAULT_JSON_ROUTE "/json"
-#define DEFAULT_JSON_ROUTE_RAW "/json/raw"
+#define DEFAULT_JSON_ROUTE "/json/"
+#define DEFAULT_JSON_ROUTE_RAW "/json/raw/"
+#define DEFAULT_FAVICON_ROUTE "/favicon.ico"
 
 namespace MyServer
 {
@@ -70,10 +71,10 @@ namespace MyServer
 		std::string sDir = szBuf;
 		sDir += "\\html\\";
 
-		crow::mustache::set_global_base(sDir.c_str());
+		crow::mustache::set_global_base(sDir);
 
 		JSONTools::packJSON(vCachedPackets);
-	
+
 		CROW_ROUTE(App, DEFAULT_INDEX_ROUTE).methods(crow::HTTPMethod::GET, crow::HTTPMethod::POST)([&](const crow::request& req)
 			{
 				if (req.method == crow::HTTPMethod::GET)
@@ -105,88 +106,94 @@ namespace MyServer
 		CROW_ROUTE(App, DEFAULT_JSON_ROUTE)([]
 			{
 				crow::json::wvalue::list xList;
-				for (const auto& pair : vCachedPackets)
-				{
+		for (const auto& pair : vCachedPackets)
+		{
 
-					auto pkt = pair.second;
+			auto pkt = pair.second;
 
-					std::string sWspd;
+			std::string sWspd;
 
-					std::string sPrec;
-					std::string sHumGnd1;
-					std::string sHumGnd2;
-					std::string sHumGnd3;
+			std::string sPrec;
+			std::string sHumGnd1;
+			std::string sHumGnd2;
+			std::string sHumGnd3;
 
-					switch (pkt.iPrec)
-					{
-					case 0: sPrec = "Brak opadow"; break;
-					case 1: sPrec = "Lekkie opady"; break;
-					case 2: sPrec = "Umiarkowane opady"; break;
-					case 3: sPrec = "Silne opady"; break;
-					default: sPrec = "Niepoprawny pomiar";
-					}
+			switch (pkt.iPrec)
+			{
+			case 0: sPrec = "Brak opadow"; break;
+			case 1: sPrec = "Lekkie opady"; break;
+			case 2: sPrec = "Umiarkowane opady"; break;
+			case 3: sPrec = "Silne opady"; break;
+			default: sPrec = "Niepoprawny pomiar";
+			}
 
-					switch (pkt.iWspd)
-					{
-					case 0: sWspd = "Brak wiatru"; break;
-					case 1: sWspd = "Lekki wiatr"; break;
-					case 2: sWspd = "Umiarkowany wiatr"; break;
-					case 3: sWspd = "Silny wiatr"; break;
-					default: sWspd = "Niepoprawny pomiar";
-					}
+			switch (pkt.iWspd)
+			{
+			case 0: sWspd = "Brak wiatru"; break;
+			case 1: sWspd = "Lekki wiatr"; break;
+			case 2: sWspd = "Umiarkowany wiatr"; break;
+			case 3: sWspd = "Silny wiatr"; break;
+			default: sWspd = "Niepoprawny pomiar";
+			}
 
-					switch (pkt.iHumGnd1)
-					{
-					case 0: sHumGnd1 = "Gleba sucha"; break;
-					case 1: sHumGnd1 = "Gleba wilgotna"; break;
-					case 2: sHumGnd1 = "Gleba mokra"; break;
-					default: sHumGnd1 = "Niepoprawny pomiar";
-					}
-					switch (pkt.iHumGnd2)
-					{
-					case 0: sHumGnd2 = "Gleba sucha"; break;
-					case 1: sHumGnd2 = "Gleba wilgotna"; break;
-					case 2: sHumGnd2 = "Gleba mokra"; break;
-					default: sHumGnd2 = "Niepoprawny pomiar";
-					}
-					switch (pkt.iHumGnd3)
-					{
-					case 0: sHumGnd3 = "Gleba sucha"; break;
-					case 1: sHumGnd3 = "Gleba wilgotna"; break;
-					case 2: sHumGnd3 = "Gleba mokra"; break;
-					default: sHumGnd3 = "Niepoprawny pomiar";
-					}
+			switch (pkt.iHumGnd1)
+			{
+			case 0: sHumGnd1 = "Gleba sucha"; break;
+			case 1: sHumGnd1 = "Gleba wilgotna"; break;
+			case 2: sHumGnd1 = "Gleba mokra"; break;
+			default: sHumGnd1 = "Niepoprawny pomiar";
+			}
+			switch (pkt.iHumGnd2)
+			{
+			case 0: sHumGnd2 = "Gleba sucha"; break;
+			case 1: sHumGnd2 = "Gleba wilgotna"; break;
+			case 2: sHumGnd2 = "Gleba mokra"; break;
+			default: sHumGnd2 = "Niepoprawny pomiar";
+			}
+			switch (pkt.iHumGnd3)
+			{
+			case 0: sHumGnd3 = "Gleba sucha"; break;
+			case 1: sHumGnd3 = "Gleba wilgotna"; break;
+			case 2: sHumGnd3 = "Gleba mokra"; break;
+			default: sHumGnd3 = "Niepoprawny pomiar";
+			}
 
-					crow::json::wvalue x = {
-						{ "Nr pomiaru", pair.first },
-						{ "Data pomiaru", pkt.sDate },
-						{ "Godzina pomiaru", pkt.sTime },
-						{ "Temperatura", pkt.fTemp },
-						{ "Wilgotnosc powietrza", pkt.fHumAir },
-						{ "Cisnienie atmosferyczne", pkt.iPs },
-						{ "Natezenie swiatla", pkt.fLum },
-						{ "Intensywnosc opadow", sPrec },
-						{ "Predkosc wiatru", sWspd },
-						{ "Wilgotnosc gleby (10cm)", sHumGnd1 },
-						{ "Wilgotnosc gleby (20cm)", sHumGnd2 },
-						{ "Wilgotnosc gleby (30cm)", sHumGnd3 },
-						{ "Lokalizacja", pkt.sLocation }
-					};
-					xList.emplace_back(x);
-				}
-				crow::json::wvalue xJSON = xList;
-				return xJSON;
+			crow::json::wvalue x = {
+				{ "Nr pomiaru", pair.first },
+				{ "Data pomiaru", pkt.sDate },
+				{ "Godzina pomiaru", pkt.sTime },
+				{ "Temperatura", pkt.fTemp },
+				{ "Wilgotnosc powietrza", pkt.fHumAir },
+				{ "Cisnienie atmosferyczne", pkt.iPs },
+				{ "Natezenie swiatla", pkt.fLum },
+				{ "Intensywnosc opadow", sPrec },
+				{ "Predkosc wiatru", sWspd },
+				{ "Wilgotnosc gleby (10cm)", sHumGnd1 },
+				{ "Wilgotnosc gleby (20cm)", sHumGnd2 },
+				{ "Wilgotnosc gleby (30cm)", sHumGnd3 },
+				{ "Lokalizacja", pkt.sLocation }
+			};
+			xList.emplace_back(x);
+		}
+		crow::json::wvalue xJSON = xList;
+		return xJSON;
 			});
 
 		CROW_ROUTE(App, DEFAULT_JSON_ROUTE_RAW)([]
 			{
 				std::ifstream hFile("html/json/measurements.json");
-				std::string sLine, sContents = "";
-				if (hFile.is_open())
-					while (std::getline(hFile, sLine))
-						sContents += sLine;
-				hFile.close();
-				return sContents;
+		std::string sLine, sContents = "";
+		if (hFile.is_open())
+			while (std::getline(hFile, sLine))
+				sContents += sLine;
+		hFile.close();
+		return sContents;
+			});
+
+		CROW_ROUTE(App, DEFAULT_FAVICON_ROUTE)([sDir]() {
+			crow::response resp = crow::response(200);
+		resp.set_static_file_info(("img/favicon.png"));
+		return resp;
 			});
 
 		App.port(iPort).multithreaded().run();

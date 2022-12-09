@@ -27,7 +27,7 @@
     <button id="graphsButton" class="float-left submit-button" style="height:60px; width:150px; font-size:20px">Wykresy</button>
     <script type="text/javascript">
         document.getElementById("graphsButton").onclick = function () {
-            location.href = "http://62.21.49.193:9999/graphs";
+            location.href = "http://" + addr + "/graphs";
         };
     </script>
     <table id="excelDataTable" border="5">
@@ -36,6 +36,11 @@
 </body>
 
 <script>
+
+var ip = "62.21.50.49";
+var port = "9999";
+const addr = ip + ":" + port;
+
     var myList;
     async function fetchAsync(url) {
         let response = await fetch(url);
@@ -43,7 +48,7 @@
         buildHtmlTable('#excelDataTable');
     }
 
-    fetchAsync("http://62.21.49.193:9999/json/raw");
+    fetchAsync("http://" + addr + "/json/raw");
     // Builds the HTML Table out of myList.
     function buildHtmlTable(selector) {
         var columns = addAllColumnHeaders(myList, selector);
