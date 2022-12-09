@@ -17,25 +17,26 @@
         }
         table tr td {
             text-align:center;
-        }Teq
+        }
     </style>
 
 <script>
 
-var ip = "62.21.49.193";
+var ip = "62.21.50.49";
 var port = "9999";
 const addr = ip + ":" + port;
 
-var myList;
+var myList = [];
 async function fetchAsync(url) {
         let response = await fetch(url);
         myList = await response.json();
         console.log(myList[0]["Nr pomiaru"]);
         //buildHtmlTable('#excelDataTable');
-    }
+    };
 
 function addData(data) {
 	for (var i = 0; i < data.length; i++) {
+        console.log(data[i]["Data pomiaru"]);
 		dataPoints.push({
 			// x: new Date(data[i].date),
 			// y: data[i].units
@@ -43,7 +44,7 @@ function addData(data) {
             y: data[i]["Nr pomiaru"]
 		});
 	}
-}
+};
 
 window.onload = function() {
 
@@ -69,11 +70,12 @@ var options =  {
 	}]
 };
 
-// $.getJSON("https://canvasjs.com/data/gallery/jquery/daily-sales-data.json", addData);
-// $.getJSON("http://62.21.49.193:9999/json/raw", addData);
-fetchAsync("http://" + addr + "/json/ra");
-addData(myList);
-$("#chartContainer").CanvasJSChart(options);
+ /* $.getJSON("https://canvasjs.com/data/gallery/jquery/daily-sales-data.json", addData); */
+ /* $.getJSON("http://62.21.49.193:9999/json/raw", addData); */
+fetchAsync("http://" + addr + "/json/raw");
+addData(dataPoints);
+console.log(dataPoints);
+/* $("#chartContainer").CanvasJSChart(options); */
 
 }
 </script>

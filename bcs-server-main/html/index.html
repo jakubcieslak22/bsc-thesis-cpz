@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="">
     <style>
         body {
-            display:flex;
-            flex-wrap:wrap;
-            justify-content:center;
-            gap:20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
         }
+
         table tr td {
-            text-align:center;
+            text-align: center;
         }
     </style>
 </head>
@@ -24,7 +25,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 <body>
-    <button id="graphsButton" class="float-left submit-button" style="height:60px; width:150px; font-size:20px">Wykresy</button>
+    <button id="graphsButton" class="float-left submit-button"
+        style="height:60px; width:150px; font-size:20px">Wykresy</button>
     <script type="text/javascript">
         document.getElementById("graphsButton").onclick = function () {
             location.href = "http://" + addr + "/graphs";
@@ -37,9 +39,9 @@
 
 <script>
 
-var ip = "62.21.50.49";
-var port = "9999";
-const addr = ip + ":" + port;
+    var ip = "62.21.50.49";
+    var port = "9999";
+    const addr = ip + ":" + port;
 
     var myList;
     async function fetchAsync(url) {
