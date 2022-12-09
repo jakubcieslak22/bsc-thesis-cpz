@@ -1,88 +1,76 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
-    <style>
-        body {
-            display:flex;
-            flex-wrap:wrap;
-            justify-content:center;
-            gap:20px;
-            width:80%;
-        }
-        table tr td {
-            text-align:center;
-        }
-    </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<style>
+    body {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+</style>
+<body>
+<canvas id="myChart" style="width:100%;max-width:700px"></canvas>
 
 <script>
 
-var ip = "62.21.50.49";
-var port = "9999";
-const addr = ip + ":" + port;
+    var ip = "62.21.50.49";
+    var port = "9999";
+    const addr = ip + ":" + port;
+
+var xyValues = [
+  {x:50, y:7},
+  {x:60, y:8},
+  {x:70, y:8},
+  {x:80, y:9},
+  {x:90, y:9},
+  {x:100, y:9},
+  {x:110, y:10},
+  {x:120, y:11},
+  {x:130, y:14},
+  {x:140, y:14},
+  {x:150, y:15}
+];
+
+var xyValuesTest = [];
+
+async function fetchAsync(url) {
+    let response = await fetch(url);
+    myList = await response.json();
+    fillData();
+}
 
 var myList = [];
-async function fetchAsync(url) {
-        let response = await fetch(url);
-        myList = await response.json();
-        console.log(myList[0]["Nr pomiaru"]);
-        //buildHtmlTable('#excelDataTable');
-    };
-
-function addData(data) {
-	for (var i = 0; i < data.length; i++) {
-        console.log(data[i]["Data pomiaru"]);
-		dataPoints.push({
-			// x: new Date(data[i].date),
-			// y: data[i].units
-			x: data[i]["Data pomiaru"],
-            y: data[i]["Nr pomiaru"]
-		});
-	}
-};
-
-window.onload = function() {
-
-var dataPoints = [];
-
-var options =  {
-	animationEnabled: true,
-	theme: "light2",
-	title: {
-		text: "Dane pomiarowe w czasie"
-	},
-	axisX: {
-		valueFormatString: "DD MMM YYYY",
-	},
-	axisY: {
-		title: "USD",
-		titleFontSize: 24
-	},
-	data: [{
-		type: "spline", 
-		yValueFormatString: "$#,###.##",
-		dataPoints: dataPoints
-	}]
-};
-
- /* $.getJSON("https://canvasjs.com/data/gallery/jquery/daily-sales-data.json", addData); */
- /* $.getJSON("http://62.21.49.193:9999/json/raw", addData); */
-fetchAsync("http://" + addr + "/json/raw");
-addData(dataPoints);
-console.log(dataPoints);
-/* $("#chartContainer").CanvasJSChart(options); */
-
+function fillData() {
+    var currentVal = {};
+    for (measurement of myList) {
+        var tempStr = measurement["Temperatura"];
+        var final = parseFloat(tempStr.substring(0, tempStr.indexOf(" ")));
+        currentVal = {x:measurement["Godzina pomiaru"], y:final}
+        // currentVal = {x:final, y:final}
+        xyValuesTest.push(currentVal);
+    }     
+    console.log(xyValuesTest);
 }
+fetchAsync("http://" + addr + "/json/raw");
+
+new Chart("myChart", {
+  type: "scatter",
+  data: {
+    datasets: [{
+      pointRadius: 4,
+      pointBackgroundColor: "rgb(0,0,255)",
+      data: xyValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    scales: {
+      xAxes: [{ticks: {min: 40, max:160}}],
+      yAxes: [{ticks: {min: 6, max:16}}],
+    }
+  }
+});
 </script>
-</head>
-<body>
-<div id="chartContainer" style="height: 370px; width: 100%;"></div>
-<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 </body>
 </html>
