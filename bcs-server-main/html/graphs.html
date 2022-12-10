@@ -2,152 +2,220 @@
 <html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <style>
-    body {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-    }
+  body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
 </style>
+
 <body>
-<canvas id="myChart" style="width:100%;max-width:1000px"></canvas>
+  <canvas id="myChart" style="width:100%;max-width:1000px"></canvas>
 
-<script>
-
-// ======================
-var ip = "62.21.50.49";
-var port = "9999";
-// ======================
-
-const addr = ip + ":" + port;
-
-const yAxisSpread = 3;
-
-var myList = [];
-var yVals = [];
-var xLabels = [];
-var dateAssociation = [];
-
-var chartDate = 0;
-var chartValue = "tm";
-
-const chartableValues = [
-  {name: "Temperatura", arg: "tm"},
-  {name: "Wilgotnosc powietrza", arg: "ah"},
-  {name: "Cisnienie atmosferyczne", arg: "ps"},
-  {name: "Natezenie swiatla", arg: "lm"},
-  {name: "Intensywnosc opadow", arg: "pr"},
-  {name: "Predkosc wiatru", arg: "ws"},
-  {name: "Wilgotnosc gleby (10cm)", arg: "g1"},
-  {name: "Wilgotnosc gleby (30cm)", arg: "g2"},
-  {name: "Wilgotnosc gleby (60cm)", arg: "g3"}
-];
-
-async function fetchAsync(url) {
-    let response = await fetch(url);
-    myList = await response.json();
-    fillData();
-    xLabels = [...Array(yVals.length).keys()];
-    handleQueryString();
-    drawChart();
-    drawDropdowns();
-}
-
-function fillData() {
-    var currentVal = {};
-    for (measurement of myList) {
-        var tempStr = measurement["Temperatura"];
-        var final = parseFloat(tempStr.substring(0, tempStr.indexOf(" ")));
-        yVals.push(final);
-    }     
-}
-
-function drawChart () {
-  new Chart("myChart", {
-  type: "line",
-  data: {
-    labels: xLabels,
-    datasets: [{
-      label: 'My First Dataset',
-      data: yVals,
-      fill: false,
-      borderColor: 'rgb(75, 192, 192)',
-      tension: 0.1
-  }]
-  },
-  options: {
-    legend: {display: false},
-    scales: {
-      xAxes: [{ticks: {min: 0, max: yVals.length}}],
-      yAxes: [{ticks: {min: parseInt(Math.min(...yVals)) - yAxisSpread, max: parseInt(Math.max(...yVals)) + yAxisSpread}}],
-    }
-  }
-});
-}
-
-function drawDropdowns () {
-  const datesDropdown = document.getElementById("datesDropdown");
-  var n = 0;
-  let dates = [];
-  for (element of myList) {
-    dates.push(element["Data pomiaru"]);
-  }
-  let uniqueDates = [...new Set(dates)];
-  for (element of uniqueDates) {
-    let option = document.createElement("option");
-    option.setAttribute('value', n);
-    let optionText = document.createTextNode(element);
-    option.appendChild(optionText);
-    datesDropdown.appendChild(option);
-    dateAssociation.push({name: element, val: n});
-    n++;
-  }
-
-  const valuesDropdown = document.getElementById("valuesDropdown");
-  for (element of chartableValues) {
-    let option = document.createElement("option");
-    option.setAttribute('value', element["arg"]);
-    let optionText = document.createTextNode(element["name"]);
-    option.appendChild(optionText);
-    valuesDropdown.appendChild(option);
-  }
-
-  datesDropdown.addEventListener("change", e => {
-      chartDate = e.target.value;
-  });
-
-  valuesDropdown.addEventListener("change", e => {
-    chartValue = e.target.value;
-  });
-
-}
-
-function handleQueryString () {
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  console.log(urlParams.get("date"));
-  console.log(urlParams.get("val"));
-}
-
-// ===============================================
-
-fetchAsync("http://" + addr + "/json/raw");
-
-</script>
-
-<select id="datesDropdown" style="height:30px;width:200px;font-size:20px;text-align: center;">
-</select>
-
-<select id="valuesDropdown" style="height:30px;width:300px;font-size:20px;text-align: center;">
-</select>
-
-<button id="displayButton" style="height:70px;width:200px;font-size:20px;text-align: center;" class="float-left submit-button"> Wyswietl
   <script>
-    document.getElementById("displayButton").onclick = function () {
-      location.href = "?date=" + chartDate + "&val=" + chartValue;
-    };
+
+    // ======================
+    var ip = "62.21.50.49";
+    var port = "9999";
+    // ======================
+
+    const addr = ip + ":" + port;
+
+    const yAxisSpread = 3;
+    const xAxisSpread = 3;
+
+    var myList = [];
+    var yVals = [];
+    var xLabels = [];
+    var dateAssociation = [];
+
+    var chartDate = 0;
+    var chartVal = "tm";
+    var datasetName = "Temperatura";
+
+    const chartableValues = [
+      { name: "Temperatura", arg: "tm" },
+      { name: "Wilgotnosc powietrza", arg: "ah" },
+      { name: "Cisnienie atmosferyczne", arg: "ps" },
+      { name: "Natezenie swiatla", arg: "lm" },
+      { name: "Intensywnosc opadow", arg: "pr" },
+      { name: "Predkosc wiatru", arg: "ws" },
+      { name: "Wilgotnosc gleby (10cm)", arg: "g1" },
+      { name: "Wilgotnosc gleby (30cm)", arg: "g3" },
+      { name: "Wilgotnosc gleby (60cm)", arg: "g6" }
+    ];
+
+    async function fetchAsync(url) {
+      let response = await fetch(url);
+      myList = await response.json();
+      handleQueryString();
+      drawDropdowns();
+      fillData();
+      xLabels = [...Array(yVals.length).keys()];
+      drawChart();
+    }
+    
+    function handleQueryString() {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      console.log(queryString);
+      if (queryString != "")
+      {
+        chartDate = parseInt(urlParams.get("date"));
+        chartVal = urlParams.get("val");  
+      }
+    }
+
+    function drawDropdowns() {
+      const datesDropdown = document.getElementById("datesDropdown");
+      var n = 0;
+      let dates = [];
+      for (element of myList) {
+        dates.push(element["Data pomiaru"]);
+      }
+      let uniqueDates = [...new Set(dates)];
+      for (element of uniqueDates) {
+        let option = document.createElement("option");
+        option.setAttribute('value', n);
+        let optionText = document.createTextNode(element);
+        option.appendChild(optionText);
+        datesDropdown.appendChild(option);
+        dateAssociation.push({ name: element, val: n });
+        n++;
+      }
+
+      const valuesDropdown = document.getElementById("valuesDropdown");
+      for (element of chartableValues) {
+        let option = document.createElement("option");
+        option.setAttribute('value', element["arg"]);
+        let optionText = document.createTextNode(element["name"]);
+        option.appendChild(optionText);
+        valuesDropdown.appendChild(option);
+      }
+
+      datesDropdown.addEventListener("change", e => {
+        chartDate = e.target.value;
+        console.log(chartDate);
+      });
+
+      valuesDropdown.addEventListener("change", e => {
+        chartValue = e.target.value;
+      });
+
+    }
+
+    function fillData() {
+      let valType = "";
+      let valShort = "";
+      let targetDate = "";
+
+      for (date of dateAssociation) {
+        if (date.val == chartDate) {
+          targetDate = date.name;
+        }
+      }
+      console.log("wybrana data: " + targetDate);
+
+      for (element of chartableValues) {
+        if (element.arg == chartVal) {
+          valType = element.name;
+          datasetName = valType;
+          valShort = element.arg;
+        }
+      }
+
+      datasetName += " dnia ";
+      datasetName += targetDate;
+
+      console.log("wybrana wartosc: " + valType);
+      for (const measurement of myList) {
+      let recVal = measurement[valType];
+        if (measurement["Data pomiaru"] == targetDate) {
+          console.log("zarejestrowane dane: " + recVal);
+          let finalVal = 0;
+          if (valShort == "tm" || valShort == "ps" || valShort == "lm") {
+            finalVal = parseFloat(recVal.substring(0, recVal.indexOf(" ")));
+          }
+          else if (valShort == "ah") {
+            finalVal = parseFloat(recVal.substring(0, recVal.indexOf("%")));
+          }
+          else if (valShort == "pr") {
+            switch (recVal) {
+              case "Brak opadow": finalVal = 0.0; break;
+              case "Lekkie opady": finalVal = 1.0; break;
+              case "Umiarkowane opady": finalVal = 2.0; break;
+              case "Silne opady": finalVal = 3.0; break;
+            }
+            console.log(finalVal);
+          }
+          else if (valShort == "ws") {
+            switch (recVal) {
+              case "Brak wiatru": finalVal = 0.0; break;
+              case "Lekki wiatr": finalVal = 1.0; break;
+              case "Umiarkowany wiatr": finalVal = 2.0; break;
+              case "Silny wiatr": finalVal = 3.0; break;
+            }
+          }
+          else if (valShort == "g1" || valShort == "g3" || valShort == "g6") {
+            switch (recVal) {
+              case "Gleba sucha": finalVal = 0.0; break;
+              case "Gleba wilgotna": finalVal = 1.0; break;
+              case "Gleba mokra": finalVal = 2.0; break;
+            }
+        }
+        yVals.push(finalVal);
+      }
+    }
+
+    // reset parametrow po ich odczytaniu
+    chartDate = 0;
+    chartValue = "tm";
+  }
+    
+  function drawChart() {
+    new Chart("myChart", {
+      type: "line",
+      data: {
+        labels: xLabels,
+        datasets: [{
+          label: datasetName,
+          data: yVals,
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
+        }]
+      },
+      options: {
+        legend: { display: true },
+        scales: {
+          xAxes: [{ ticks: { min: 0, max: yVals.length} }],
+          yAxes: [{ ticks: { min: parseInt(Math.min(...yVals)) - yAxisSpread, max: parseInt(Math.max(...yVals)) + yAxisSpread } }],
+        }
+      }
+    });
+  }
+
+  // ===============================================
+  fetchAsync("http://" + addr + "/json/raw");
+
   </script>
-</button>
+
+  <select id="datesDropdown" style="height:30px;width:200px;font-size:20px;text-align: center;">
+  </select>
+
+  <select id="valuesDropdown" style="height:30px;width:300px;font-size:20px;text-align: center;">
+  </select>
+
+  <button id="displayButton" style="height:70px;width:200px;font-size:20px;text-align: center;"
+    class="float-left submit-button"> Wyswietl
+    <script>
+      document.getElementById("displayButton").onclick = function () {
+        location.href = "?date=" + chartDate + "&val=" + chartValue;
+      };
+    </script>
+  </button>
 
 </body>
+
 </html>
