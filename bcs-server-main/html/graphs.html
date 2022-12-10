@@ -10,7 +10,7 @@
     }
 </style>
 <body>
-<canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+<canvas id="myChart" style="width:100%;max-width:1000px"></canvas>
 
 <script>
 
@@ -26,15 +26,31 @@ const yAxisSpread = 3;
 var myList = [];
 var yVals = [];
 var xLabels = [];
-var dateAssociation = {};
+var dateAssociation = [];
+
+var chartDate = 0;
+var chartValue = "tm";
+
+const chartableValues = [
+  {name: "Temperatura", arg: "tm"},
+  {name: "Wilgotnosc powietrza", arg: "ah"},
+  {name: "Cisnienie atmosferyczne", arg: "ps"},
+  {name: "Natezenie swiatla", arg: "lm"},
+  {name: "Intensywnosc opadow", arg: "pr"},
+  {name: "Predkosc wiatru", arg: "ws"},
+  {name: "Wilgotnosc gleby (10cm)", arg: "g1"},
+  {name: "Wilgotnosc gleby (30cm)", arg: "g2"},
+  {name: "Wilgotnosc gleby (60cm)", arg: "g3"}
+];
 
 async function fetchAsync(url) {
     let response = await fetch(url);
     myList = await response.json();
     fillData();
     xLabels = [...Array(yVals.length).keys()];
+    handleQueryString();
     drawChart();
-    drawDropdown();
+    drawDropdowns();
 }
 
 function fillData() {
@@ -69,23 +85,48 @@ function drawChart () {
 });
 }
 
-function drawDropdown () {
+function drawDropdowns () {
   const datesDropdown = document.getElementById("datesDropdown");
-  let n = 0;
+  var n = 0;
   let dates = [];
   for (element of myList) {
     dates.push(element["Data pomiaru"]);
   }
-  let uniqueList = [...new Set(dates)];
-  console.log(uniqueList);
-  for (element of uniqueList) {
+  let uniqueDates = [...new Set(dates)];
+  for (element of uniqueDates) {
     let option = document.createElement("option");
     option.setAttribute('value', n);
     let optionText = document.createTextNode(element);
     option.appendChild(optionText);
     datesDropdown.appendChild(option);
-    n += 1;
+    dateAssociation.push({name: element, val: n});
+    n++;
   }
+
+  const valuesDropdown = document.getElementById("valuesDropdown");
+  for (element of chartableValues) {
+    let option = document.createElement("option");
+    option.setAttribute('value', element["arg"]);
+    let optionText = document.createTextNode(element["name"]);
+    option.appendChild(optionText);
+    valuesDropdown.appendChild(option);
+  }
+
+  datesDropdown.addEventListener("change", e => {
+      chartDate = e.target.value;
+  });
+
+  valuesDropdown.addEventListener("change", e => {
+    chartValue = e.target.value;
+  });
+
+}
+
+function handleQueryString () {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  console.log(urlParams.get("date"));
+  console.log(urlParams.get("val"));
 }
 
 // ===============================================
@@ -96,6 +137,17 @@ fetchAsync("http://" + addr + "/json/raw");
 
 <select id="datesDropdown" style="height:30px;width:200px;font-size:20px;text-align: center;">
 </select>
+
+<select id="valuesDropdown" style="height:30px;width:300px;font-size:20px;text-align: center;">
+</select>
+
+<button id="displayButton" style="height:70px;width:200px;font-size:20px;text-align: center;" class="float-left submit-button"> Wyswietl
+  <script>
+    document.getElementById("displayButton").onclick = function () {
+      location.href = "?date=" + chartDate + "&val=" + chartValue;
+    };
+  </script>
+</button>
 
 </body>
 </html>
