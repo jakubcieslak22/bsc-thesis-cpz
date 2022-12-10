@@ -29,5 +29,53 @@
 "Wilgotnosc gleby (20cm)": "Gleba wilgotna",
 "Wilgotnosc gleby (30cm)": "Gleba sucha",
 "Lokalizacja": "Poznan"
+},
+
+{
+"Nr pomiaru": 3,
+"Data pomiaru": "10.12.2022",
+"Godzina pomiaru": "11:13",
+"Temperatura": "20 st. C",
+"Wilgotnosc powietrza": "18.3%",
+"Cisnienie atmosferyczne": "970 hPa",
+"Natezenie swiatla": "10.23 lx",
+"Intensywnosc opadow": "Umiarkowane opady",
+"Predkosc wiatru": "Umiarkowany wiatr",
+"Wilgotnosc gleby (10cm)": "Gleba mokra",
+"Wilgotnosc gleby (20cm)": "Gleba wilgotna",
+"Wilgotnosc gleby (30cm)": "Gleba sucha",
+"Lokalizacja": "Poznan"
+},
+
+{
+"Nr pomiaru": 4,
+"Data pomiaru": "10.12.2022",
+"Godzina pomiaru": "11:14",
+"Temperatura": "15.6 st. C",
+"Wilgotnosc powietrza": "18.3%",
+"Cisnienie atmosferyczne": "970 hPa",
+"Natezenie swiatla": "10.23 lx",
+"Intensywnosc opadow": "Umiarkowane opady",
+"Predkosc wiatru": "Umiarkowany wiatr",
+"Wilgotnosc gleby (10cm)": "Gleba mokra",
+"Wilgotnosc gleby (20cm)": "Gleba wilgotna",
+"Wilgotnosc gleby (30cm)": "Gleba sucha",
+"Lokalizacja": "Poznan"
+},
+
+{
+"Nr pomiaru": 5,
+"Data pomiaru": "10.12.2022",
+"Godzina pomiaru": "11:15",
+"Temperatura": "5 st. C",
+"Wilgotnosc powietrza": "18.3%",
+"Cisnienie atmosferyczne": "970 hPa",
+"Natezenie swiatla": "10.23 lx",
+"Intensywnosc opadow": "Umiarkowane opady",
+"Predkosc wiatru": "Umiarkowany wiatr",
+"Wilgotnosc gleby (10cm)": "Gleba mokra",
+"Wilgotnosc gleby (20cm)": "Gleba wilgotna",
+"Wilgotnosc gleby (30cm)": "Gleba sucha",
+"Lokalizacja": "Poznan"
 }
 ]

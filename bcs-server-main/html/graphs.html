@@ -14,63 +14,64 @@
 
 <script>
 
-    var ip = "62.21.50.49";
-    var port = "9999";
-    const addr = ip + ":" + port;
+// ======================
+var ip = "62.21.50.49";
+var port = "9999";
+// ======================
 
-var xyValues = [
-  {x:50, y:7},
-  {x:60, y:8},
-  {x:70, y:8},
-  {x:80, y:9},
-  {x:90, y:9},
-  {x:100, y:9},
-  {x:110, y:10},
-  {x:120, y:11},
-  {x:130, y:14},
-  {x:140, y:14},
-  {x:150, y:15}
-];
+const addr = ip + ":" + port;
 
-var xyValuesTest = [];
+const yAxisSpread = 3;
+
+var myList = [];
+var yVals = [];
+var xLabels = [];
 
 async function fetchAsync(url) {
     let response = await fetch(url);
     myList = await response.json();
     fillData();
+    xLabels = [...Array(yVals.length).keys()];
+    console.log(xLabels);
+    drawChart();
 }
 
-var myList = [];
 function fillData() {
     var currentVal = {};
     for (measurement of myList) {
         var tempStr = measurement["Temperatura"];
         var final = parseFloat(tempStr.substring(0, tempStr.indexOf(" ")));
-        currentVal = {x:measurement["Godzina pomiaru"], y:final}
-        // currentVal = {x:final, y:final}
-        xyValuesTest.push(currentVal);
+        yVals.push(final);
     }     
-    console.log(xyValuesTest);
+    console.log(yVals);
 }
-fetchAsync("http://" + addr + "/json/raw");
 
-new Chart("myChart", {
+function drawChart () {
+  new Chart("myChart", {
   type: "line",
   data: {
+    labels: xLabels,
     datasets: [{
-      pointRadius: 4,
-      pointBackgroundColor: "rgb(0,0,255)",
-      data: xyValues
-    }]
+      label: 'My First Dataset',
+      data: yVals,
+      fill: false,
+      borderColor: 'rgb(75, 192, 192)',
+      tension: 0.1
+  }]
   },
   options: {
     legend: {display: false},
     scales: {
-      xAxes: [{ticks: {min: 40, max:160}}],
-      yAxes: [{ticks: {min: 6, max:16}}],
+      xAxes: [{ticks: {min: 0, max: yVals.length}}],
+      yAxes: [{ticks: {min: parseInt(Math.min(...yVals)) - yAxisSpread, max: parseInt(Math.max(...yVals)) + yAxisSpread}}],
     }
   }
 });
+}
+
+// ===============================================
+
+fetchAsync("http://" + addr + "/json/raw");
 </script>
 </body>
 </html>
