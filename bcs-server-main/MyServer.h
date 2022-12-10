@@ -171,8 +171,8 @@ namespace MyServer
 				{ "Intensywnosc opadow", sPrec },
 				{ "Predkosc wiatru", sWspd },
 				{ "Wilgotnosc gleby (10cm)", sHumGnd1 },
-				{ "Wilgotnosc gleby (20cm)", sHumGnd2 },
-				{ "Wilgotnosc gleby (30cm)", sHumGnd3 },
+				{ "Wilgotnosc gleby (30cm)", sHumGnd2 },
+				{ "Wilgotnosc gleby (60cm)", sHumGnd3 },
 				{ "Lokalizacja", pkt.sLocation }
 			};
 			xList.emplace_back(x);

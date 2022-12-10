@@ -73,7 +73,7 @@ bool JSONTools::packJSON(std::vector<std::pair<int, MeasurementsPacket> >& vCach
                 case 2: sHumGnd2 = "Gleba mokra"; break;
                 default: sHumGnd2 = "Niepoprawny pomiar";
                 }
-                hJson << "\"Wilgotnosc gleby (20cm)\": \"" << sHumGnd2 << "\",\n";
+                hJson << "\"Wilgotnosc gleby (30cm)\": \"" << sHumGnd2 << "\",\n";
 
                 std::string sHumGnd3;
                 switch (xPkt.iHumGnd3)
@@ -83,7 +83,7 @@ bool JSONTools::packJSON(std::vector<std::pair<int, MeasurementsPacket> >& vCach
                 case 2: sHumGnd3 = "Gleba mokra"; break;
                 default: sHumGnd3 = "Niepoprawny pomiar";
                 }
-                hJson << "\"Wilgotnosc gleby (30cm)\": \"" << sHumGnd3 << "\",\n";
+                hJson << "\"Wilgotnosc gleby (60cm)\": \"" << sHumGnd3 << "\",\n";
 
                 hJson << "\"Lokalizacja\": \"" << xPkt.sLocation << "\"\n";
                 if (i < static_cast<int>(vec.size()) - 1)
