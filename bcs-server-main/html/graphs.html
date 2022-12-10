@@ -26,6 +26,7 @@ const yAxisSpread = 3;
 var myList = [];
 var yVals = [];
 var xLabels = [];
+var dateAssociation = {};
 
 async function fetchAsync(url) {
     let response = await fetch(url);
@@ -70,21 +71,26 @@ function drawChart () {
 
 function drawDropdown () {
   const datesDropdown = document.getElementById("datesDropdown");
+  let n = 0;
+  let dates = [];
   for (element of myList) {
-    console.log(element);
+    dates.push(element["Data pomiaru"]);
+  }
+  let uniqueList = [...new Set(dates)];
+  console.log(uniqueList);
+  for (element of uniqueList) {
     let option = document.createElement("option");
-    option.setAttribute('value', element["Data pomiaru"]);
-    let optionText = document.createTextNode(element["Data pomiaru"]);
+    option.setAttribute('value', n);
+    let optionText = document.createTextNode(element);
     option.appendChild(optionText);
-    console.log(option);
     datesDropdown.appendChild(option);
-}
+    n += 1;
+  }
 }
 
 // ===============================================
 
 fetchAsync("http://" + addr + "/json/raw");
-
 
 </script>
 
