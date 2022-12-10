@@ -55,7 +55,7 @@ function fillData() {
 fetchAsync("http://" + addr + "/json/raw");
 
 new Chart("myChart", {
-  type: "scatter",
+  type: "line",
   data: {
     datasets: [{
       pointRadius: 4,
