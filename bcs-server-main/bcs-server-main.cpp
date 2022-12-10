@@ -4,5 +4,13 @@
 
 int main()
 {
-	MyServer::Create(9999);
+	try
+	{
+		MyServer::Create();
+	}
+	catch (std::exception)
+	{
+		std::cout << "Config file not found. Exiting";
+		terminate();
+	}
 }

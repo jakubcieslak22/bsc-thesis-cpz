@@ -5,6 +5,8 @@
 #define CROW_JSON_USE_MAP
 #include "crow.h"
 
+#include <fstream>
+
 #include "Windows.h"
 
 #include "DBTools.h"
@@ -199,8 +201,19 @@ namespace MyServer
 		App.port(iPort).multithreaded().run();
 	}
 
-	inline void Create(int iPort)
+	inline void Create()
 	{
+		int iPort = 0;
+		std::ifstream hCfg("config.cfg");
+		if (hCfg.is_open())
+		{
+			std::string sPort;
+			std::getline(hCfg, sPort);
+			iPort = atoi(sPort.c_str());
+		}
+		else
+			throw std::exception();
+
 		if (!DBTools::init())
 			std::cout << "Failed to connect to MySQL" << std::endl;
 		else
