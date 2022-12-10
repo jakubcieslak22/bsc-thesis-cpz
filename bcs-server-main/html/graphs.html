@@ -32,8 +32,8 @@ async function fetchAsync(url) {
     myList = await response.json();
     fillData();
     xLabels = [...Array(yVals.length).keys()];
-    console.log(xLabels);
     drawChart();
+    drawDropdown();
 }
 
 function fillData() {
@@ -43,7 +43,6 @@ function fillData() {
         var final = parseFloat(tempStr.substring(0, tempStr.indexOf(" ")));
         yVals.push(final);
     }     
-    console.log(yVals);
 }
 
 function drawChart () {
@@ -69,9 +68,28 @@ function drawChart () {
 });
 }
 
+function drawDropdown () {
+  const datesDropdown = document.getElementById("datesDropdown");
+  for (element of myList) {
+    console.log(element);
+    let option = document.createElement("option");
+    option.setAttribute('value', element["Data pomiaru"]);
+    let optionText = document.createTextNode(element["Data pomiaru"]);
+    option.appendChild(optionText);
+    console.log(option);
+    datesDropdown.appendChild(option);
+}
+}
+
 // ===============================================
 
 fetchAsync("http://" + addr + "/json/raw");
+
+
 </script>
+
+<select id="datesDropdown" style="height:30px;width:200px;font-size:20px;text-align: center;">
+</select>
+
 </body>
 </html>
