@@ -27,6 +27,7 @@
 
     var myList = [];
     var yVals = [];
+    var yTitle = "Temperatura [st. C]";
     var xLabels = [];
     var dateAssociation = [];
 
@@ -127,6 +128,18 @@
       datasetName += " dnia ";
       datasetName += targetDate;
 
+      switch (valShort) {
+        case "tm": yTitle = "Temperatura [st. C]"; break;
+        case "ah": yTitle = "Wilgotnosc powietrza [%]"; break;
+        case "ps": yTitle = "Cisnienie atmosferyczne [hPa]"; break;
+        case "lm": yTitle = "Natezenie swiatla [lx]"; break;
+        case "pr": yTitle = "Intensywnosc opadow"; break;
+        case "ws": yTitle = "Predkosc wiatru"; break;
+        case "g1": yTitle = "Wilgotnosc gleby (10cm)"; break;
+        case "g3": yTitle = "Wilgotnosc gleby (30cm)"; break;
+        case "g6": yTitle = "Wilgotnosc gleby (60cm)"; break;
+      }
+
       console.log("wybrana wartosc: " + valType);
       for (const measurement of myList) {
         let recVal = measurement[valType];
@@ -190,16 +203,30 @@
       options: {
         legend: { display: true },
         scales: {
-          xAxes: [{ ticks: { min: 0, max: yVals.length} }],
-          yAxes: [{ ticks: { min: parseInt(Math.min(...yVals)) - yAxisSpread, max: parseInt(Math.max(...yVals)) + yAxisSpread } }],
-          x: {
+          xAxes: [{ 
             display: true,
-            text: "tytul x"
-          },
-          y: {
+            ticks: { 
+              min: 0, 
+              max: yVals.length
+            },
+            scaleLabel: {
+              fontSize: 20,
+              display: true,
+              labelString: 'Czas'
+            }
+          }],
+          yAxes: [{ 
             display: true,
-            text: "tytul y"
-          }
+            ticks: { 
+              min: parseInt(Math.min(...yVals)) - yAxisSpread, 
+              max: parseInt(Math.max(...yVals)) + yAxisSpread 
+            },
+            scaleLabel: {
+              fontSize: 20,
+              display: true,
+              labelString: yTitle
+            }
+          }],
         },
       }
     });
