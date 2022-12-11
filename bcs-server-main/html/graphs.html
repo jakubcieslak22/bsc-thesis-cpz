@@ -52,14 +52,13 @@
       handleQueryString();
       drawDropdowns();
       fillData();
-      xLabels = [...Array(yVals.length).keys()];
+      //xLabels = [...Array(yVals.length).keys()];
       drawChart();
     }
     
     function handleQueryString() {
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
-      console.log(queryString);
       if (queryString != "")
       {
         chartDate = parseInt(urlParams.get("date"));
@@ -130,7 +129,7 @@
 
       console.log("wybrana wartosc: " + valType);
       for (const measurement of myList) {
-      let recVal = measurement[valType];
+        let recVal = measurement[valType];
         if (measurement["Data pomiaru"] == targetDate) {
           console.log("zarejestrowane dane: " + recVal);
           let finalVal = 0;
@@ -163,10 +162,12 @@
               case "Gleba wilgotna": finalVal = 1.0; break;
               case "Gleba mokra": finalVal = 2.0; break;
             }
+          }
+          yVals.push(finalVal);
+          xLabels.push(measurement['Godzina pomiaru']);
         }
-        yVals.push(finalVal);
       }
-    }
+
 
     // reset parametrow po ich odczytaniu
     chartDate = 0;
@@ -191,7 +192,15 @@
         scales: {
           xAxes: [{ ticks: { min: 0, max: yVals.length} }],
           yAxes: [{ ticks: { min: parseInt(Math.min(...yVals)) - yAxisSpread, max: parseInt(Math.max(...yVals)) + yAxisSpread } }],
-        }
+          x: {
+            display: true,
+            text: "tytul x"
+          },
+          y: {
+            display: true,
+            text: "tytul y"
+          }
+        },
       }
     });
   }
