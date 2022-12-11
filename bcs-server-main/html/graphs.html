@@ -6,12 +6,24 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+  }
+  .ui {
+    padding-left: 10px;
+    padding-right: 10px;
+    justify-content: space-between;
+    width: 300px;
+    text-align: center;
+  }
+  .dropdown {
+    margin-top: 40px
+  }
+  button {
+    margin-top: 80px;
   }
 </style>
 
 <body>
-  <canvas id="myChart" style="width:100%;max-width:1000px"></canvas>
+  <canvas id="myChart" style="width:100%;max-width:1200px"></canvas>
 
   <script>
 
@@ -56,14 +68,13 @@
       //xLabels = [...Array(yVals.length).keys()];
       drawChart();
     }
-    
+
     function handleQueryString() {
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
-      if (queryString != "")
-      {
+      if (queryString != "") {
         chartDate = parseInt(urlParams.get("date"));
-        chartVal = urlParams.get("val");  
+        chartVal = urlParams.get("val");
       }
     }
 
@@ -182,75 +193,85 @@
       }
 
 
-    // reset parametrow po ich odczytaniu
-    chartDate = 0;
-    chartValue = "tm";
-  }
-    
-  function drawChart() {
-    new Chart("myChart", {
-      type: "line",
-      data: {
-        labels: xLabels,
-        datasets: [{
-          label: datasetName,
-          data: yVals,
-          fill: false,
-          borderColor: 'rgb(75, 192, 192)',
-          tension: 0.1
-        }]
-      },
-      options: {
-        legend: { display: true },
-        scales: {
-          xAxes: [{ 
-            display: true,
-            ticks: { 
-              min: 0, 
-              max: yVals.length
-            },
-            scaleLabel: {
-              fontSize: 20,
-              display: true,
-              labelString: 'Czas'
-            }
-          }],
-          yAxes: [{ 
-            display: true,
-            ticks: { 
-              min: parseInt(Math.min(...yVals)) - yAxisSpread, 
-              max: parseInt(Math.max(...yVals)) + yAxisSpread 
-            },
-            scaleLabel: {
-              fontSize: 20,
-              display: true,
-              labelString: yTitle
-            }
-          }],
-        },
-      }
-    });
-  }
+      // reset parametrow po ich odczytaniu
+      chartDate = 0;
+      chartValue = "tm";
+    }
 
-  // ===============================================
-  fetchAsync("http://" + addr + "/json/raw");
+    function drawChart() {
+      new Chart("myChart", {
+        type: "line",
+        data: {
+          labels: xLabels,
+          datasets: [{
+            label: datasetName,
+            data: yVals,
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+          }]
+        },
+        options: {
+          legend: { 
+            display: true,
+            font: 20 
+          },
+          scales: {
+            xAxes: [{
+              display: true,
+              ticks: {
+                min: 0,
+                max: yVals.length
+              },
+              scaleLabel: {
+                fontSize: 20,
+                display: true,
+                labelString: "Godzina"
+              }
+            }],
+            yAxes: [{
+              display: true,
+              ticks: {
+                min: parseInt(Math.min(...yVals)) - yAxisSpread,
+                max: parseInt(Math.max(...yVals)) + yAxisSpread
+              },
+              scaleLabel: {
+                fontSize: 20,
+                display: true,
+                labelString: yTitle
+              }
+            }],
+          },
+        }
+      });
+    }
+
+    // ===============================================
+    fetchAsync("http://" + addr + "/json/raw");
 
   </script>
+  <div class="ui">
 
-  <select id="datesDropdown" style="height:30px;width:200px;font-size:20px;text-align: center;">
-  </select>
+    <div class="dropdown">
+      <select id="datesDropdown" style="height:30px;width:300px;font-size:20px;text-align: center;">
+      </select>
+    </div>
 
-  <select id="valuesDropdown" style="height:30px;width:300px;font-size:20px;text-align: center;">
-  </select>
+    <div class="dropdown">
+      <select id="valuesDropdown" style="height:30px;width:300px;font-size:20px;text-align: center;">
+      </select>
+    </div>
 
-  <button id="displayButton" style="height:70px;width:200px;font-size:20px;text-align: center;"
-    class="float-left submit-button"> Wyswietl
-    <script>
-      document.getElementById("displayButton").onclick = function () {
-        location.href = "?date=" + chartDate + "&val=" + chartValue;
-      };
-    </script>
-  </button>
+    <button id="displayButton" style="height:70px;width:300px;font-size:25px;text-align: center;"
+      class="float-left submit-button"> Wyswietl
+      <script>
+        document.getElementById("displayButton").onclick = function () {
+          location.href = "?date=" + chartDate + "&val=" + chartValue;
+        };
+      </script>
+    </button>
+  
+  </div>
 
 </body>
 
