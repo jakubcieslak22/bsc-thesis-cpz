@@ -59,7 +59,7 @@
       { name: "Wilgotnosc gleby (60cm)", arg: "g6" }
     ];
 
-    async function fetchAsync(url) {
+    async function executeAsync(url) {
       let response = await fetch(url);
       myList = await response.json();
       handleQueryString();
@@ -247,7 +247,7 @@
     }
 
     // ===============================================
-    fetchAsync("http://" + addr + "/json/raw");
+    executeAsync("http://" + addr + "/json/raw");
 
   </script>
   <div class="ui">

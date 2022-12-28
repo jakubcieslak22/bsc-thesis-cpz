@@ -77,5 +77,117 @@
 "Wilgotnosc gleby (30cm)": "Gleba wilgotna",
 "Wilgotnosc gleby (60cm)": "Gleba sucha",
 "Lokalizacja": "Poznan"
+},
+
+{
+"Nr pomiaru": 6,
+"Data pomiaru": "18.12.2022",
+"Godzina pomiaru": "12:12",
+"Temperatura": "14.3 st. C",
+"Wilgotnosc powietrza": "18.3%",
+"Cisnienie atmosferyczne": "970 hPa",
+"Natezenie swiatla": "10.23 lx",
+"Intensywnosc opadow": "Umiarkowane opady",
+"Predkosc wiatru": "Umiarkowany wiatr",
+"Wilgotnosc gleby (10cm)": "Gleba mokra",
+"Wilgotnosc gleby (30cm)": "Gleba wilgotna",
+"Wilgotnosc gleby (60cm)": "Gleba sucha",
+"Lokalizacja": "Poznan"
+},
+
+{
+"Nr pomiaru": 7,
+"Data pomiaru": "18.12.2022",
+"Godzina pomiaru": "12:15",
+"Temperatura": "14.3 st. C",
+"Wilgotnosc powietrza": "18.3%",
+"Cisnienie atmosferyczne": "970 hPa",
+"Natezenie swiatla": "10.23 lx",
+"Intensywnosc opadow": "Umiarkowane opady",
+"Predkosc wiatru": "Umiarkowany wiatr",
+"Wilgotnosc gleby (10cm)": "Gleba mokra",
+"Wilgotnosc gleby (30cm)": "Gleba wilgotna",
+"Wilgotnosc gleby (60cm)": "Gleba sucha",
+"Lokalizacja": "Poznan"
+},
+
+{
+"Nr pomiaru": 8,
+"Data pomiaru": "18.12.2022",
+"Godzina pomiaru": "12:31",
+"Temperatura": "14.3 st. C",
+"Wilgotnosc powietrza": "18.3%",
+"Cisnienie atmosferyczne": "970 hPa",
+"Natezenie swiatla": "10.23 lx",
+"Intensywnosc opadow": "Umiarkowane opady",
+"Predkosc wiatru": "Umiarkowany wiatr",
+"Wilgotnosc gleby (10cm)": "Gleba mokra",
+"Wilgotnosc gleby (30cm)": "Gleba wilgotna",
+"Wilgotnosc gleby (60cm)": "Gleba sucha",
+"Lokalizacja": "Poznan"
+},
+
+{
+"Nr pomiaru": 9,
+"Data pomiaru": "18.12.2022",
+"Godzina pomiaru": "12:32",
+"Temperatura": "14.3 st. C",
+"Wilgotnosc powietrza": "18.3%",
+"Cisnienie atmosferyczne": "970 hPa",
+"Natezenie swiatla": "10.23 lx",
+"Intensywnosc opadow": "Umiarkowane opady",
+"Predkosc wiatru": "Umiarkowany wiatr",
+"Wilgotnosc gleby (10cm)": "Gleba mokra",
+"Wilgotnosc gleby (30cm)": "Gleba wilgotna",
+"Wilgotnosc gleby (60cm)": "Gleba sucha",
+"Lokalizacja": "Poznan"
+},
+
+{
+"Nr pomiaru": 10,
+"Data pomiaru": "21.12.2022",
+"Godzina pomiaru": "18:08",
+"Temperatura": "22.03 st. C",
+"Wilgotnosc powietrza": "45.63%",
+"Cisnienie atmosferyczne": "1001 hPa",
+"Natezenie swiatla": "114 lx",
+"Intensywnosc opadow": "Brak opadow",
+"Predkosc wiatru": "Silny wiatr",
+"Wilgotnosc gleby (10cm)": "Gleba sucha",
+"Wilgotnosc gleby (30cm)": "Gleba sucha",
+"Wilgotnosc gleby (60cm)": "Gleba sucha",
+"Lokalizacja": "Strzelno"
+},
+
+{
+"Nr pomiaru": 11,
+"Data pomiaru": "21.12.2022",
+"Godzina pomiaru": "18:09",
+"Temperatura": "22.03 st. C",
+"Wilgotnosc powietrza": "45.63%",
+"Cisnienie atmosferyczne": "1001 hPa",
+"Natezenie swiatla": "114 lx",
+"Intensywnosc opadow": "Brak opadow",
+"Predkosc wiatru": "Silny wiatr",
+"Wilgotnosc gleby (10cm)": "Gleba sucha",
+"Wilgotnosc gleby (30cm)": "Gleba sucha",
+"Wilgotnosc gleby (60cm)": "Gleba sucha",
+"Lokalizacja": "Strzelno"
+},
+
+{
+"Nr pomiaru": 12,
+"Data pomiaru": "21.12.2022",
+"Godzina pomiaru": "18:09",
+"Temperatura": "22.03 st. C",
+"Wilgotnosc powietrza": "45.63%",
+"Cisnienie atmosferyczne": "1001 hPa",
+"Natezenie swiatla": "3421 lx",
+"Intensywnosc opadow": "Brak opadow",
+"Predkosc wiatru": "Silny wiatr",
+"Wilgotnosc gleby (10cm)": "Gleba sucha",
+"Wilgotnosc gleby (30cm)": "Gleba sucha",
+"Wilgotnosc gleby (60cm)": "Gleba sucha",
+"Lokalizacja": "Strzelno"
 }
 ]

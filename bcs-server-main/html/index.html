@@ -32,16 +32,16 @@
             location.href = "http://" + addr + "/graphs";
         };
     </script>
-    <table id="excelDataTable" border="5">
+    <table id="measurementsTable" border="5">
     </table>
 
 </body>
 
 <script>
-// ======================
-var ip = "62.21.50.49";
-var port = "9999";
-// ======================
+    // ======================
+    var ip = "62.21.50.49";
+    var port = "9999";
+    // ======================
 
     const addr = ip + ":" + port;
 
@@ -49,7 +49,7 @@ var port = "9999";
     async function fetchAsync(url) {
         let response = await fetch(url);
         myList = await response.json();
-        buildHtmlTable('#excelDataTable');
+        buildHtmlTable('#measurementsTable');
     }
 
     fetchAsync("http://" + addr + "/json/raw");
@@ -89,6 +89,5 @@ var port = "9999";
         return columnSet;
     }
 </script>
-
 
 </html>
