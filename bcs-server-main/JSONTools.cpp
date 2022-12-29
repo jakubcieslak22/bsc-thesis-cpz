@@ -37,9 +37,9 @@ bool JSONTools::packJSON(std::vector<std::pair<int, MeasurementsPacket> >& vCach
                 switch (xPkt.iPrec)
                 {
                 case 0: sPrec = "Brak opadow"; break;
-                case 1: sPrec = "Lekkie opady"; break;
-                case 2: sPrec = "Umiarkowane opady"; break;
-                case 3: sPrec = "Silne opady"; break;
+                case 1: sPrec = "Opady lekkie"; break;
+                case 2: sPrec = "Opady umiarkowane"; break;
+                case 3: sPrec = "Opady silne"; break;
                 default: sPrec = "Niepoprawny pomiar";
                 }
                 hJson << "\"Intensywnosc opadow\": \"" << sPrec << "\",\n";
@@ -48,9 +48,9 @@ bool JSONTools::packJSON(std::vector<std::pair<int, MeasurementsPacket> >& vCach
                 switch (xPkt.iWspd)
                 {
                 case 0: sWspd = "Brak wiatru"; break;
-                case 1: sWspd = "Lekki wiatr"; break;
-                case 2: sWspd = "Umiarkowany wiatr"; break;
-                case 3: sWspd = "Silny wiatr"; break;
+                case 1: sWspd = "Wiatr lekki"; break;
+                case 2: sWspd = "Wiatr umiarkowany"; break;
+                case 3: sWspd = "Wiatr silny"; break;
                 default: sWspd = "Niepoprawny pomiar";
                 }
                 hJson << "\"Predkosc wiatru\": \"" << sWspd << "\",\n";

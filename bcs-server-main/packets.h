@@ -68,7 +68,7 @@ inline bool ConstructMeasurementPacket(MeasurementsPacket& pkt, std::string req)
 		pkt.iPs = atoi(vSegments[4].c_str());
 		pkt.fLum = static_cast<float>(atof(vSegments[5].c_str()));
 		pkt.iPrec = atoi(vSegments[6].c_str());
-		if (pkt.iPrec < 0 || pkt.iWspd > 3)
+		if (pkt.iPrec < 0 || pkt.iPrec > 3)
 			return false;
 
 		pkt.iWspd = atoi(vSegments[7].c_str());
