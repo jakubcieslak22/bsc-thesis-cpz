@@ -24,7 +24,7 @@ namespace MyServer
 {
 	namespace // prywatne pole aktualizowane przy otrzymaniu POST
 	{
-		std::vector <std::pair <int, MeasurementsPacket> > vCachedPackets;
+		std::vector <std::pair<int, MeasurementsPacket> > vCachedPackets;
 	}
 
 	inline std::string GetMethod()
