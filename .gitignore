@@ -10,3 +10,4 @@
 .vs
 /bcs-server-main/html/json/measurements.json
 /overleaf
+/bcs-server-main/config.cfg
