@@ -29,13 +29,15 @@
 
     // ======================
     var ip = "62.21.50.49";
-    var port = "8888";
+    var port = "9999";
     // ======================
 
     const addr = ip + ":" + port;
 
     const yAxisSpread = 3;
     const xAxisSpread = 3;
+
+    var theChart = {};
 
     var myList = [];
     var yVals = [];
@@ -62,20 +64,9 @@
     async function executeAsync(url) {
       let response = await fetch(url);
       myList = await response.json();
-      handleQueryString();
       drawDropdowns();
       fillData();
-      //xLabels = [...Array(yVals.length).keys()];
       drawChart();
-    }
-
-    function handleQueryString() {
-      const queryString = window.location.search;
-      const urlParams = new URLSearchParams(queryString);
-      if (queryString != "") {
-        chartDate = parseInt(urlParams.get("date"));
-        chartVal = urlParams.get("val");
-      }
     }
 
     function drawDropdowns() {
@@ -107,7 +98,6 @@
 
       datesDropdown.addEventListener("change", e => {
         chartDate = e.target.value;
-        console.log(chartDate);
       });
 
       valuesDropdown.addEventListener("change", e => {
@@ -126,7 +116,6 @@
           targetDate = date.name;
         }
       }
-      console.log("wybrana data: " + targetDate);
 
       for (element of chartableValues) {
         if (element.arg == chartVal) {
@@ -151,11 +140,9 @@
         case "g6": yTitle = "Wilgotnosc gleby (60cm)"; break;
       }
 
-      console.log("wybrana wartosc: " + valType);
       for (const measurement of myList) {
         let recVal = measurement[valType];
         if (measurement["Data pomiaru"] == targetDate) {
-          console.log("zarejestrowane dane: " + recVal);
           let finalVal = 0;
           if (valShort == "tm" || valShort == "ps" || valShort == "lm") {
             finalVal = parseFloat(recVal.substring(0, recVal.indexOf(" ")));
@@ -166,18 +153,17 @@
           else if (valShort == "pr") {
             switch (recVal) {
               case "Brak opadow": finalVal = 0.0; break;
-              case "Lekkie opady": finalVal = 1.0; break;
-              case "Umiarkowane opady": finalVal = 2.0; break;
-              case "Silne opady": finalVal = 3.0; break;
+              case "Opady lekkie": finalVal = 1.0; break;
+              case "Opady umiarkowane": finalVal = 2.0; break;
+              case "Opady silne": finalVal = 3.0; break;
             }
-            console.log(finalVal);
           }
           else if (valShort == "ws") {
             switch (recVal) {
               case "Brak wiatru": finalVal = 0.0; break;
-              case "Lekki wiatr": finalVal = 1.0; break;
-              case "Umiarkowany wiatr": finalVal = 2.0; break;
-              case "Silny wiatr": finalVal = 3.0; break;
+              case "Wiatr lekki": finalVal = 1.0; break;
+              case "Wiatr umiarkowany": finalVal = 2.0; break;
+              case "Wiatr silny": finalVal = 3.0; break;
             }
           }
           else if (valShort == "g1" || valShort == "g3" || valShort == "g6") {
@@ -199,7 +185,7 @@
     }
 
     function drawChart() {
-      new Chart("myChart", {
+    theChart = new Chart("myChart", {
         type: "line",
         data: {
           labels: xLabels,
@@ -266,7 +252,81 @@
       class="float-left submit-button"> Wyswietl
       <script>
         document.getElementById("displayButton").onclick = function () {
-          location.href = "?date=" + chartDate + "&val=" + chartValue;
+          let dateChoice = document.getElementById("datesDropdown").value;
+          let valueChoice = document.getElementById("valuesDropdown").value;
+          let newDate = "";
+          for (element of dateAssociation) {
+            if (element.val == parseInt(dateChoice)) {
+              newDate = element.name;
+            }
+          }
+          
+          let newDatasetName = "";
+          for (element of chartableValues) {
+            if (element.arg == valueChoice) {
+              newDatasetName = element.name;
+            }
+          }
+
+          let newYLabel = "";
+          switch (valueChoice) {
+            case "tm": newYLabel = "Temperatura [st. C]"; break;
+            case "ah": newYLabel = "Wilgotnosc powietrza [%]"; break;
+            case "ps": newYLabel = "Cisnienie atmosferyczne [hPa]"; break;
+            case "lm": newYLabel = "Natezenie swiatla [lx]"; break;
+            case "pr": newYLabel = "Intensywnosc opadow"; break;
+            case "ws": newYLabel = "Predkosc wiatru"; break;
+            case "g1": newYLabel = "Wilgotnosc gleby (10cm)"; break;
+            case "g3": newYLabel = "Wilgotnosc gleby (30cm)"; break;
+            case "g6": newYLabel = "Wilgotnosc gleby (60cm)"; break;
+          }
+
+          let newDataset = [];
+          let newXLabels = [];
+          for (element of myList) {
+            if (element["Data pomiaru"] == newDate) {
+              let recVal = element[newDatasetName];
+              let finalVal = 0;
+              if (valueChoice == "tm" || valueChoice == "ps" || valueChoice == "lm") {
+                finalVal = parseFloat(recVal.substring(0, recVal.indexOf(" ")));
+              }
+              else if (valueChoice == "ah") {
+                finalVal = parseFloat(recVal.substring(0, recVal.indexOf("%")));
+              }
+              else if (valueChoice == "pr") {
+                switch (recVal) {
+                  case "Brak opadow": finalVal = 0.0; break;
+                  case "Opady lekkie": finalVal = 1.0; break;
+                  case "Opady umiarkowane": finalVal = 2.0; break;
+                  case "Opady silne": finalVal = 3.0; break;
+                }
+              }
+              else if (valueChoice == "ws") {
+                switch (recVal) {
+                  case "Brak wiatru": finalVal = 0.0; break;
+                  case "Wiatr lekki": finalVal = 1.0; break;
+                  case "Wiatr umiarkowany": finalVal = 2.0; break;
+                  case "Wiatr silny": finalVal = 3.0; break;
+                }
+              }
+              else if (valueChoice == "g1" || valueChoice == "g3" || valueChoice == "g6") {
+                switch (recVal) {
+                  case "Gleba sucha": finalVal = 0.0; break;
+                  case "Gleba wilgotna": finalVal = 1.0; break;
+                  case "Gleba mokra": finalVal = 2.0; break;
+                }
+              }
+              newDataset.push(finalVal);
+              newXLabels.push(element["Godzina pomiaru"]);
+            }
+          }          
+          theChart.data.labels = newXLabels;
+          theChart.data.datasets[0].data = newDataset;
+          theChart.data.datasets[0].label = newDatasetName + " dnia " + newDate;
+          theChart.options.scales.yAxes[0].scaleLabel.labelString = newYLabel;
+          theChart.options.scales.yAxes[0].ticks.min = parseInt(Math.min(...newDataset)) - yAxisSpread;
+          theChart.options.scales.yAxes[0].ticks.max = parseInt(Math.max(...newDataset)) + yAxisSpread;
+          theChart.update();
         };
       </script>
     </button>
