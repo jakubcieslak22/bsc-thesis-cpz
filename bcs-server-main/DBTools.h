@@ -14,7 +14,8 @@
 //#define MYSQL_DBNAME "bsctest"
 //#define MYSQL_TBNAME "measurements_november_test"
 #define MYSQL_DBNAME "bsc_measurements"
-#define MYSQL_TBNAME "measurements__december_predeploy"
+//#define MYSQL_TBNAME "measurements__december_predeploy"
+#define MYSQL_TBNAME "measurements"
 
 namespace DBTools
 {
