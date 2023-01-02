@@ -64,20 +64,9 @@
     async function executeAsync(url) {
       let response = await fetch(url);
       myList = await response.json();
-      handleQueryString();
       drawDropdowns();
       fillData();
-      //xLabels = [...Array(yVals.length).keys()];
       drawChart();
-    }
-
-    function handleQueryString() {
-      const queryString = window.location.search;
-      const urlParams = new URLSearchParams(queryString);
-      if (queryString != "") {
-        chartDate = parseInt(urlParams.get("date"));
-        chartVal = urlParams.get("val");
-      }
     }
 
     function drawDropdowns() {
