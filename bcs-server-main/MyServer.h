@@ -170,9 +170,9 @@ namespace MyServer
 				{ "Natezenie swiatla", pkt.fLum },
 				{ "Intensywnosc opadow", sPrec },
 				{ "Predkosc wiatru", sWspd },
-				{ "Wilgotnosc gleby (10cm)", sHumGnd1 },
-				{ "Wilgotnosc gleby (30cm)", sHumGnd2 },
-				{ "Wilgotnosc gleby (60cm)", sHumGnd3 },
+				{ "Wilgotnosc gleby (10cm)", pkt.iHumGnd1 },
+				{ "Wilgotnosc gleby (30cm)", pkt.iHumGnd1 },
+				{ "Wilgotnosc gleby (60cm)", pkt.iHumGnd1 },
 				{ "Lokalizacja", pkt.sLocation }
 			};
 			xList.emplace_back(x);
