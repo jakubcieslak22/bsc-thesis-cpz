@@ -92,7 +92,7 @@ bool DBTools::putMeasurementData(const MeasurementsPacket& Packet)
         + std::to_string(xPacket.iHumGnd1) + ", " + std::to_string(xPacket.iHumGnd2) + ", " + std::to_string(xPacket.iHumGnd3) + ", \"" 
         + xPacket.sLocation + "\");";
 
-    if (mysql_ping(Session))
+    if (mysql_ping(Session)) // zwraca 0 jesli operacja sie powiodla
         return false;
 
     if (mysql_query(Session, cmd.c_str()))
