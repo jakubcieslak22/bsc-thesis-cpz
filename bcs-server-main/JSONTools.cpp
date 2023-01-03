@@ -55,35 +55,9 @@ bool JSONTools::packJSON(std::vector<std::pair<int, MeasurementsPacket> >& vCach
                 }
                 hJson << "\"Predkosc wiatru\": \"" << sWspd << "\",\n";
 
-                std::string sHumGnd1;
-                switch (xPkt.iHumGnd1)
-                {
-                case 0: sHumGnd1 = "Gleba sucha"; break;
-                case 1: sHumGnd1 = "Gleba wilgotna"; break;
-                case 2: sHumGnd1 = "Gleba mokra"; break;
-                default: sHumGnd1 = "Niepoprawny pomiar";
-                }
-                hJson << "\"Wilgotnosc gleby (10cm)\": \"" << sHumGnd1 << "\",\n";
-
-                std::string sHumGnd2;
-                switch (xPkt.iHumGnd2)
-                {
-                case 0: sHumGnd2 = "Gleba sucha"; break;
-                case 1: sHumGnd2 = "Gleba wilgotna"; break;
-                case 2: sHumGnd2 = "Gleba mokra"; break;
-                default: sHumGnd2 = "Niepoprawny pomiar";
-                }
-                hJson << "\"Wilgotnosc gleby (30cm)\": \"" << sHumGnd2 << "\",\n";
-
-                std::string sHumGnd3;
-                switch (xPkt.iHumGnd3)
-                {
-                case 0: sHumGnd3 = "Gleba sucha"; break;
-                case 1: sHumGnd3 = "Gleba wilgotna"; break;
-                case 2: sHumGnd3 = "Gleba mokra"; break;
-                default: sHumGnd3 = "Niepoprawny pomiar";
-                }
-                hJson << "\"Wilgotnosc gleby (60cm)\": \"" << sHumGnd3 << "\",\n";
+                hJson << "\"Wilgotnosc gleby (10cm)\": \"" << xPkt.iHumGnd1 << "%\",\n";
+                hJson << "\"Wilgotnosc gleby (30cm)\": \"" << xPkt.iHumGnd2 << "%\",\n";
+                hJson << "\"Wilgotnosc gleby (60cm)\": \"" << xPkt.iHumGnd3 << "%\",\n";
 
                 hJson << "\"Lokalizacja\": \"" << xPkt.sLocation << "\"\n";
                 if (i < static_cast<int>(vec.size()) - 1)
