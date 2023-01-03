@@ -12,8 +12,8 @@
 #define MYSQL_PASS "root"
 #define MYSQL_HOST "localhost"
 #define MYSQL_DBNAME "bsc_measurements"
-//#define MYSQL_TBNAME "measurements__december_predeploy"
-#define MYSQL_TBNAME "measurements"
+#define MYSQL_TBNAME "measurements__december_predeploy"
+//#define MYSQL_TBNAME "measurements"
 
 namespace DBTools
 {
