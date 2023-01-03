@@ -135,9 +135,9 @@
         case "lm": yTitle = "Natezenie swiatla [lx]"; break;
         case "pr": yTitle = "Intensywnosc opadow"; break;
         case "ws": yTitle = "Predkosc wiatru"; break;
-        case "g1": yTitle = "Wilgotnosc gleby (10cm)"; break;
-        case "g3": yTitle = "Wilgotnosc gleby (30cm)"; break;
-        case "g6": yTitle = "Wilgotnosc gleby (60cm)"; break;
+        case "g1": yTitle = "Wilgotnosc gleby (10cm) [%]"; break;
+        case "g3": yTitle = "Wilgotnosc gleby (30cm) [%]"; break;
+        case "g6": yTitle = "Wilgotnosc gleby (60cm) [%]"; break;
       }
 
       for (const measurement of myList) {
@@ -147,7 +147,7 @@
           if (valShort == "tm" || valShort == "ps" || valShort == "lm") {
             finalVal = parseFloat(recVal.substring(0, recVal.indexOf(" ")));
           }
-          else if (valShort == "ah") {
+          else if (valShort == "ah" || valShort == "g1" || valShort == "g2" || valShort == "g3") {
             finalVal = parseFloat(recVal.substring(0, recVal.indexOf("%")));
           }
           else if (valShort == "pr") {
@@ -164,13 +164,6 @@
               case "Wiatr lekki": finalVal = 1.0; break;
               case "Wiatr umiarkowany": finalVal = 2.0; break;
               case "Wiatr silny": finalVal = 3.0; break;
-            }
-          }
-          else if (valShort == "g1" || valShort == "g3" || valShort == "g6") {
-            switch (recVal) {
-              case "Gleba sucha": finalVal = 0.0; break;
-              case "Gleba wilgotna": finalVal = 1.0; break;
-              case "Gleba mokra": finalVal = 2.0; break;
             }
           }
           yVals.push(finalVal);
@@ -276,9 +269,9 @@
             case "lm": newYLabel = "Natezenie swiatla [lx]"; break;
             case "pr": newYLabel = "Intensywnosc opadow"; break;
             case "ws": newYLabel = "Predkosc wiatru"; break;
-            case "g1": newYLabel = "Wilgotnosc gleby (10cm)"; break;
-            case "g3": newYLabel = "Wilgotnosc gleby (30cm)"; break;
-            case "g6": newYLabel = "Wilgotnosc gleby (60cm)"; break;
+            case "g1": newYLabel = "Wilgotnosc gleby (10cm) [%]"; break;
+            case "g3": newYLabel = "Wilgotnosc gleby (30cm) [%]"; break;
+            case "g6": newYLabel = "Wilgotnosc gleby (60cm) [%]"; break;
           }
 
           let newDataset = [];
@@ -290,7 +283,7 @@
               if (valueChoice == "tm" || valueChoice == "ps" || valueChoice == "lm") {
                 finalVal = parseFloat(recVal.substring(0, recVal.indexOf(" ")));
               }
-              else if (valueChoice == "ah") {
+              else if (valueChoice == "ah" || valueChoice == "g1" || valueChoice == "g3" || valueChoice == "g6") {
                 finalVal = parseFloat(recVal.substring(0, recVal.indexOf("%")));
               }
               else if (valueChoice == "pr") {
@@ -307,13 +300,6 @@
                   case "Wiatr lekki": finalVal = 1.0; break;
                   case "Wiatr umiarkowany": finalVal = 2.0; break;
                   case "Wiatr silny": finalVal = 3.0; break;
-                }
-              }
-              else if (valueChoice == "g1" || valueChoice == "g3" || valueChoice == "g6") {
-                switch (recVal) {
-                  case "Gleba sucha": finalVal = 0.0; break;
-                  case "Gleba wilgotna": finalVal = 1.0; break;
-                  case "Gleba mokra": finalVal = 2.0; break;
                 }
               }
               newDataset.push(finalVal);
