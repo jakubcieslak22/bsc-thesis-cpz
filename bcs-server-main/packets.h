@@ -78,10 +78,6 @@ inline bool ConstructMeasurementPacket(MeasurementsPacket& pkt, std::string req)
 		pkt.iHumGnd1 = atoi(vSegments[8].c_str());
 		pkt.iHumGnd2 = atoi(vSegments[9].c_str());
 		pkt.iHumGnd3 = atoi(vSegments[10].c_str());
-		if ((pkt.iHumGnd1 < 0 || pkt.iHumGnd1 > 2) ||
-			(pkt.iHumGnd2 < 0 || pkt.iHumGnd2 > 2) ||
-			(pkt.iHumGnd3 < 0 || pkt.iHumGnd3 > 2))
-			return false;
 
 		std::string sLoc = vSegments[11];
 		sLoc.erase(std::remove(sLoc.begin(), sLoc.end(), 'x'), sLoc.end());
