@@ -15,7 +15,8 @@
     text-align: center;
   }
   .dropdown {
-    margin-top: 40px
+    margin-top: 20px;
+    margin-bottom: 20px
   }
   button {
     margin-top: 80px;
@@ -46,6 +47,8 @@
     var dateAssociation = [];
 
     var chartDate = 0;
+    var chartDateAvgB = 0;
+    var chartDateAvgE = 0;
     var chartVal = "tm";
     var datasetName = "Temperatura";
 
@@ -65,12 +68,14 @@
       let response = await fetch(url);
       myList = await response.json();
       drawDropdowns();
-      fillData();
+      fillData(); 
       drawChart();
     }
 
     function drawDropdowns() {
       const datesDropdown = document.getElementById("datesDropdown");
+      const datesDropdownAvgBeg = document.getElementById("datesDropdownAvgBegin");
+      const datesDropdownAvgEnd = document.getElementById("datesDropdownAvgEnd");
       var n = 0;
       let dates = [];
       for (element of myList) {
@@ -83,6 +88,8 @@
         let optionText = document.createTextNode(element);
         option.appendChild(optionText);
         datesDropdown.appendChild(option);
+        datesDropdownAvgBeg.appendChild(option);
+        datesDropdownAvgEnd.appendChild(option);
         dateAssociation.push({ name: element, val: n });
         n++;
       }
@@ -98,6 +105,14 @@
 
       datesDropdown.addEventListener("change", e => {
         chartDate = e.target.value;
+      });
+
+      datesDropdownAvgBeg.addEventListener("change", e => {
+        chartDateAvgB = e.target.value;
+      });
+
+      datesDropdownAvgEnd.addEventListener("change", e => {
+        chartDateAvgE = e.target.value;
       });
 
       valuesDropdown.addEventListener("change", e => {
@@ -225,17 +240,52 @@
       });
     }
 
+    function handleRadioChange() {
+      let dAvgBeg = document.getElementById("datesDropdownAvgBegin");
+      let dAvgEnd = document.getElementById("datesDropdownAvgEnd");
+      let dMain = document.getElementById("datesDropdown");
+      const rSingular = document.getElementById("graphingRadioSingular");
+
+      if (rSingular.checked) {
+        dMain.disabled = false;
+        dAvgBeg.disabled = true;
+        dAvgEnd.disabled = true;
+      }
+      else {
+        dMain.disabled = true;
+        dAvgBeg.disabled = false;
+        dAvgEnd.disabled = false;
+      }
+    }
+
     // ===============================================
     executeAsync("http://" + addr + "/json/raw");
 
   </script>
   <div class="ui">
 
+    <input type="radio" id="graphingRadioSingular" name="graphingRadios" value="grSingular" checked onchange="handleRadioChange()">
+    <label for="graphingRadioSingular">Wyswietlaj pomiary z poszczegolnych dni</label>
+
     <div class="dropdown">
       <select id="datesDropdown" style="height:30px;width:300px;font-size:20px;text-align: center;">
       </select>
     </div>
 
+    <input type="radio" id="graphingRadioAverage" name="graphingRadios" value="grAverage" onchange="handleRadioChange()">
+    <label for="graphingRadioAverage">Wyswietlaj srednie wartosci z zakresu dat</label>
+
+    <div class="dropdown">
+      <select disabled id="datesDropdownAvgBegin" style="height:30px;width:300px;font-size:20px;text-align: center;">
+      </select>
+    </div>
+
+    <div class="dropdown">
+      <select disabled id="datesDropdownAvgEnd" style="height:30px;width:300px;font-size:20px;text-align: center;">
+      </select>
+    </div>
+
+    <br>
     <div class="dropdown">
       <select id="valuesDropdown" style="height:30px;width:300px;font-size:20px;text-align: center;">
       </select>
