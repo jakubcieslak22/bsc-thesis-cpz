@@ -8141,5 +8141,37 @@
 "Wilgotnosc gleby (30cm)": "86%",
 "Wilgotnosc gleby (60cm)": "53%",
 "Lokalizacja": "Strzelno"
+},
+
+{
+"Nr pomiaru": 510,
+"Data pomiaru": "17.01.2023",
+"Godzina pomiaru": "22:54",
+"Temperatura": "-2.4 st. C",
+"Wilgotnosc powietrza": "100%",
+"Cisnienie atmosferyczne": "983 hPa",
+"Natezenie swiatla": "0 lx",
+"Intensywnosc opadow": "Brak opadow",
+"Predkosc wiatru": "Wiatr lekki",
+"Wilgotnosc gleby (10cm)": "36%",
+"Wilgotnosc gleby (30cm)": "84%",
+"Wilgotnosc gleby (60cm)": "49%",
+"Lokalizacja": "Strzelno"
+},
+
+{
+"Nr pomiaru": 511,
+"Data pomiaru": "17.01.2023",
+"Godzina pomiaru": "23:24",
+"Temperatura": "-2.5 st. C",
+"Wilgotnosc powietrza": "100%",
+"Cisnienie atmosferyczne": "983 hPa",
+"Natezenie swiatla": "0 lx",
+"Intensywnosc opadow": "Brak opadow",
+"Predkosc wiatru": "Wiatr lekki",
+"Wilgotnosc gleby (10cm)": "44%",
+"Wilgotnosc gleby (30cm)": "82%",
+"Wilgotnosc gleby (60cm)": "50%",
+"Lokalizacja": "Strzelno"
 }
 ]

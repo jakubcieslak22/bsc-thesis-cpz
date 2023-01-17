@@ -380,6 +380,7 @@
             theChart.data.labels = newXLabels;
             theChart.data.datasets[0].data = newDataset;
             theChart.data.datasets[0].label = newDatasetName + " dnia " + newDate;
+            theChart.options.scales.xAxes[0].scaleLabel.labelString = "Godzina";
             theChart.options.scales.yAxes[0].scaleLabel.labelString = newYLabel;
             theChart.options.scales.yAxes[0].ticks.min = parseInt(Math.min(...newDataset)) - yAxisSpread;
             theChart.options.scales.yAxes[0].ticks.max = parseInt(Math.max(...newDataset)) + yAxisSpread;
@@ -391,7 +392,6 @@
             let dateChoiceEnd = document.getElementById("datesDropdownAvgEnd").value;
             let dateBegNo = 0;
             let dateEndNo = 0;
-            let skipFirstDate = true;
             for (element of dateAssociation) {
               if (element.name == dateChoiceBeg) {
                 dateBegNo = element.val;
@@ -400,19 +400,27 @@
                 dateEndNo = element.val;
               }
             }
-            if (dateBegNo != 0) {
-              skipFirstDate = true;
-            }
+            let skipFirstDate = (dateBegNo != 0);
             if (dateBegNo < dateEndNo) {
               var avgDataset = [];
               var dailyRange = [];
+              var xDateLabels = [];
+              var xDateNos = [];
               let currentDate = myList[0]["Data pomiaru"];
               let valueChoiceStr = "";
+
               for (element of chartableValues) {
                 if (element.arg == valueChoice) {
                   valueChoiceStr = element.name;
                 }
               }
+
+              for (assoc of dateAssociation) {
+                if (dateBegNo <= assoc.val && assoc.val <= dateEndNo) {
+                  xDateLabels.push(assoc.name);
+                }
+              }
+
               for (let i = 0; i < myList.length; i++) {
                 let element = myList[i];
                 let currentDateNo = 0;
@@ -421,7 +429,6 @@
                     currentDateNo = assoc.val;
                   } 
                 }
-                
                 if (currentDateNo >= dateBegNo && currentDateNo <= dateEndNo + 1) {
                   if (currentDate == element["Data pomiaru"]) {
                     let acquiredMeas = element[valueChoiceStr];
@@ -451,7 +458,6 @@
                     dailyRange.push(finalVal);
                   }
                   else {
-                    console.log(currentDate);
                     currentDate = element["Data pomiaru"];
                     if (!skipFirstDate) {
                       let dailyAvg = 0;
@@ -472,13 +478,66 @@
                     else {
                         skipFirstDate = false;
                     }
-                    console.log(avgDataset);
                   }
                 }
                 else if (currentDateNo > dateEndNo) {
                   break;
                 }
               }
+              xDateNos = [...avgDataset.keys()];
+
+              ////////// AKTUALIZACJA WYKRESU ///////////
+              let labeledVal = "";
+              let yTitle = "";
+              switch (valueChoice) {
+                case "tm": 
+                  yTitle = "Temperatura [st. C]"; 
+                  labeledVal = "temperatury";
+                  break;
+                case "ah": 
+                  yTitle = "Wilgotnosc powietrza [%]"; 
+                  labeledVal = "wilgotnosi powietrza"
+                  break;
+                case "ps": 
+                  yTitle = "Cisnienie atmosferyczne [hPa]"; 
+                  labeledVal = "cisnienia atmosferycznego"
+                  break;
+                case "lm": 
+                  yTitle = "Natezenie swiatla [lx]"; 
+                  labeledVal = "natezenia swiatla";
+                  break;
+                case "pr": 
+                  yTitle = "Intensywnosc opadow"; 
+                  labeledVal = "intensywnosci opadow"
+                  break;
+                case "ws": 
+                  yTitle = "Predkosc wiatru"; 
+                  labeledVal = "predkosci wiatru";
+                  break;
+                case "g1": 
+                  yTitle = "Wilgotnosc gleby (10cm) [%]"; 
+                  labeledVal = "wilgotnosci gleby (10cm)";
+                  break;
+                case "g3": 
+                  yTitle = "Wilgotnosc gleby (30cm) [%]"; 
+                  labeledVal = "wilgotnosci gleby (30cm)";
+                  break;
+                case "g6": 
+                  yTitle = "Wilgotnosc gleby (60cm) [%]";
+                  labeledVal = "wilgotnosci gleby (60cm)";
+                  break;
+              }
+
+              console.log(xDateLabels);
+              console.log(avgDataset);
+              theChart.data.labels = xDateLabels;
+              theChart.data.datasets[0].data = avgDataset;
+              theChart.data.datasets[0].label = "Srednia wartosc " + labeledVal + " z przedzialu od " + dateChoiceBeg + " do " + dateChoiceEnd;
+              theChart.options.scales.xAxes[0].scaleLabel.labelString = "Data";
+              theChart.options.scales.yAxes[0].scaleLabel.labelString = yTitle;
+              theChart.options.scales.yAxes[0].ticks.min = parseInt(Math.min(...avgDataset)) - yAxisSpread;
+              theChart.options.scales.yAxes[0].ticks.max = parseInt(Math.max(...avgDataset)) + yAxisSpread;
+              theChart.update();
             }
           }
         };
