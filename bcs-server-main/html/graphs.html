@@ -385,11 +385,13 @@
             theChart.options.scales.yAxes[0].ticks.max = parseInt(Math.max(...newDataset)) + yAxisSpread;
             theChart.update();
           }
+          ///////////// SREDNIA /////////////
           else {
             let dateChoiceBeg = document.getElementById("datesDropdownAvgBegin").value;
             let dateChoiceEnd = document.getElementById("datesDropdownAvgEnd").value;
             let dateBegNo = 0;
             let dateEndNo = 0;
+            let skipFirstDate = true;
             for (element of dateAssociation) {
               if (element.name == dateChoiceBeg) {
                 dateBegNo = element.val;
@@ -398,7 +400,9 @@
                 dateEndNo = element.val;
               }
             }
-
+            if (dateBegNo != 0) {
+              skipFirstDate = true;
+            }
             if (dateBegNo < dateEndNo) {
               var avgDataset = [];
               var dailyRange = [];
@@ -409,7 +413,8 @@
                   valueChoiceStr = element.name;
                 }
               }
-              for (element of myList) {
+              for (let i = 0; i < myList.length; i++) {
+                let element = myList[i];
                 let currentDateNo = 0;
                 for (assoc of dateAssociation) {
                   if (element["Data pomiaru"] == assoc.name) {
@@ -417,7 +422,7 @@
                   } 
                 }
                 
-                if (currentDateNo >= dateBegNo && currentDateNo <= dateEndNo) {
+                if (currentDateNo >= dateBegNo && currentDateNo <= dateEndNo + 1) {
                   if (currentDate == element["Data pomiaru"]) {
                     let acquiredMeas = element[valueChoiceStr];
                     let finalVal = 0;
@@ -446,23 +451,28 @@
                     dailyRange.push(finalVal);
                   }
                   else {
+                    console.log(currentDate);
                     currentDate = element["Data pomiaru"];
-                    let dailyAvg = 0;
-                    let dailySum = 0;
-                    for (n of dailyRange) {
-                      dailySum += n;
-                    }
-                    dailyAvg = dailySum / dailyRange.length;
-                    if (valueChoice == "ws" || valueChoice == "pr") {
-                      dailyAvg = Math.round(dailyAvg);
-                      console.log(dailyAvg);
+                    if (!skipFirstDate) {
+                      let dailyAvg = 0;
+                      let dailySum = 0;
+                      for (n of dailyRange) {
+                        dailySum += n;
+                      }
+                      dailyAvg = dailySum / dailyRange.length;
+                      if (valueChoice == "ws" || valueChoice == "pr") {
+                        dailyAvg = Math.round(dailyAvg);
+                      }
+                      else {
+                        dailyAvg = dailyAvg.toFixed(2);
+                      }
+                      avgDataset.push(dailyAvg);
+                      dailyRange = [];
                     }
                     else {
-                      dailyAvg = dailyAvg.toFixed(2);
-                      console.log(dailyAvg);
+                        skipFirstDate = false;
                     }
-                    avgDataset.push(dailyAvg);
-                    dailyRange = [];
+                    console.log(avgDataset);
                   }
                 }
                 else if (currentDateNo > dateEndNo) {
