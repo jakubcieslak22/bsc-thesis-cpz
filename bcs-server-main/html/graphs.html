@@ -47,6 +47,8 @@
     var dateAssociation = [];
 
     var chartDate = 0;
+    var chartDateAvgB = 0;
+    var chartDateAvgE = 0;
     var chartVal = "tm";
     var datasetName = "Temperatura";
 
@@ -72,6 +74,8 @@
 
     function drawDropdowns() {
       const datesDropdown = document.getElementById("datesDropdown");
+      const datesDropdownAvgBeg = document.getElementById("datesDropdownAvgBegin");
+      const datesDropdownAvgEnd = document.getElementById("datesDropdownAvgEnd");
       var n = 0;
       let dates = [];
       for (element of myList) {
@@ -84,6 +88,8 @@
         let optionText = document.createTextNode(element);
         option.appendChild(optionText);
         datesDropdown.appendChild(option);
+        datesDropdownAvgBeg.appendChild(option);
+        datesDropdownAvgEnd.appendChild(option);
         dateAssociation.push({ name: element, val: n });
         n++;
       }
@@ -99,6 +105,14 @@
 
       datesDropdown.addEventListener("change", e => {
         chartDate = e.target.value;
+      });
+
+      datesDropdownAvgBeg.addEventListener("change", e => {
+        chartDateAvgB = e.target.value;
+      });
+
+      datesDropdownAvgEnd.addEventListener("change", e => {
+        chartDateAvgE = e.target.value;
       });
 
       valuesDropdown.addEventListener("change", e => {
