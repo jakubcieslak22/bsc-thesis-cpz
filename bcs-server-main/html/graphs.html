@@ -92,20 +92,21 @@
         option.setAttribute('value', n);
         let optionText = document.createTextNode(element);
         option.appendChild(optionText);
-
-        let optionAvgB = document.createElement("option");
-        option.setAttribute('value', n);
-        let optionAvgBText = document.createTextNode(element);
-        optionAvgB.appendChild(optionAvgBText);
-
-        let optionAvgE = document.createElement("option");
-        option.setAttribute('value', n);
-        let optionAvgEText = document.createTextNode(element);
-        optionAvgE.appendChild(optionAvgEText);
-
         datesDropdown.appendChild(option);
-        datesDropdownAvgBeg.appendChild(optionAvgB);
-        datesDropdownAvgEnd.appendChild(optionAvgE);
+
+        if (element != uniqueDates[uniqueDates.length - 1]) {
+          let optionAvgB = document.createElement("option");
+          option.setAttribute('value', n);
+          let optionAvgBText = document.createTextNode(element);
+          optionAvgB.appendChild(optionAvgBText);
+          datesDropdownAvgBeg.appendChild(optionAvgB);
+
+          let optionAvgE = document.createElement("option");
+          option.setAttribute('value', n);
+          let optionAvgEText = document.createTextNode(element);
+          optionAvgE.appendChild(optionAvgEText);
+          datesDropdownAvgEnd.appendChild(optionAvgE);
+        }
         dateAssociation.push({ name: element, val: n });
         n++;
       }
