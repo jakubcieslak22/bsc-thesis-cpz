@@ -437,7 +437,7 @@
                     if (valueChoice == "tm" || valueChoice == "ps" || valueChoice == "lm") {
                       finalVal = parseFloat(acquiredMeas.substring(0, acquiredMeas.indexOf(" ")));
                     }
-                    else if (valueChoice == "ah" || valueChoice == "g1" || valueChoice == "g2" || valueChoice == "g3") {
+                    else if (valueChoice == "ah" || valueChoice == "g1" || valueChoice == "g3" || valueChoice == "g6") {
                       finalVal = parseFloat(acquiredMeas.substring(0, acquiredMeas.indexOf("%")));
                     }
                     else if (valueChoice == "pr") {
@@ -486,7 +486,7 @@
                 }
               }
               xDateNos = [...avgDataset.keys()];
-
+              console.log(avgDataset);
               ////////// AKTUALIZACJA WYKRESU ///////////
               let labeledVal = "";
               let yTitle = "";
@@ -529,8 +529,6 @@
                   break;
               }
 
-              console.log(xDateLabels);
-              console.log(avgDataset);
               theChart.data.labels = xDateLabels;
               theChart.data.datasets[0].data = avgDataset;
               theChart.data.datasets[0].label = "Srednia wartosc " + labeledVal + " z przedzialu od " + dateChoiceBeg + " do " + dateChoiceEnd;

@@ -8781,5 +8781,229 @@
 "Wilgotnosc gleby (30cm)": "82%",
 "Wilgotnosc gleby (60cm)": "48%",
 "Lokalizacja": "Strzelno"
+},
+
+{
+"Nr pomiaru": 550,
+"Data pomiaru": "18.01.2023",
+"Godzina pomiaru": "09:40",
+"Temperatura": "0.5 st. C",
+"Wilgotnosc powietrza": "100%",
+"Cisnienie atmosferyczne": "982 hPa",
+"Natezenie swiatla": "2802 lx",
+"Intensywnosc opadow": "Brak opadow",
+"Predkosc wiatru": "Wiatr lekki",
+"Wilgotnosc gleby (10cm)": "61%",
+"Wilgotnosc gleby (30cm)": "85%",
+"Wilgotnosc gleby (60cm)": "53%",
+"Lokalizacja": "Strzelno"
+},
+
+{
+"Nr pomiaru": 551,
+"Data pomiaru": "18.01.2023",
+"Godzina pomiaru": "09:55",
+"Temperatura": "0.5 st. C",
+"Wilgotnosc powietrza": "100%",
+"Cisnienie atmosferyczne": "982 hPa",
+"Natezenie swiatla": "3318 lx",
+"Intensywnosc opadow": "Brak opadow",
+"Predkosc wiatru": "Wiatr lekki",
+"Wilgotnosc gleby (10cm)": "59%",
+"Wilgotnosc gleby (30cm)": "81%",
+"Wilgotnosc gleby (60cm)": "50%",
+"Lokalizacja": "Strzelno"
+},
+
+{
+"Nr pomiaru": 552,
+"Data pomiaru": "18.01.2023",
+"Godzina pomiaru": "10:10",
+"Temperatura": "0.6 st. C",
+"Wilgotnosc powietrza": "100%",
+"Cisnienie atmosferyczne": "982 hPa",
+"Natezenie swiatla": "3735 lx",
+"Intensywnosc opadow": "Brak opadow",
+"Predkosc wiatru": "Wiatr lekki",
+"Wilgotnosc gleby (10cm)": "53%",
+"Wilgotnosc gleby (30cm)": "76%",
+"Wilgotnosc gleby (60cm)": "46%",
+"Lokalizacja": "Strzelno"
+},
+
+{
+"Nr pomiaru": 553,
+"Data pomiaru": "18.01.2023",
+"Godzina pomiaru": "10:25",
+"Temperatura": "0.5 st. C",
+"Wilgotnosc powietrza": "100%",
+"Cisnienie atmosferyczne": "982 hPa",
+"Natezenie swiatla": "2481 lx",
+"Intensywnosc opadow": "Brak opadow",
+"Predkosc wiatru": "Wiatr lekki",
+"Wilgotnosc gleby (10cm)": "55%",
+"Wilgotnosc gleby (30cm)": "78%",
+"Wilgotnosc gleby (60cm)": "52%",
+"Lokalizacja": "Strzelno"
+},
+
+{
+"Nr pomiaru": 554,
+"Data pomiaru": "18.01.2023",
+"Godzina pomiaru": "10:41",
+"Temperatura": "0.5 st. C",
+"Wilgotnosc powietrza": "100%",
+"Cisnienie atmosferyczne": "982 hPa",
+"Natezenie swiatla": "1780 lx",
+"Intensywnosc opadow": "Brak opadow",
+"Predkosc wiatru": "Wiatr lekki",
+"Wilgotnosc gleby (10cm)": "59%",
+"Wilgotnosc gleby (30cm)": "78%",
+"Wilgotnosc gleby (60cm)": "49%",
+"Lokalizacja": "Strzelno"
+},
+
+{
+"Nr pomiaru": 555,
+"Data pomiaru": "18.01.2023",
+"Godzina pomiaru": "10:56",
+"Temperatura": "0.5 st. C",
+"Wilgotnosc powietrza": "100%",
+"Cisnienie atmosferyczne": "982 hPa",
+"Natezenie swiatla": "3611 lx",
+"Intensywnosc opadow": "Brak opadow",
+"Predkosc wiatru": "Wiatr lekki",
+"Wilgotnosc gleby (10cm)": "52%",
+"Wilgotnosc gleby (30cm)": "74%",
+"Wilgotnosc gleby (60cm)": "48%",
+"Lokalizacja": "Strzelno"
+},
+
+{
+"Nr pomiaru": 556,
+"Data pomiaru": "18.01.2023",
+"Godzina pomiaru": "11:11",
+"Temperatura": "0.6 st. C",
+"Wilgotnosc powietrza": "100%",
+"Cisnienie atmosferyczne": "982 hPa",
+"Natezenie swiatla": "1743 lx",
+"Intensywnosc opadow": "Brak opadow",
+"Predkosc wiatru": "Wiatr lekki",
+"Wilgotnosc gleby (10cm)": "57%",
+"Wilgotnosc gleby (30cm)": "76%",
+"Wilgotnosc gleby (60cm)": "48%",
+"Lokalizacja": "Strzelno"
+},
+
+{
+"Nr pomiaru": 557,
+"Data pomiaru": "18.01.2023",
+"Godzina pomiaru": "11:26",
+"Temperatura": "0.6 st. C",
+"Wilgotnosc powietrza": "100%",
+"Cisnienie atmosferyczne": "982 hPa",
+"Natezenie swiatla": "2186 lx",
+"Intensywnosc opadow": "Brak opadow",
+"Predkosc wiatru": "Wiatr lekki",
+"Wilgotnosc gleby (10cm)": "56%",
+"Wilgotnosc gleby (30cm)": "76%",
+"Wilgotnosc gleby (60cm)": "49%",
+"Lokalizacja": "Strzelno"
+},
+
+{
+"Nr pomiaru": 558,
+"Data pomiaru": "18.01.2023",
+"Godzina pomiaru": "11:41",
+"Temperatura": "0.6 st. C",
+"Wilgotnosc powietrza": "100%",
+"Cisnienie atmosferyczne": "982 hPa",
+"Natezenie swiatla": "2764 lx",
+"Intensywnosc opadow": "Brak opadow",
+"Predkosc wiatru": "Brak wiatru",
+"Wilgotnosc gleby (10cm)": "54%",
+"Wilgotnosc gleby (30cm)": "76%",
+"Wilgotnosc gleby (60cm)": "47%",
+"Lokalizacja": "Strzelno"
+},
+
+{
+"Nr pomiaru": 559,
+"Data pomiaru": "18.01.2023",
+"Godzina pomiaru": "11:56",
+"Temperatura": "0.6 st. C",
+"Wilgotnosc powietrza": "100%",
+"Cisnienie atmosferyczne": "982 hPa",
+"Natezenie swiatla": "3218 lx",
+"Intensywnosc opadow": "Brak opadow",
+"Predkosc wiatru": "Wiatr lekki",
+"Wilgotnosc gleby (10cm)": "52%",
+"Wilgotnosc gleby (30cm)": "77%",
+"Wilgotnosc gleby (60cm)": "48%",
+"Lokalizacja": "Strzelno"
+},
+
+{
+"Nr pomiaru": 560,
+"Data pomiaru": "18.01.2023",
+"Godzina pomiaru": "12:11",
+"Temperatura": "0.7 st. C",
+"Wilgotnosc powietrza": "100%",
+"Cisnienie atmosferyczne": "982 hPa",
+"Natezenie swiatla": "3559 lx",
+"Intensywnosc opadow": "Brak opadow",
+"Predkosc wiatru": "Wiatr lekki",
+"Wilgotnosc gleby (10cm)": "53%",
+"Wilgotnosc gleby (30cm)": "79%",
+"Wilgotnosc gleby (60cm)": "53%",
+"Lokalizacja": "Strzelno"
+},
+
+{
+"Nr pomiaru": 561,
+"Data pomiaru": "18.01.2023",
+"Godzina pomiaru": "12:26",
+"Temperatura": "0.8 st. C",
+"Wilgotnosc powietrza": "100%",
+"Cisnienie atmosferyczne": "982 hPa",
+"Natezenie swiatla": "3627 lx",
+"Intensywnosc opadow": "Brak opadow",
+"Predkosc wiatru": "Wiatr lekki",
+"Wilgotnosc gleby (10cm)": "52%",
+"Wilgotnosc gleby (30cm)": "79%",
+"Wilgotnosc gleby (60cm)": "48%",
+"Lokalizacja": "Strzelno"
+},
+
+{
+"Nr pomiaru": 562,
+"Data pomiaru": "18.01.2023",
+"Godzina pomiaru": "12:41",
+"Temperatura": "0.8 st. C",
+"Wilgotnosc powietrza": "100%",
+"Cisnienie atmosferyczne": "982 hPa",
+"Natezenie swiatla": "2440 lx",
+"Intensywnosc opadow": "Brak opadow",
+"Predkosc wiatru": "Wiatr lekki",
+"Wilgotnosc gleby (10cm)": "53%",
+"Wilgotnosc gleby (30cm)": "80%",
+"Wilgotnosc gleby (60cm)": "49%",
+"Lokalizacja": "Strzelno"
+},
+
+{
+"Nr pomiaru": 563,
+"Data pomiaru": "18.01.2023",
+"Godzina pomiaru": "12:56",
+"Temperatura": "0.7 st. C",
+"Wilgotnosc powietrza": "100%",
+"Cisnienie atmosferyczne": "982 hPa",
+"Natezenie swiatla": "2392 lx",
+"Intensywnosc opadow": "Brak opadow",
+"Predkosc wiatru": "Wiatr lekki",
+"Wilgotnosc gleby (10cm)": "55%",
+"Wilgotnosc gleby (30cm)": "79%",
+"Wilgotnosc gleby (60cm)": "50%",
+"Lokalizacja": "Strzelno"
 }
 ]
